@@ -19,7 +19,7 @@ Pobranie listy faktur
 Z aktualnego miesiąca
 
 ```shell
-curl -u 'login:twoje-haslo'  http://twojaDomena.fakturownia.pl/invoices.json?period=this_month
+curl -u 'login:twoje-haslo'  https://twojaDomena.fakturownia.pl/invoices.json?period=this_month
 ```
 
 
@@ -27,14 +27,14 @@ Pobranie faktury po ID
 ----------------------
 
 ```shell
-curl -u 'login:twoje-haslo'  http://twojaDomena.fakturownia.pl/invoices/100.json
+curl -u 'login:twoje-haslo'  https://twojaDomena.fakturownia.pl/invoices/100.json
 ```
 
 PDF
 
 
 ```shell
-curl -u 'login:twoje-haslo'  http://twojaDomena.fakturownia.pl/invoices/100.pdf?print_option=original
+curl -u 'login:twoje-haslo'  https://twojaDomena.fakturownia.pl/invoices/100.pdf?print_option=original
 ```
 
 inne opcje PDF:
