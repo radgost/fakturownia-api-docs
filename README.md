@@ -22,6 +22,11 @@ Z aktualnego miesiąca
 curl -u 'login:twoje-haslo'  https://twojaDomena.fakturownia.pl/invoices.json?period=this_month
 ```
 
+Faktury danego klienta
+
+```shell
+curl -u 'login:twoje-haslo'  https://twojaDomena.fakturownia.pl/invoices.json?client_id=ID_KLIENTA
+```
 
 Pobranie faktury po ID
 ----------------------
