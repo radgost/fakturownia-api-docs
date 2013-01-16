@@ -110,8 +110,6 @@ Pola faktury
 "number" : "13/2012" - number fakturay (jeśi nie będzie podany wygeneruje się automatyczie)
 "kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
 "income" : "1" - fakturay przychodowa (1) lub kosztowa (0)
-"additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
-"client_id" : "-1" - id klienta (jeśi -1 to klient zostanie utworzony w systemie)
 "pattern" : "yy/mm/dd/nr-d" - format numerowania faktury
 "issue_date" : "2013-01-16" - data wystawienia 
 "place" : "Warszawa" - miejsce wystawienia
@@ -130,7 +128,8 @@ Pola faktury
 "seller_www" : "", 
 "seller_fax" : "", 
 "seller_phone" : "", 
-"buyer_name" : "Nazwa klienta", 
+"client_id" : "-1" - id kupującego (jeśi -1 to klient zostanie utworzony w systemie)
+"buyer_name" : "Nazwa klienta" - kupujący
 "buyer_tax_no" : "525-244-57-67", 
 "disable_tax_no_validation" : "", 
 "buyer_post_code" : "30-314", 
@@ -139,8 +138,9 @@ Pola faktury
 "buyer_country" : "", 
 "buyer_note" : "", 
 "buyer_email" : "", 
-"additional_info" : "0", 
-"show_discount" : "0", 
+"additional_info" : "0" - czy wyświetlać dodatkowe pole na pozycjach faktury
+"additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
+"show_discount" : "0" - czy rabat
 "payment_type" : "transfer", 
 "payment_to_kind" : "other_date", 
 "payment_to" : "2013-01-16", 
