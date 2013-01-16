@@ -103,7 +103,6 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 
 <a name="invoices"/>
 ##Faktury
--------
 
 
 * `GET /invoices/1.json` pobranie faktury
