@@ -7,8 +7,8 @@ Można zingegrować własną aplikację lub serwis z systemem Fakturownia.pl
 Poniżej opisujemy API dzięki, któremu można z innych systemów zarzadzać fakturami, klientami, produktami
 
 ##### Spis treści
-+ [Przykłady wywołania](#example1)  
-+ [Emphasis](#emphasis)  
++ [Przykłady wywołania](#Przykłady wywołania)  
++ [Przykłady użycia w PHP - zakup szkolenia](#Przykłady użycia w PHP - zakup szkolenia)  
 
 
 API token
