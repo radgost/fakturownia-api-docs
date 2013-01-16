@@ -180,7 +180,7 @@ Pola faktury
 
 Wartości pól
 
-`kind`
+Pole: `kind`
 ```shell
 	"vat" - faktura VAT
 	"proforma" - faktura Proforma
@@ -197,6 +197,38 @@ Wartości pól
 	"estimate" - Estimate
 ```
 
+Pole: `lang`
+```shell
+	"pl" - faktura w języku polskim
+	"en" - jęzk angielski
+	"de" - język niemiecki
+	"fr" - język fransucki
+	"pl_en" - faktura polsko/angielska
+	"pl_de" - faktura polsko/niemiecka
+	"pl_fr" - faktura polsko/francuska
+```
 
+
+Pole: `income`
+```shell
+	"1" - fakura przychodwa
+	"0" - faktura kosztowa
+```
+
+Pole: `payment_type`
+```shell
+	"transfer" - przelew
+	"card" - karta płatnicza
+	"cash" -  gotówka
+	"dowolny_inny_wpis_tekstowy" 
+```
+
+Pole: `status`
+```shell
+	"issued" - wystawiona
+	"sent" - wysłana
+	"paid" - opłacona
+	"partial" - częściowo opłacona
+```
 
 
