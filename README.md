@@ -1,7 +1,7 @@
 # Fakturownia API
 
 
-Można zingegrować własną aplikację lub serwis z systemem Fakturownia.pl
+Można zingegrować własną aplikację lub serwis z systemem <http://fakturownia.pl/>
 
 
 Poniżej opisujemy API dzięki, któremu można z innych systemów zarzadzać fakturami, klientami, produktami
