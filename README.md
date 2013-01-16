@@ -80,14 +80,16 @@ Aktualizacja faktury
 TODO
 ```
 
-Przykłady użycia: Zakup Szkolenia
+Przykłady użycia w PHP - zakup szkolenia
 ----------------
+
+`TODO` 
 
 Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła ją klientowi i po opłaceniu wysyła do klienta bilet na szkolenie
 
 * Klient wypełnia dane w Portalu
 * Portal wywołuje API z fakturownia.pl i tworzy fakturę
-* Prtal pobiera wysyła Klientowi fakturę Proforma w PDF wraz z linkiem do płatności
+* Portal pobiera wysyła Klientowi fakturę Proforma w PDF wraz z linkiem do płatności
 * Klient opłaca fakturę Proforma (np. na PayPal lub PayU.pl)
 * Fakturownia.pl otrzymuje informację, że płatność została wykonana, tworzy Fakturę VAT i wysyła ją Klientowi oraz wywołuje API Portalu
 * Po otrzymaniu informacji o płatności (przez API) Portal wysyła Klientowi bilet na Szkolenie
@@ -180,22 +182,20 @@ Wartości pól
 
 `kind`
 ```shell
-	vat - faktura VAT
-	proforma - faktura Proforma
-	bill - rachunek
-	receipt - paragon
-	advance - faktura zaliczkowa
-	final - faktura końcowa
-	correction - faktura korekta
-	vat_mp - faktura MP 
-	invoice_other - inna faktura 
-	vat_margin - faktura marża
-	kp - kasa przyjmie
-	kw - kasa wyda
-	estimate - Estimate
+	"vat" - faktura VAT
+	"proforma" - faktura Proforma
+	"bill" - rachunek
+	"receipt" - paragon
+	"advance" - faktura zaliczkowa
+	"final" - faktura końcowa
+	"correction" - faktura korekta
+	"vat_mp" - faktura MP 
+	"invoice_other" - inna faktura 
+	"vat_margin" - faktura marża
+	"kp" - kasa przyjmie
+	"kw" - kasa wyda
+	"estimate" - Estimate
 ```
-
-
 
 
 
