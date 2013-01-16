@@ -176,6 +176,22 @@ Pola faktury
    		"total_price_gross" : "72,57"
 ```
 
+Wartości pól
+
+`kind`
+	vat
+	proforma
+	bill
+	receipt
+	advance
+	final
+	correction
+	vat_mp
+	invoice_other
+	vat_margin
+	kp
+	kw
+	estimate
 
 
 
