@@ -179,20 +179,21 @@ Pola faktury
 Wartości pól
 
 `kind`
-	vat
-	proforma
-	bill
-	receipt
-	advance
-	final
-	correction
-	vat_mp
-	invoice_other
-	vat_margin
-	kp
-	kw
-	estimate
-
+```shell
+	vat - faktura VAT
+	proforma - faktura Proforma
+	bill - rachunek
+	receipt - paragon
+	advance - faktura zaliczkowa
+	final - faktura końcowa
+	correction - faktura korekta
+	vat_mp - faktura MP 
+	invoice_other - inna faktura 
+	vat_margin - faktura marża
+	kp - kasa przyjmie
+	kw - kasa wyda
+	estimate - Estimate
+```
 
 
 
