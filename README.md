@@ -1,23 +1,24 @@
-Fakturownia API
-===============
+# Fakturownia API
+
 
 Można zingegrować własną aplikację lub serwis z systemem Fakturownia.pl
 
 
 Poniżej opisujemy API dzięki, któremu można z innych systemów zarzadzać fakturami, klientami, produktami
 
-##### Spis treści
-+ [Przykłady wywołania](#Przykłady wywołania)  
-+ [Przykłady użycia w PHP - zakup szkolenia](#Przykłady użycia w PHP - zakup szkolenia)  
+## Spis treści
++ [API Token](#token)  
++ [Przykłady wywołania](#examples)  
++ [Przykłady użycia w PHP - zakup szkolenia](#use_case1)  
 
 
-API token
----------
+<a name="token"/>
+##API token
 
 `API_TOKEN` token trzeba pobrać z ustawień aplikacji ("Ustawienia -> Ustawienia konta -> Integracja -> Kod autoryzacyjny API")
 
-Przykłady wywołania
-----------------
+<a name="examples"/>
+##Przykłady wywołania
 
 Pobranie listy faktur z aktualnego miesiąca
 
@@ -84,8 +85,8 @@ Aktualizacja faktury
 TODO
 ```
 
-Przykłady użycia w PHP - zakup szkolenia
-----------------
+<a name="use_case1"/>
+##Przykłady użycia w PHP - zakup szkolenia
 
 `TODO` 
 
