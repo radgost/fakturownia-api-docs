@@ -10,6 +10,7 @@ Poniżej opisujemy API dzięki, któremu można z innych systemów zarzadzać fa
 + [API Token](#token)  
 + [Przykłady wywołania](#examples)  
 + [Przykłady użycia w PHP - zakup szkolenia](#use_case1)  
++ [Faktury - specyfikacja](#invoices)  
 
 
 <a name="token"/>
@@ -100,7 +101,8 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 * Po otrzymaniu informacji o płatności (przez API) Portal wysyła Klientowi bilet na Szkolenie
 
 
-Faktury
+<a name="invoices"/>
+##Faktury
 -------
 
 
