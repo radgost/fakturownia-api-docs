@@ -107,22 +107,20 @@ Faktury
 Pola faktury
 
 ```shell
-"number" : "13/2012", 
-"kind" : "vat", 
-"income" : "1", 
-"additional_info_desc" : "PKWiU", 
-"from_invoice_id" : "746977", 
-"tax2_visible" : "false", 
-"client_id" : "-1", 
-"pattern" : "yy/mm/dd/nr-d", 
-"issue_date" : "2013-01-16", 
-"place" : "", 
-"sell_date" : "2013-01-16", 
-"category_id" : "", 
-"department_id" : "1", 
-"seller_name" : "Radgost Sp. z o.o.", 
-"seller_tax_no" : "525-244-57-67", 
-"seller_bank_account" : "24 1140 1977 0000 5921 7200 1001", 
+"number" : "13/2012" - number fakturay (jeśi nie będzie podany wygeneruje się automatyczie)
+"kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
+"income" : "1" - fakturay przychodowa (1) lub kosztowa (0)
+"additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
+"client_id" : "-1" - id klienta (jeśi -1 to klient zostanie utworzony w systemie)
+"pattern" : "yy/mm/dd/nr-d" - format numerowania faktury
+"issue_date" : "2013-01-16" - data wystawienia 
+"place" : "Warszawa" - miejsce wystawienia
+"sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
+"category_id" : "" - id kategorii
+"department_id" : "1" - id działu firmy
+"seller_name" : "Radgost Sp. z o.o." - sprzedawca
+"seller_tax_no" : "525-244-57-67" - nip sprzedawcy
+"seller_bank_account" : "24 1140 1977 0000 5921 7200 1001" - konto bankowe sprzedawcy
 "seller_bank" : "BRE Bank", 
 "seller_post_code" : "02-548", 
 "seller_city" : "Warszawa", 
