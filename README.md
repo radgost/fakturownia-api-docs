@@ -4,7 +4,11 @@ Fakturownia API
 Można zingegrować własną aplikację lub serwis z systemem Fakturownia.pl
 
 
-Ponizej opisujemy API dzięki, któremu można z innych systemów zarzadzać fakturami, klientami, produktami
+Poniżej opisujemy API dzięki, któremu można z innych systemów zarzadzać fakturami, klientami, produktami
+
+##### Spis treści
++ [Przykłady wywołania](#example1)  
++ [Emphasis](#emphasis)  
 
 
 API token
