@@ -57,7 +57,7 @@ inne opcje PDF:
 Dodanie nowej faktury
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json 
   	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
@@ -83,7 +83,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json
 Aktualizacja faktury
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.dev/invoices/111.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json 
 	-X PUT 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
