@@ -83,7 +83,15 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json
 Aktualizacja faktury
 
 ```shell
-TODO
+curl http://YOUR_DOMAIN.fakturownia.dev/invoices/111.json 
+	-X PUT -H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{
+		"api_tokn": "API_TOKEN",
+		"invoice": {
+			"buyer_name": "Nowa nazwa klienta Sp. z o.o."
+		}
+	}'
 ```
 
 <a name="use_case1"/>
