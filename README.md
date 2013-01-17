@@ -58,7 +58,7 @@ Dodanie nowej faktury
 
 ```shell
 curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
-  -H 'Accept: application/json'  
+  	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
 	  	"api_token": "API_TOKEN",
@@ -84,7 +84,8 @@ Aktualizacja faktury
 
 ```shell
 curl http://YOUR_DOMAIN.fakturownia.dev/invoices/111.json 
-	-X PUT -H 'Accept: application/json'  
+	-X PUT 
+	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
 		"api_tokn": "API_TOKEN",
