@@ -176,7 +176,7 @@ Pola faktury
 "invoice_template_id" : "1", 
 "description_footer" : "", 
 "description_long" : "", 
-"from_invoice_id" : "" - id faktury na podstawie której faktura zostałą wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma)
+"from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma)
 "positions":
    		"product_id" : "1", 
    		"name" : "Fakturownia Start", 
