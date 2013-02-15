@@ -37,7 +37,7 @@ Pobranie faktury po ID
 
 
 ```shell
-curl https://twojaDomena.fakturownia.pl/invoices/100.json&api_token=API_TOKEN
+curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
 Pobranie PDF-a
