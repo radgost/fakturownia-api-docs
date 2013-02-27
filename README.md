@@ -96,7 +96,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json
 	}'
 ```
 
-<a name="view_link"/>
+<a name="view_url"/>
 ##Link do podglądu faktury i pobieranie do PDF
 
 Po pobraniu danych faktury np. przez:
@@ -105,7 +105,7 @@ Po pobraniu danych faktury np. przez:
 curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
-API zwraca nam pola `view_url` i `pdf_url` są to linki do podgądug faktury oraz zo pobrania PDF-a z wygenrowaną fakturą.
+API zwraca nam m.in. pola `view_url` i `pdf_url` są to linki do podgądug faktury oraz zo pobrania PDF-a z wygenrowaną fakturą.
 Linki te zawierając token który umożliwia odwołanie się do nich bez konieczności logowania - czyli możemy np. te linki przesłać klientowi który otrzyma dostęp do faktury.
 
 
