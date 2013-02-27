@@ -105,12 +105,14 @@ Po pobraniu danych faktury np. przez:
 curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
-API zwraca nam m.in. pola `view_url` i `pdf_url` są to linki do podgądug faktury oraz zo pobrania PDF-a z wygenrowaną fakturą.
-Linki te zawierając token który umożliwia odwołanie się do nich bez konieczności logowania - czyli możemy np. te linki przesłać klientowi który otrzyma dostęp do faktury.
+API zwraca nam m.in. pole `token` na podstawie którego możemy otrzymać linki do podgądu faktury oraz zo pobrania PDF-a z wygenrowaną fakturą.
+Linki takie umożliwiają odwołanie się do wybranej faktury  bez konieczności logowania - czyli możemy np. te linki przesłać klientowi, który otrzyma dostęp do faktury i PDF-a.
 
-Lini te są postaci: `http://twojaDomena.fakturownia.dev/invoice/HBO3Npx2OzSW7ddQL7XV` i `http://twojaDomena.fakturownia.dev/invoice/HBO3Npx2OzSW7ddQL7XV.pdf`
+Lini te są postaci: 
+podgląd: `http://twojaDomena.fakturownia.pl/invoice/{{token}}` 
+pdf: `http://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`
 
-
+Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV` publiczny PDF będzie pod adresem `http://twojaDomena.fakturownia.pl/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
 
 <a name="use_case1"/>
 ##Przykłady użycia w PHP - zakup szkolenia
