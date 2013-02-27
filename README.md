@@ -125,7 +125,6 @@ Pola faktury
 "number" : "13/2012" - number fakturay (jeśi nie będzie podany wygeneruje się automatyczie)
 "kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
 "income" : "1" - fakturay przychodowa (1) lub kosztowa (0)
-"pattern" : "yy/mm/dd/nr-d" - format numerowania faktury
 "issue_date" : "2013-01-16" - data wystawienia 
 "place" : "Warszawa" - miejsce wystawienia
 "sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
