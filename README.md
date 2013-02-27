@@ -190,7 +190,7 @@ Pola faktury
 "paid_date" : "", 
 "currency" : "PLN", 
 "lang" : "pl", 
-"exchange_currency" : "", 
+"exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę, wg kursu NBP)
 "internal_note" : "", 
 "invoice_template_id" : "1", 
 "description_footer" : "", 
@@ -199,15 +199,15 @@ Pola faktury
 "positions":
    		"product_id" : "1", 
    		"name" : "Fakturownia Start", 
-   		"additional_info" : "", 
-   		"discount_percent" : "", 
-   		"discount" : "", 
+   		"additional_info" : "", - dodatkowa informacja na pozyji faktury (np. PKWiU)
+   		"discount_percent" : "", - zniżka procentowa
+   		"discount" : "", - zniżka kwotowa
    		"quantity" : "1", 
    		"quantity_unit" : "szt", 
-   		"price_net" : "59,00", 
+   		"price_net" : "59,00", - jeśli nie jest podana to zostaniw wyliczona
    		"tax" : "23", 
-   		"price_gross" : "72,57", 
-   		"total_price_net" : "59,00", 
+   		"price_gross" : "72,57", - jeśli nie jest podana to zostaniw wyliczona
+   		"total_price_net" : "59,00", - jeśli nie jest podana to zostaniw wyliczona
    		"total_price_gross" : "72,57"
 ```
 
@@ -235,7 +235,7 @@ Pole: `lang`
 	"pl" - faktura w języku polskim
 	"en" - jęzk angielski
 	"de" - język niemiecki
-	"fr" - język fransucki
+	"fr" - język francuski
 	"pl_en" - faktura polsko/angielska
 	"pl_de" - faktura polsko/niemiecka
 	"pl_fr" - faktura polsko/francuska
