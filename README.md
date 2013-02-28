@@ -28,9 +28,7 @@ Pobranie listy faktur z aktualnego miesiąca
 curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_token=API_TOKEN
 ```
 
-UWAGA:
-
-do wywołań można przekazywać dodatkowe paramtery - te same które są używane w aplikacji. Np. `page`, `period` itp.
+<b>UWAGA</b>: do wywołań można przekazywać dodatkowe paramtery - te same które są używane w aplikacji, np. `page=`, `period=` itp.
 
 Faktury danego klienta
 
