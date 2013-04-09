@@ -202,8 +202,8 @@ Pola faktury
    		"product_id" : "1", 
    		"name" : "Fakturownia Start", 
    		"additional_info" : "", - dodatkowa informacja na pozyji faktury (np. PKWiU)
-   		"discount_percent" : "", - zniżka procentowa
-   		"discount" : "", - zniżka kwotowa
+   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wiliczany trzeba ustawić pole: 'show_discount' na '1')
+   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wiliczany trzeba ustawić pole: 'show_discount' na 1 oraz zmienić wartość pola 'discount_kin' na 'percent_total')
    		"quantity" : "1", 
    		"quantity_unit" : "szt", 
    		"price_net" : "59,00", - jeśli nie jest podana to zostaniw wyliczona
