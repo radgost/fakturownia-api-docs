@@ -268,9 +268,9 @@ Pole: `status`
 
 Pole: `discount_kind` - rodzaj rabatu
 ```shell
-	"percent_unit" - liczona od ceny jednostkowej
-	"percent_total" - liczona od ceny całkowitej
-	"amount" - kwotowa
+	"percent_unit" - liczony od ceny jednostkowej
+	"percent_total" - liczony od ceny całkowitej
+	"amount" - kwotowy
 ```
 
 
