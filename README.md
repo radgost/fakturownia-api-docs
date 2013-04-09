@@ -4,7 +4,7 @@
 Można zingegrować własną aplikację lub serwis z systemem <http://fakturownia.pl/>
 
 
-Poniżej opisujemy API dzięki, któremu można z innych systemów zarzadzać fakturami, klientami, produktami
+Poniżej opisujemy API dzięki, któremu można z innych systemów zarządzać fakturami, klientami, produktami
 
 ## Spis treści
 + [API Token](#token)  
@@ -28,7 +28,7 @@ Pobranie listy faktur z aktualnego miesiąca
 curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_token=API_TOKEN
 ```
 
-<b>UWAGA</b>: do wywołań można przekazywać dodatkowe paramtery - te same które są używane w aplikacji, np. `page=`, `period=` itp.
+<b>UWAGA</b>: do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
 
 Faktury danego klienta
 
@@ -107,7 +107,7 @@ Po pobraniu danych faktury np. przez:
 curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
-API zwraca nam m.in. pole `token` na podstawie którego możemy otrzymać linki do podgądu faktury oraz zo pobrania PDF-a z wygenrowaną fakturą.
+API zwraca nam m.in. pole `token` na podstawie którego możemy otrzymać linki do podglądu faktury oraz zo pobrania PDF-a z wygenrowaną fakturą.
 Linki takie umożliwiają odwołanie się do wybranej faktury  bez konieczności logowania - czyli możemy np. te linki przesłać klientowi, który otrzyma dostęp do faktury i PDF-a.
 
 Lini te są postaci: 
@@ -144,7 +144,7 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 Pola faktury
 
 ```shell
-"number" : "13/2012" - number fakturay (jeśi nie będzie podany wygeneruje się automatyczie)
+"number" : "13/2012" - number faktury (jeśli nie będzie podany wygeneruje się automatyczie)
 "kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
 "income" : "1" - fakturay przychodowa (1) lub kosztowa (0)
 "issue_date" : "2013-01-16" - data wystawienia 
@@ -182,7 +182,7 @@ Pola faktury
 "payment_to" : "2013-01-16", 
 "status" : "issued", 
 "paid" : "0,00", 
-"oid" : "zamowienie10021", - numer zamówienia (np z zewnętrzengo systemu zamówień)
+"oid" : "zamowienie10021", - numer zamówienia (np z zewnętrznego systemu zamówień)
 "discount_kind" : "percent_unit", (dostępne wartości: 'percent_unit', 'percent_total', 'amount' )
 "warehouse_id" : "1090", 
 "seller_person" : "Imie Nazwisko", 
@@ -201,15 +201,15 @@ Pola faktury
 "positions":
    		"product_id" : "1", 
    		"name" : "Fakturownia Start", 
-   		"additional_info" : "", - dodatkowa informacja na pozyji faktury (np. PKWiU)
-   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wiliczany trzeba ustawić pole: 'show_discount' na '1')
-   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wiliczany trzeba ustawić pole: 'show_discount' na 1 oraz zmienić wartość pola 'discount_kind' na 'percent_total')
+   		"additional_info" : "", - dodatkowa informacja na pozycji faktury (np. PKWiU)
+   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na '1')
+   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na 1 oraz zmienić wartość pola 'discount_kind' na 'percent_total')
    		"quantity" : "1", 
    		"quantity_unit" : "szt", 
-   		"price_net" : "59,00", - jeśli nie jest podana to zostaniw wyliczona
+   		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"tax" : "23", 
-   		"price_gross" : "72,57", - jeśli nie jest podana to zostaniw wyliczona
-   		"total_price_net" : "59,00", - jeśli nie jest podana to zostaniw wyliczona
+   		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
+   		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57"
 ```
 
@@ -235,7 +235,7 @@ Pole: `kind`
 Pole: `lang`
 ```shell
 	"pl" - faktura w języku polskim
-	"en" - jęzk angielski
+	"en" - język angielski
 	"de" - język niemiecki
 	"fr" - język francuski
 	"pl_en" - faktura polsko/angielska
@@ -272,5 +272,4 @@ Pole: `discount_kind` - rodzaj rabatu
 	"percent_total" - liczony od ceny całkowitej
 	"amount" - kwotowy
 ```
-
 
