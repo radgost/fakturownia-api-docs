@@ -182,8 +182,8 @@ Pola faktury
 "payment_to" : "2013-01-16", 
 "status" : "issued", 
 "paid" : "0,00", 
-"oid" : "zamoweieni123", 
-"discount_kind" : "percent_unit", 
+"oid" : "zamowienie10021", - numer zamówienia (np z zewnętrzengo systemu zamówień)
+"discount_kind" : "percent_unit", (dostępne wartości: 'percent_unit', 'percent_total', 'amount' )
 "warehouse_id" : "1090", 
 "seller_person" : "Imie Nazwisko", 
 "buyer_first_name" : "Imie", 
