@@ -266,4 +266,11 @@ Pole: `status`
 	"partial" - częściowo opłacona
 ```
 
+Pole: `discount_kind` - rodzaj rabatu
+```shell
+	"percent_unit" - liczona od ceny jednostkowej
+	"percent_total" - liczona od ceny całkowitej
+	"amount" - kwotowa
+```
+
 
