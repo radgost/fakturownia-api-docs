@@ -4,6 +4,7 @@
 Opis jak zintegrować własną aplikację lub serwis z systemem <http://fakturownia.pl/>
 
 
+
 Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami
 
 ## Spis treści
@@ -277,3 +278,5 @@ Pole: `discount_kind` - rodzaj rabatu
 
 <a name="codes"/>
 ##Przykłady w PHP i Ruby
+
+<https://github.com/radgost/fakturownia-api/blob/master/example1.php/>
