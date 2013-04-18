@@ -10,8 +10,9 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [API Token](#token)  
 + [Przykłady wywołania](#examples)  
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)  
-+ [Przykłady użycia w PHP - zakup szkolenia](#use_case1)  
-+ [Faktury - specyfikacja](#invoices)  
++ [Przykłady użycia  - zakup szkolenia](#use_case1)  
++ [Faktury - specyfikacja](#invoices)
++ [Przykłady w PHP i Ruby](#codes)  
 
 
 <a name="token"/>
@@ -273,3 +274,6 @@ Pole: `discount_kind` - rodzaj rabatu
 	"amount" - kwotowy
 ```
 
+
+<a name="codes"/>
+##Przykłady w PHP i Ruby
