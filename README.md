@@ -93,7 +93,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{
-		"api_tokn": "API_TOKEN",
+		"api_token": "API_TOKEN",
 		"invoice": {
 			"buyer_name": "Nowa nazwa klienta Sp. z o.o."
 		}
