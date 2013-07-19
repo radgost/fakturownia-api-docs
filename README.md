@@ -280,3 +280,5 @@ Pole: `discount_kind` - rodzaj rabatu
 ##Przykłady w PHP i Ruby
 
 <https://github.com/radgost/fakturownia-api/blob/master/example1.php/>
+
+Ruby Gem do integracji z Fakturownia.pl: <https://github.com/kkempin/fakturownia/>
