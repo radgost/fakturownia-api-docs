@@ -87,6 +87,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json
 
 Dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych):
 
+```shell
 curl http://marcin2222.fakturownia.dev/invoices.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
@@ -101,6 +102,7 @@ curl http://marcin2222.fakturownia.dev/invoices.json
 				{"product_id": 1, "quantity":2}
 			]
 	    }}'
+```	   
 
 Aktualizacja faktury
 
