@@ -162,6 +162,24 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 * `POST /invoices.json` dodanie nowej faktury
 * `PUT /invoices/1.json` aktualizacja faktury
 * `DELETE /invoices/1.json` skasowanie faktury
+
+
+Przykład - dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych). Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
+
+```shell
+curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
+    -H 'Accept: application/json'  
+    -H 'Content-Type: application/json'  
+    -d '{"api_token": "API_TOKEN",
+        "invoice": {
+            "payment_to_kind": 5,
+            "department_id": 1, 
+            "client_id": 1,
+            "positions":[
+                {"product_id": 1, "quantity":2}
+            ]
+        }}'
+```
  
 Pola faktury
 
