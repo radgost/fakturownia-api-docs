@@ -13,6 +13,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)  
 + [Przykłady użycia  - zakup szkolenia](#use_case1)  
 + [Faktury - specyfikacja](#invoices)
++ [Klienci](#clients)
 + [Przykłady w PHP i Ruby](#codes)  
 
 
@@ -293,6 +294,44 @@ Pole: `discount_kind` - rodzaj rabatu
 	"amount" - kwotowy
 ```
 
+
+<a name="clients"/>
+##Klienci
+
+Lista klientów
+
+```shell
+curl "http://TOWJA_DOMENA.fakturownia.dev/clients.json?api_token=API_TOKEN&page=1"
+```
+
+Pobranie wybranego klienta po ID
+
+```shell
+curl "http://TOWJA_DOMENA.fakturownia.dev/clients/100.json?api_token=API_TOKEN"
+```
+
+Dodanie klienta
+
+```shell
+curl http://TOWJA_DOMENA.fakturownia.dev/clients.json 
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{"api_token": "API_TOKEN",
+		"client": {
+			"name": "Klient1",
+			"tax_no": "5252445767",
+			"bank" : "bank1",
+			"bank_account" : "bank_account1",
+			"city" : "city1",
+			"country" : "",
+			"email" : "bank1",
+			"person" : "person1",
+			"post_code" : "post-code1",
+			"phone" : "phone1",
+			"street" : "street1",
+			"street_no" : "street-no1"
+	    }}'
+```
 
 <a name="codes"/>
 ##Przykłady w PHP i Ruby
