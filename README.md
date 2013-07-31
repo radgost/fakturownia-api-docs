@@ -301,19 +301,19 @@ Pole: `discount_kind` - rodzaj rabatu
 Lista klientów
 
 ```shell
-curl "http://TOWJA_DOMENA.fakturownia.dev/clients.json?api_token=API_TOKEN&page=1"
+curl "http://YOUR_DOMAIN.fakturownia.dev/clients.json?api_token=API_TOKEN&page=1"
 ```
 
 Pobranie wybranego klienta po ID
 
 ```shell
-curl "http://TOWJA_DOMENA.fakturownia.dev/clients/100.json?api_token=API_TOKEN"
+curl "http://YOUR_DOMAIN.fakturownia.dev/clients/100.json?api_token=API_TOKEN"
 ```
 
 Dodanie klienta
 
 ```shell
-curl http://TOWJA_DOMENA.fakturownia.dev/clients.json 
+curl http://YOUR_DOMAIN.fakturownia.dev/clients.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
