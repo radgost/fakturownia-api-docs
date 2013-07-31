@@ -14,6 +14,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Przykłady użycia  - zakup szkolenia](#use_case1)  
 + [Faktury - specyfikacja](#invoices)
 + [Klienci](#clients)
++ [Produkty](#products)
 + [Przykłady w PHP i Ruby](#codes)  
 
 
@@ -330,6 +331,40 @@ curl http://YOUR_DOMAIN.fakturownia.pl/clients.json
 			"phone" : "phone1",
 			"street" : "street1",
 			"street_no" : "street-no1"
+	    }}'
+```
+
+<a name="products"/>
+##Produkty
+
+Produkty 
+
+Lista produktów
+
+
+```shell
+curl "http://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&page=1"
+```
+
+Pobranie wybranego produktu po ID
+
+```shell
+curl "http://marcin2222.fakturownia.pl/products/100.json?api_token=API_TOKEN"
+```
+
+Dodanie produktu
+
+
+```shell
+curl http://YOUR_DOMAIN.fakturownia.pl/products.json 
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{"api_token": "API_TOKEN",
+		"product": {
+			"name": "PoroductAA",
+			"code": "A001",
+			"price_net": "100",
+			"tax": "23"
 	    }}'
 ```
 
