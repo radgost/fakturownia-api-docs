@@ -349,7 +349,7 @@ curl "http://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&page=1
 Pobranie wybranego produktu po ID
 
 ```shell
-curl "http://marcin2222.fakturownia.pl/products/100.json?api_token=API_TOKEN"
+curl "http://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN"
 ```
 
 Dodanie produktu
