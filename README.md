@@ -85,7 +85,8 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json
 	}'
 ```
 
-Dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych):
+Dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych).
+Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
 
 ```shell
 curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
@@ -93,9 +94,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
 		"invoice": {
-			"kind":"vat", 
-			"issue_date": "2013-07-31", 
-			"payment_to": "2013-08-07",
+			"payment_to_kind": 5,
 			"department_id": 1, 
 			"client_id": 1,
 			"positions":[
