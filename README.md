@@ -10,7 +10,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 ## Spis treści
 + [API Token](#token)  
 + [Faktury - przykłady wywołania](#examples)  
-+ + Pobranie listy faktur z aktualnego miesiąca
+	+ Pobranie listy faktur z aktualnego miesiąca
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)  
 + [Przykłady użycia  - zakup szkolenia](#use_case1)  
 + [Faktury - specyfikacja](#invoices)
