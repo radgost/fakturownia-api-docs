@@ -352,6 +352,31 @@ curl http://YOUR_DOMAIN.fakturownia.pl/clients.json
 	    }}'
 ```
 
+Aktualizacja klienta
+
+```shell
+curl http://YOUR_DOMAIN.fakturownia.pl/clients/111.json 
+	-X PUT 
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{"api_token": "API_TOKEN",
+		"client": {
+			"name": "Klient2",
+			"tax_no": "52524457672",
+			"bank" : "bank2",
+			"bank_account" : "bank_account2",
+			"city" : "city2",
+			"country" : "PL",
+			"email" : "bank2",
+			"person" : "person2",
+			"post_code" : "post-code2",
+			"phone" : "phone2",
+			"street" : "street2",
+			"street_no" : "street-no2"
+	    }}'
+```
+
+
 <a name="products"/>
 ##Produkty
 
@@ -383,6 +408,21 @@ curl http://YOUR_DOMAIN.fakturownia.pl/products.json
 			"code": "A001",
 			"price_net": "100",
 			"tax": "23"
+	    }}'
+```
+
+Aktualizacja produktu
+
+```shell
+curl http://YOUR_DOMAIN.fakturownia.pl/products/333.json 
+	-X PUT
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{"api_token": "API_TOKEN",
+		"product": {
+			"name": "PoroductAA2",
+			"code": "A0012",
+			"price_net": "102"
 	    }}'
 ```
 
