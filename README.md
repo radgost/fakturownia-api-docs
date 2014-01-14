@@ -230,7 +230,6 @@ Pola faktury
 "status" : "issued", 
 "paid" : "0,00", 
 "oid" : "zamowienie10021", - numer zamówienia (np z zewnętrznego systemu zamówień)
-"discount_kind" : "percent_unit", (dostępne wartości: 'percent_unit', 'percent_total', 'amount' )
 "warehouse_id" : "1090", 
 "seller_person" : "Imie Nazwisko", 
 "buyer_first_name" : "Imie", 
@@ -249,8 +248,8 @@ Pola faktury
    		"product_id" : "1", 
    		"name" : "Fakturownia Start", 
    		"additional_info" : "", - dodatkowa informacja na pozycji faktury (np. PKWiU)
-   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na '1')
-   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na 1 oraz zmienić wartość pola 'discount_kind' na 'percent_total')
+   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na '1' oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "kwotowo")
+   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na 1 oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "procentowo")
    		"quantity" : "1", 
    		"quantity_unit" : "szt", 
    		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
