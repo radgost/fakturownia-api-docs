@@ -61,6 +61,13 @@ Pobranie PDF-a
 curl https://twojaDomena.fakturownia.pl/invoices/100.pdf?api_token=API_TOKEN
 ```
 
+Wysłanie faktury e-mailem do klienta
+
+
+```shell
+curl -X POST https://twojaDomena.fakturownia.pl/invoices/100/send_email.json?api_token=API_TOKEN
+```
+
 inne opcje PDF:
 * print_option=original - Oryginał
 * print_option=copy - Kopia
