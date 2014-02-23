@@ -14,6 +14,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ Faktury danego klienta
 	+ Pobranie faktury po ID
 	+ Pobranie PDF-a
+	+ Wysłanie faktury E-MAILEM do klienta
 	+ Dodanie nowej faktury
 	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)
 	+ Aktualizacja faktury
