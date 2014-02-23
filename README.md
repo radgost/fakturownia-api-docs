@@ -66,7 +66,7 @@ Wysłanie faktury e-mailem do klienta
 
 
 ```shell
-curl -X POST https://twojaDomena.fakturownia.pl/invoices/100/send_email.json?api_token=API_TOKEN
+curl -X POST https://twojaDomena.fakturownia.pl/invoices/100/send_by_email.json?api_token=API_TOKEN
 ```
 
 inne opcje PDF:
