@@ -233,7 +233,7 @@ Pola faktury
 "additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
 "show_discount" : "0" - czy rabat
 "payment_type" : "transfer", 
-"payment_to_kind" : "other_date", 
+"payment_to_kind" : termin płatności. gdy jest tu "other_date", wtedy można określić konkretną datę w polu "payment_to", jeśli jest tu liczba np. 5 to wtedy mamy 5 dniowy okres płatności
 "payment_to" : "2013-01-16", 
 "status" : "issued", 
 "paid" : "0,00", 
