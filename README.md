@@ -206,7 +206,7 @@ Pola faktury
 "place" : "Warszawa" - miejsce wystawienia
 "sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
 "category_id" : "" - id kategorii
-"department_id" : "1" - id działu firmy (z menu Ustawienia > Dane firmy )
+"department_id" : "1" - id działu firmy (w menu Ustawienia > Dane firmy należy kliknąć na firmę/dział i ID działu pojawi się w URL)
 "seller_name" : "Radgost Sp. z o.o." - sprzedawca
 "seller_tax_no" : "525-244-57-67" - nip sprzedawcy
 "seller_bank_account" : "24 1140 1977 0000 5921 7200 1001" - konto bankowe sprzedawcy
