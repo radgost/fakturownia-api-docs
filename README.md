@@ -179,7 +179,7 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 * `DELETE /invoices/1.json` skasowanie faktury
 
 
-Przykład - dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych). Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
+Przykład - dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych). Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności. Pole department_id określa firmę (lub dział) który wystawia fakturę (można go uzyskać klikając na firmę w menu Ustawienia > Dane firmy)
 
 ```shell
 curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
@@ -206,7 +206,7 @@ Pola faktury
 "place" : "Warszawa" - miejsce wystawienia
 "sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
 "category_id" : "" - id kategorii
-"department_id" : "1" - id działu firmy
+"department_id" : "1" - id działu firmy (z menu Ustawienia > Dane firmy )
 "seller_name" : "Radgost Sp. z o.o." - sprzedawca
 "seller_tax_no" : "525-244-57-67" - nip sprzedawcy
 "seller_bank_account" : "24 1140 1977 0000 5921 7200 1001" - konto bankowe sprzedawcy
