@@ -163,7 +163,7 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 
 * Klient wypełnia dane w Portalu
 * Portal wywołuje API z fakturownia.pl i tworzy fakturę
-* Portal pobiera wysyła Klientowi fakturę Proforma w PDF wraz z linkiem do płatności
+* Portal wysyła Klientowi fakturę Proforma w PDF wraz z linkiem do płatności
 * Klient opłaca fakturę Proforma (np. na PayPal lub PayU.pl)
 * Fakturownia.pl otrzymuje informację, że płatność została wykonana, tworzy Fakturę VAT i wysyła ją Klientowi oraz wywołuje API Portalu
 * Po otrzymaniu informacji o płatności (przez API) Portal wysyła Klientowi bilet na Szkolenie
@@ -199,9 +199,9 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json
 Pola faktury
 
 ```shell
-"number" : "13/2012" - number faktury (jeśli nie będzie podany wygeneruje się automatyczie)
+"number" : "13/2012" - numer faktury (jeśli nie będzie podany wygeneruje się automatycznie)
 "kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
-"income" : "1" - fakturay przychodowa (1) lub kosztowa (0)
+"income" : "1" - faktura przychodowa (1) lub kosztowa (0)
 "issue_date" : "2013-01-16" - data wystawienia 
 "place" : "Warszawa" - miejsce wystawienia
 "sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
@@ -256,8 +256,8 @@ Pola faktury
    		"product_id" : "1", 
    		"name" : "Fakturownia Start", 
    		"additional_info" : "", - dodatkowa informacja na pozycji faktury (np. PKWiU)
-   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na '1' oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "kwotowo")
-   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na 1 oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "procentowo")
+   		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na '1' oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "procentowo")
+   		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na 1 oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "kwotowo")
    		"quantity" : "1", 
    		"quantity_unit" : "szt", 
    		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
@@ -292,9 +292,13 @@ Pole: `lang`
 	"en" - język angielski
 	"de" - język niemiecki
 	"fr" - język francuski
-	"pl_en" - faktura polsko/angielska
-	"pl_de" - faktura polsko/niemiecka
-	"pl_fr" - faktura polsko/francuska
+	"cz" - język czeski
+	"ru" - język rosyjski
+	"es" - język hiszpański
+	"it" - język włoski
+	"nl" - język niderlandzki 
+	"hr" - język chorwacki
+
 ```
 
 
