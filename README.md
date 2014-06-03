@@ -448,7 +448,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json
 ##Konta Systemowe
 
 Jest to opcja dla Partnerów, którzy chcą zakładać konta Fakturowni z poziomu swojej aplikacji. Np. mogą to być
-dostawcy sklepó internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur. 
+dostawcy sklepów internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur. 
 
 Klient w portalu Partnera jednym przyciskiem może założyć konto i od razu zacząć wystawiać faktury (nie musi samodzielnie zakładać konta w Fakturownia.pl)
 
@@ -486,10 +486,10 @@ Po utworzeniu konta zwracane są:
 ```shell
 
 {
-	"prefix":"prefix126", - prefix utworzonego konta (moze byc innny niz podany, gdy podany juz istanial)
+	"prefix":"prefix126", - prefix utworzonego konta (moze byc innny niz podany, gdy podany już istniał)
 	"api_token":"62YPJfIekoo111111", - kod dostepu do utworzonego konta
 	"url":"https://prefix126.fakturownia.pl", - url utworzonego konta
-	"login":"email1@email.pl19", - login użytkonnika  (moze byc innny niz podany, gdy podany juz istanial)
+	"login":"email1@email.pl19", - login użytkonnika  (moze byc innny niz podany, gdy podany już istniał)
 	"email":"19email1@email.pl"
 }
 ```
