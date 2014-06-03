@@ -107,7 +107,7 @@ Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id prod
 Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
@@ -149,10 +149,10 @@ Linki takie umożliwiają odwołanie się do wybranej faktury  bez konieczności
 
 Lini te są postaci: 
 
-podgląd: `http://twojaDomena.fakturownia.pl/invoice/{{token}}` 
-pdf: `http://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`
+podgląd: `https://twojaDomena.fakturownia.pl/invoice/{{token}}` 
+pdf: `https://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`
 
-Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV2` publiczny PDF będzie pod adresem `http://twojaDomena.fakturownia.pl/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
+Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV2` publiczny PDF będzie pod adresem `https://twojaDomena.fakturownia.pl/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
 
 <a name="use_case1"/>
 ##Przykłady użycia w PHP - zakup szkolenia
@@ -182,7 +182,7 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 Przykład - dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych). Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności. Pole department_id określa firmę (lub dział) który wystawia fakturę (można go uzyskać klikając na firmę w menu Ustawienia > Dane firmy)
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json 
     -H 'Accept: application/json'  
     -H 'Content-Type: application/json'  
     -d '{"api_token": "API_TOKEN",
@@ -337,19 +337,19 @@ Pole: `discount_kind` - rodzaj rabatu
 Lista klientów
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&page=1"
+curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&page=1"
 ```
 
 Pobranie wybranego klienta po ID
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/clients/100.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/clients/100.json?api_token=API_TOKEN"
 ```
 
 Dodanie klienta
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/clients.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/clients.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
@@ -372,7 +372,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/clients.json
 Aktualizacja klienta
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/clients/111.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json 
 	-X PUT 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
@@ -403,20 +403,20 @@ Lista produktów
 
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&page=1"
+curl "https://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&page=1"
 ```
 
 Pobranie wybranego produktu po ID
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN"
 ```
 
 Dodanie produktu
 
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/products.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/products.json 
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
 	-d '{"api_token": "API_TOKEN",
@@ -431,7 +431,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/products.json
 Aktualizacja produktu
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/products/333.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json 
 	-X PUT
 	-H 'Accept: application/json'  
 	-H 'Content-Type: application/json'  
@@ -453,7 +453,7 @@ dostawcy sklepó internetowych, systemów rezerwacji itp lub innych systemów kt
 Klient w portalu Partnera jednym przyciskiem może założyć konto i od razu zacząć wystawiać faktury (nie musi samodzielnie zakładać konta w Fakturownia.pl)
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.dev/account.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/account.json 
 				-H 'Accept: application/json'  
 				-H 'Content-Type: application/json'  
 				-d '{
@@ -488,7 +488,7 @@ Po utworzeniu konta zwracane są:
 {
 	"prefix":"prefix126", - prefix utworzonego konta (moze byc innny niz podany, gdy podany juz istanial)
 	"api_token":"62YPJfIekoo111111", - kod dostepu do utworzonego konta
-	"url":"http://prefix126.fakturownia.dev", - url utworzonego konta
+	"url":"https://prefix126.fakturownia.pl", - url utworzonego konta
 	"login":"email1@email.pl19", - login użytkonnika  (moze byc innny niz podany, gdy podany juz istanial)
 	"email":"19email1@email.pl"
 }
