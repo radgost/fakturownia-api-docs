@@ -453,11 +453,11 @@ dostawcy sklepó internetowych, systemów rezerwacji itp lub innych systemów kt
 Klient w portalu Partnera jednym przyciskiem może założyć konto i od razu zacząć wystawiać faktury (nie musi samodzielnie zakładać konta w Fakturownia.pl)
 
 ```shell
-curl http://radgost.fakturownia.dev/account.json 
+curl http://YOUR_DOMAIN.fakturownia.dev/account.json 
 				-H 'Accept: application/json'  
 				-H 'Content-Type: application/json'  
 				-d '{
-						"api_token": "ZYTGnSpfXjFq6Ag2Jpyu",
+						"api_token": "API_TOKEN",
 						"account": {	
 							"prefix": "prefix1"
 						},
@@ -480,6 +480,20 @@ curl http://radgost.fakturownia.dev/account.json
 				    }'
 
 ```
+
+Po utworzeniu konta zwracane są:
+
+```shell
+
+{
+	"prefix":"prefix126", - prefix utworzonego konta (moze byc innny niz podany, gdy podany juz istanial)
+	"api_token":"62YPJfIekoo111111", - kod dostepu do utworzonego konta
+	"url":"http://prefix126.fakturownia.dev", - url utworzonego konta
+	"login":"email1@email.pl19", - login użytkonnika  (moze byc innny niz podany, gdy podany juz istanial)
+	"email":"19email1@email.pl"
+}
+```
+
 
 
 <a name="codes"/>
