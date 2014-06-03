@@ -23,6 +23,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Faktury - specyfikacja](#invoices)
 + [Klienci](#clients)
 + [Produkty](#products)
++ [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)  
 
 
@@ -441,6 +442,45 @@ curl http://YOUR_DOMAIN.fakturownia.pl/products/333.json
 			"price_net": "102"
 	    }}'
 ```
+
+
+<a name="accounts"/>
+##Konta Systemowe
+
+Jest to opcja dla Partnerów, którzy chcą zakładać konta Fakturowni z poziomu swojej aplikacji. Np. mogą to być
+dostawcy sklepó internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur. 
+
+Klient w portalu Partnera jednym przyciskiem może założyć konto i od razu zacząć wystawiać faktury (nie musi samodzielnie zakładać konta w Fakturownia.pl)
+
+```shell
+curl http://radgost.fakturownia.dev/account.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+						"api_token": "ZYTGnSpfXjFq6Ag2Jpyu",
+						"account": {	
+							"prefix": "prefix1"
+						},
+						"user": {
+							"login": "login1",
+							"email": "email1@email.pl",
+							"password": "password1",
+							"from_partner": "PARTNER_CODE"
+						},
+						"company": {
+							"name": "Company1",
+							"tax_no": "5252445700",
+							"post_code": "00-112",
+							"city": "Warsaw",
+							"street": "Street 1/10",
+							"person": "Jan Nowak",
+							"bank": "Bank1",
+							"bank_account": "111222333444555666111"
+						}
+				    }'
+
+```
+
 
 <a name="codes"/>
 ##Przykłady w PHP i Ruby
