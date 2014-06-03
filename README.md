@@ -489,8 +489,8 @@ Po utworzeniu konta zwracane są:
 	"prefix":"prefix126", - prefix utworzonego konta (moze byc innny niz podany, gdy podany już istniał)
 	"api_token":"62YPJfIekoo111111", - kod dostepu do utworzonego konta
 	"url":"https://prefix126.fakturownia.pl", - url utworzonego konta
-	"login":"email1@email.pl19", - login użytkonnika  (moze byc innny niz podany, gdy podany już istniał)
-	"email":"19email1@email.pl"
+	"login":"login1", - login użytkownika  (moze byc innny niz podany, gdy podany już istniał)
+	"email":"email1@email.pl"
 }
 ```
 
