@@ -452,6 +452,8 @@ dostawcy sklepów internetowych, systemów rezerwacji itp lub innych systemów k
 
 Klient w portalu Partnera jednym przyciskiem może założyć konto i od razu zacząć wystawiać faktury (nie musi samodzielnie zakładać konta w Fakturownia.pl)
 
+Pola: user.login, user.from_partner, user, company nie są wymagane
+
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/account.json 
 				-H 'Accept: application/json'  
