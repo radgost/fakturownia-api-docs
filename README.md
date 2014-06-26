@@ -63,7 +63,7 @@ Pobranie PDF-a
 curl https://twojaDomena.fakturownia.pl/invoices/100.pdf?api_token=API_TOKEN
 ```
 
-Wysłanie faktury e-mailem do klienta (na e-mail klienta, pole "buyer_email")
+Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu faktury, pole "buyer_email")
 
 
 ```shell
@@ -94,6 +94,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json
 			"seller_name": "Wystawca Sp. z o.o.", 
 			"seller_tax_no": "5252445767", 
 			"buyer_name": "Klient1 Sp. z o.o.",
+			"buyer_email": "buyer@testemail.pl",
 			"buyer_tax_no": "5252445767",
 			"positions":[
 				{"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
