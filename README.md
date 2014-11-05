@@ -283,7 +283,7 @@ Pole: `kind`
 	"vat_margin" - faktura marża
 	"kp" - kasa przyjmie
 	"kw" - kasa wyda
-	"estimate" - Estimate
+	"estimate" - zamówienie
 ```
 
 Pole: `lang`
