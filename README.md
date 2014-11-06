@@ -1,1 +1,1 @@
-strona przeniesiona na <https://github.com/fakturownia/fakturownia-api/>
+strona przeniesiona na <https://github.com/fakturownia/api/>
