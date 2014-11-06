@@ -251,7 +251,9 @@ Pola faktury
 "invoice_template_id" : "1", 
 "description_footer" : "", 
 "description_long" : "", 
-"from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma)
+"from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma),
+"delivery_date" : "" - data wpłynięcia dokumentu (tylko przy wydatkach),
+"buyer_company" : "1" - czy klient jest firmą
 "positions":
    		"product_id" : "1", 
    		"name" : "Fakturownia Start", 
@@ -264,7 +266,8 @@ Pola faktury
    		"tax" : "23", 
    		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
-   		"total_price_gross" : "72,57"
+   		"total_price_gross" : "72,57",
+   		"code" : "" - kod produktu
 ```
 
 Wartości pól
@@ -290,6 +293,7 @@ Pole: `lang`
 ```shell
 	"pl" - faktura w języku polskim
 	"en" - język angielski
+	"en-GB" - język angielski UK
 	"de" - język niemiecki
 	"fr" - język francuski
 	"cz" - język czeski
@@ -298,7 +302,18 @@ Pole: `lang`
 	"it" - język włoski
 	"nl" - język niderlandzki 
 	"hr" - język chorwacki
-
+	"ar" - język arabski
+	"sk" - język słowacki
+	"sl" - język słoweński
+	"he" - język grecki
+	"et" - język estoński
+	"cn" - język chiński
+	"hu" - język węgierski
+	"tr" - język turecki
+	"fa" - język perski
+	
+	można tworzyć faktury dwujęzyczne łącząc symbole dwóch języków przy pomocy ukośnika, np:
+	"pl/en" - język polski i angielski
 ```
 
 
@@ -313,6 +328,15 @@ Pole: `payment_type`
 	"transfer" - przelew
 	"card" - karta płatnicza
 	"cash" -  gotówka
+	"barter" - barter
+	"cheque" - czek
+	"bill_of_exchange" - weksel
+	"cash_on_delivery" - opłata za pobraniem
+	"compensation" - kompensata
+	"letter_of_credit" - akredytywa
+	"payu" - PayU
+	"paypal" - PayPal
+	"off" - "nie wyświetlaj"
 	"dowolny_inny_wpis_tekstowy" 
 ```
 
