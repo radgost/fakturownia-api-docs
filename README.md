@@ -238,6 +238,7 @@ Pola faktury
 "status" : "issued", 
 "paid" : "0,00", 
 "oid" : "zamowienie10021", - numer zamówienia (np z zewnętrznego systemu zamówień)
+"oid_unique" : jeśli to pole będzie ustawione na 'yes' wtedy nie system nie pozwoli stworzyc 2 faktur o takim samym OID (może to być przydatne w synchronizacji ze sklepem internetowym)
 "warehouse_id" : "1090", 
 "seller_person" : "Imie Nazwisko", 
 "buyer_first_name" : "Imie", 
