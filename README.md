@@ -18,6 +18,8 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ Dodanie nowej faktury
 	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)
 	+ Aktualizacja faktury
+	+ Dodanie faktury cyklicznej
+	+ Aktualizacja faktury cyklicznej
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)  
 + [Przykłady użycia  - zakup szkolenia](#use_case1)  
 + [Faktury - specyfikacja](#invoices)
@@ -132,6 +134,40 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json
 		"api_token": "API_TOKEN",
 		"invoice": {
 			"buyer_name": "Nowa nazwa klienta Sp. z o.o."
+		}
+	}'
+```
+
+Dodanie nowej faktury cyklicznej
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json 
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{"api_token": "API_TOKEN",
+		"recurring": {
+			"name": "Nazwa cyklicznosci",
+			"invoice_id": 1,
+			"start_date": "2016-01-01",
+			"every": "1m",
+			"issue_working_day_only": false,
+			"send_email": true,
+			"buyer_email": "mail1@mail.pl, mail2@mail.pl",
+			"end_date": "null"
+	    }}'
+```	   
+
+Aktualizacja faktury (zmiana daty wystawienia następnej faktury)
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json 
+	-X PUT 
+	-H 'Accept: application/json'  
+	-H 'Content-Type: application/json'  
+	-d '{
+		"api_token": "API_TOKEN",
+		"recurring": {
+			"next_invoice_date": "2016-02-01"
 		}
 	}'
 ```
