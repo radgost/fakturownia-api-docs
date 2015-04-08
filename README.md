@@ -18,8 +18,9 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ Dodanie nowej faktury
 	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)
 	+ Aktualizacja faktury
-	+ Dodanie faktury cyklicznej
-	+ Aktualizacja faktury cyklicznej
+	+ Pobranie listy definicji faktur cyklicznych
+	+ Dodanie definicji faktury cyklicznej
+	+ Aktualizacja definicji faktury cyklicznej
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)  
 + [Przykłady użycia  - zakup szkolenia](#use_case1)  
 + [Faktury - specyfikacja](#invoices)
@@ -138,7 +139,13 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json
 	}'
 ```
 
-Dodanie nowej faktury cyklicznej
+Pobranie listy definicji faktur cyklicznych
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json?api_token=API_TOKEN
+```	   
+
+Dodanie definicji faktury cyklicznej
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json 
@@ -157,7 +164,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json
 	    }}'
 ```	   
 
-Aktualizacja faktury (zmiana daty wystawienia następnej faktury)
+Aktualizacja definicji faktury cyklicznej (zmiana daty wystawienia następnej faktury)
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json 
