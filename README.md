@@ -83,60 +83,60 @@ inne opcje PDF:
 Dodanie nowej faktury
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json 
-  	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{
-	  	"api_token": "API_TOKEN",
-	  	"invoice": {
-			"kind":"vat", 
-			"number": null, 
-			"sell_date": "2013-01-16", 
-			"issue_date": "2013-01-16", 
-			"payment_to": "2013-01-23",
-			"seller_name": "Wystawca Sp. z o.o.", 
-			"seller_tax_no": "5252445767", 
-			"buyer_name": "Klient1 Sp. z o.o.",
-			"buyer_email": "buyer@testemail.pl",
-			"buyer_tax_no": "5252445767",
-			"positions":[
-				{"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
-				{"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3}
-			]		
-		}
-	}'
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "kind":"vat", 
+            "number": null, 
+            "sell_date": "2013-01-16", 
+            "issue_date": "2013-01-16", 
+            "payment_to": "2013-01-23",
+            "seller_name": "Wystawca Sp. z o.o.", 
+            "seller_tax_no": "5252445767", 
+            "buyer_name": "Klient1 Sp. z o.o.",
+            "buyer_email": "buyer@testemail.pl",
+            "buyer_tax_no": "5252445767",
+            "positions":[
+                {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
+                {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3}
+            ]       
+        }
+    }'
 ```
 
 Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych.
 Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"invoice": {
-			"payment_to_kind": 5,
-			"client_id": 1,
-			"positions":[
-				{"product_id": 1, "quantity":2}
-			]
-	    }}'
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "invoice": {
+            "payment_to_kind": 5,
+            "client_id": 1,
+            "positions":[
+                {"product_id": 1, "quantity":2}
+            ]
+        }}'
 ```	   
 
 Aktualizacja faktury
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json 
-	-X PUT 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{
-		"api_token": "API_TOKEN",
-		"invoice": {
-			"buyer_name": "Nowa nazwa klienta Sp. z o.o."
-		}
-	}'
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "buyer_name": "Nowa nazwa klienta Sp. z o.o."
+        }
+    }'
 ```
 
 Pobranie listy definicji faktur cyklicznych
@@ -148,35 +148,35 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json?api_token=API_TOKEN
 Dodanie definicji faktury cyklicznej
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"recurring": {
-			"name": "Nazwa cyklicznosci",
-			"invoice_id": 1,
-			"start_date": "2016-01-01",
-			"every": "1m",
-			"issue_working_day_only": false,
-			"send_email": true,
-			"buyer_email": "mail1@mail.pl, mail2@mail.pl",
-			"end_date": "null"
-	    }}'
+curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "recurring": {
+            "name": "Nazwa cyklicznosci",
+            "invoice_id": 1,
+            "start_date": "2016-01-01",
+            "every": "1m",
+            "issue_working_day_only": false,
+            "send_email": true,
+            "buyer_email": "mail1@mail.pl, mail2@mail.pl",
+            "end_date": "null"
+        }}'
 ```	   
 
 Aktualizacja definicji faktury cyklicznej (zmiana daty wystawienia następnej faktury)
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json 
-	-X PUT 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{
-		"api_token": "API_TOKEN",
-		"recurring": {
-			"next_invoice_date": "2016-02-01"
-		}
-	}'
+curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
+    -X PUT \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "recurring": {
+            "next_invoice_date": "2016-02-01"
+        }
+    }'
 ```
 
 <a name="view_url"/>
@@ -226,9 +226,9 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 Przykład - dodanie nowej faktury (minimalna wersja, gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych). Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności. Pole department_id określa firmę (lub dział) który wystawia fakturę (można go uzyskać klikając na firmę w menu Ustawienia > Dane firmy)
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json 
-    -H 'Accept: application/json'  
-    -H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
     -d '{"api_token": "API_TOKEN",
         "invoice": {
             "payment_to_kind": 5,
@@ -418,48 +418,48 @@ curl "https://YOUR_DOMAIN.fakturownia.pl/clients/100.json?api_token=API_TOKEN"
 Dodanie klienta
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/clients.json 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"client": {
-			"name": "Klient1",
-			"tax_no": "5252445767",
-			"bank" : "bank1",
-			"bank_account" : "bank_account1",
-			"city" : "city1",
-			"country" : "",
-			"email" : "bank1",
-			"person" : "person1",
-			"post_code" : "post-code1",
-			"phone" : "phone1",
-			"street" : "street1",
-			"street_no" : "street-no1"
-	    }}'
+curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "client": {
+            "name": "Klient1",
+            "tax_no": "5252445767",
+            "bank" : "bank1",
+            "bank_account" : "bank_account1",
+            "city" : "city1",
+            "country" : "",
+            "email" : "bank1",
+            "person" : "person1",
+            "post_code" : "post-code1",
+            "phone" : "phone1",
+            "street" : "street1",
+            "street_no" : "street-no1"
+        }}'
 ```
 
 Aktualizacja klienta
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json 
-	-X PUT 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"client": {
-			"name": "Klient2",
-			"tax_no": "52524457672",
-			"bank" : "bank2",
-			"bank_account" : "bank_account2",
-			"city" : "city2",
-			"country" : "PL",
-			"email" : "bank2",
-			"person" : "person2",
-			"post_code" : "post-code2",
-			"phone" : "phone2",
-			"street" : "street2",
-			"street_no" : "street-no2"
-	    }}'
+curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json'  \
+    -d '{"api_token": "API_TOKEN",
+        "client": {
+            "name": "Klient2",
+            "tax_no": "52524457672",
+            "bank" : "bank2",
+            "bank_account" : "bank_account2",
+            "city" : "city2",
+            "country" : "PL",
+            "email" : "bank2",
+            "person" : "person2",
+            "post_code" : "post-code2",
+            "phone" : "phone2",
+            "street" : "street2",
+            "street_no" : "street-no2"
+        }}'
 ```
 
 
@@ -485,31 +485,31 @@ Dodanie produktu
 
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/products.json 
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"product": {
-			"name": "PoroductAA",
-			"code": "A001",
-			"price_net": "100",
-			"tax": "23"
-	    }}'
+curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json'  \
+    -d '{"api_token": "API_TOKEN",
+        "product": {
+            "name": "PoroductAA",
+            "code": "A001",
+            "price_net": "100",
+            "tax": "23"
+        }}'
 ```
 
 Aktualizacja produktu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json 
-	-X PUT
-	-H 'Accept: application/json'  
-	-H 'Content-Type: application/json'  
-	-d '{"api_token": "API_TOKEN",
-		"product": {
-			"name": "PoroductAA2",
-			"code": "A0012",
-			"price_net": "102"
-	    }}'
+curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json'  \
+    -d '{"api_token": "API_TOKEN",
+        "product": {
+            "name": "PoroductAA2",
+            "code": "A0012",
+            "price_net": "102"
+        }}'
 ```
 
 
@@ -524,31 +524,31 @@ Klient w portalu Partnera jednym przyciskiem może założyć konto i od razu za
 Pola: user.login, user.from_partner, user, company nie są wymagane
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/account.json 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
-				-d '{
-						"api_token": "API_TOKEN",
-						"account": {	
-							"prefix": "prefix1"
-						},
-						"user": {
-							"login": "login1",
-							"email": "email1@email.pl",
-							"password": "password1",
-							"from_partner": "PARTNER_CODE"
-						},
-						"company": {
-							"name": "Company1",
-							"tax_no": "5252445700",
-							"post_code": "00-112",
-							"city": "Warsaw",
-							"street": "Street 1/10",
-							"person": "Jan Nowak",
-							"bank": "Bank1",
-							"bank_account": "111222333444555666111"
-						}
-				    }'
+curl https://YOUR_DOMAIN.fakturownia.pl/account.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+            "api_token": "API_TOKEN",
+            "account": {    
+                "prefix": "prefix1"
+            },
+            "user": {
+                "login": "login1",
+                "email": "email1@email.pl",
+                "password": "password1",
+                "from_partner": "PARTNER_CODE"
+            },
+            "company": {
+                "name": "Company1",
+                "tax_no": "5252445700",
+                "post_code": "00-112",
+                "city": "Warsaw",
+                "street": "Street 1/10",
+                "person": "Jan Nowak",
+                "bank": "Bank1",
+                "bank_account": "111222333444555666111"
+            }
+        }'
 
 ```
 
