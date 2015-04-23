@@ -26,6 +26,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Faktury - specyfikacja](#invoices)
 + [Klienci](#clients)
 + [Produkty](#products)
++ [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)  
 
@@ -512,8 +513,8 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
         }}'
 ```
 
-<a name="logowanie"/>
-##Logowanie i pobranie API tokena
+<a name="get_token_by_api"/>
+##Logowanie i pobranie tokena przez API
 ```shell
 curl https://app.fakturownia.pl/login.json \
     -H 'Accept: application/json'  \
