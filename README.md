@@ -594,12 +594,17 @@ Po utworzeniu konta zwracane są:
 Inne pola dostępne przy tworzeniu nowego konta (pomocne przy integracji)
 
 ```shell
-
 	"account": {	
 		"prefix": "prefix-konta",
 		"integration_fast_login": true - umożliwia automatyczne logowanie Twoich użytkowników w Fakturowni
 		"integration_logout_url": "http://twojastrona.pl/" - umożliwia powrót Twoich użytkowników na Twoją stronę po ich wylogowaniu się z Fakturowni
 	}
+```
+
+Pobranie informacji o koncie:
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN"
 ```
 
 <a name="codes"/>
