@@ -512,6 +512,31 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
         }}'
 ```
 
+<a name="logowanie"/>
+##Logowanie i pobranie API tokena
+```shell
+curl https://app.fakturownia.pl/login.json \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{                       
+            "login": "login_or_email",
+            "password": "password"
+    }'
+```				
+
+To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i `url`):
+
+```shell
+{
+	"login":"marcin",
+	"email":"email@test.pl",
+	"prefix":"YYYYYYY",
+	"url":"https://YYYYYYY.fakturownia.pl",
+	"first_name":"Jan",
+	"last_name":"Kowalski",
+	"api_token":"XXXXXXXXXXXXXX"
+}
+```
 
 <a name="accounts"/>
 ##Konta Systemowe
