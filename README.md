@@ -295,7 +295,8 @@ Pola faktury
 "internal_note" : "", 
 "invoice_template_id" : "1", 
 "description_footer" : "", 
-"description_long" : "", 
+"description_long" : "",
+"invoice_id" : "" - pole z id powiązanego dokumentu, np. id zamówienia przy zaliczce albo id wzorcowej faktury przy fakturze cyklicznej,
 "from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma),
 "delivery_date" : "" - data wpłynięcia dokumentu (tylko przy wydatkach),
 "buyer_company" : "1" - czy klient jest firmą
