@@ -18,6 +18,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ Dodanie nowej faktury
 	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)
 	+ Aktualizacja faktury
+	+ Zmiana statusu faktury
 	+ Pobranie listy definicji faktur cyklicznych
 	+ Dodanie definicji faktury cyklicznej
 	+ Aktualizacja definicji faktury cyklicznej
@@ -137,6 +138,12 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json
 			"buyer_name": "Nowa nazwa klienta Sp. z o.o."
 		}
 	}'
+```
+
+Zmiana statusu faktury
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS"
 ```
 
 Pobranie listy definicji faktur cyklicznych
@@ -390,6 +397,7 @@ Pole: `status`
 	"sent" - wysłana
 	"paid" - opłacona
 	"partial" - częściowo opłacona
+	"rejected" - odrzucona
 ```
 
 Pole: `discount_kind` - rodzaj rabatu
