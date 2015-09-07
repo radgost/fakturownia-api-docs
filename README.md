@@ -8,8 +8,8 @@ Opis jak zintegrować własną aplikację lub serwis z systemem <http://fakturow
 Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami
 
 ## Spis treści
-+ [API Token](#token)  
-+ [Faktury - przykłady wywołania](#examples)  
++ [API Token](#token)
++ [Faktury - przykłady wywołania](#examples)
 	+ Pobranie listy faktur z aktualnego miesiąca
 	+ Faktury danego klienta
 	+ Pobranie faktury po ID
@@ -22,14 +22,14 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ Pobranie listy definicji faktur cyklicznych
 	+ Dodanie definicji faktury cyklicznej
 	+ Aktualizacja definicji faktury cyklicznej
-+ [Link do podglądu faktury i pobieranie do PDF](#view_url)  
-+ [Przykłady użycia  - zakup szkolenia](#use_case1)  
++ [Link do podglądu faktury i pobieranie do PDF](#view_url)
++ [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja](#invoices)
 + [Klienci](#clients)
 + [Produkty](#products)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
-+ [Przykłady w PHP i Ruby](#codes)  
++ [Przykłady w PHP i Ruby](#codes)
 
 
 <a name="token"/>
@@ -91,20 +91,20 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     -d '{
         "api_token": "API_TOKEN",
         "invoice": {
-            "kind":"vat", 
-            "number": null, 
-            "sell_date": "2013-01-16", 
-            "issue_date": "2013-01-16", 
+            "kind":"vat",
+            "number": null,
+            "sell_date": "2013-01-16",
+            "issue_date": "2013-01-16",
             "payment_to": "2013-01-23",
-            "seller_name": "Wystawca Sp. z o.o.", 
-            "seller_tax_no": "5252445767", 
+            "seller_name": "Wystawca Sp. z o.o.",
+            "seller_tax_no": "5252445767",
             "buyer_name": "Klient1 Sp. z o.o.",
             "buyer_email": "buyer@testemail.pl",
             "buyer_tax_no": "5252445767",
             "positions":[
                 {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
                 {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3}
-            ]       
+            ]
         }
     }'
 ```
@@ -124,7 +124,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
                 {"product_id": 1, "quantity":2}
             ]
         }}'
-```	   
+```
 
 Aktualizacja faktury
 
@@ -151,7 +151,7 @@ Pobranie listy definicji faktur cyklicznych
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json?api_token=API_TOKEN
-```	   
+```
 
 Dodanie definicji faktury cyklicznej
 
@@ -170,7 +170,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
             "buyer_email": "mail1@mail.pl, mail2@mail.pl",
             "end_date": "null"
         }}'
-```	   
+```
 
 Aktualizacja definicji faktury cyklicznej (zmiana daty wystawienia następnej faktury)
 
@@ -199,9 +199,9 @@ curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 API zwraca nam m.in. pole `token` na podstawie którego możemy otrzymać linki do podglądu faktury oraz do pobrania PDF-a z wygenrowaną fakturą.
 Linki takie umożliwiają odwołanie się do wybranej faktury  bez konieczności logowania - czyli możemy np. te linki przesłać klientowi, który otrzyma dostęp do faktury i PDF-a.
 
-Lini te są postaci: 
+Lini te są postaci:
 
-podgląd: `https://twojaDomena.fakturownia.pl/invoice/{{token}}` 
+podgląd: `https://twojaDomena.fakturownia.pl/invoice/{{token}}`
 pdf: `https://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`
 
 Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV2` publiczny PDF będzie pod adresem `https://twojaDomena.fakturownia.pl/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
@@ -209,7 +209,7 @@ Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV2` publiczny PDF będzie pod adrese
 <a name="use_case1"/>
 ##Przykłady użycia w PHP - zakup szkolenia
 
-`TODO` 
+`TODO`
 
 Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła ją klientowi i po opłaceniu wysyła do klienta bilet na szkolenie
 
@@ -246,14 +246,14 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
             ]
         }}'
 ```
- 
+
 Pola faktury
 
 ```shell
 "number" : "13/2012" - numer faktury (jeśli nie będzie podany wygeneruje się automatycznie)
 "kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
 "income" : "1" - faktura przychodowa (1) lub kosztowa (0)
-"issue_date" : "2013-01-16" - data wystawienia 
+"issue_date" : "2013-01-16" - data wystawienia
 "place" : "Warszawa" - miejsce wystawienia
 "sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
 "category_id" : "" - id kategorii
@@ -261,62 +261,62 @@ Pola faktury
 "seller_name" : "Radgost Sp. z o.o." - sprzedawca
 "seller_tax_no" : "525-244-57-67" - nip sprzedawcy
 "seller_bank_account" : "24 1140 1977 0000 5921 7200 1001" - konto bankowe sprzedawcy
-"seller_bank" : "BRE Bank", 
-"seller_post_code" : "02-548", 
-"seller_city" : "Warszawa", 
-"seller_street" : "ul. Olesińska 21", 
-"seller_country" : "", 
-"seller_email" : "platnosci@radgost123.com", 
-"seller_www" : "", 
-"seller_fax" : "", 
-"seller_phone" : "", 
+"seller_bank" : "BRE Bank",
+"seller_post_code" : "02-548",
+"seller_city" : "Warszawa",
+"seller_street" : "ul. Olesińska 21",
+"seller_country" : "",
+"seller_email" : "platnosci@radgost123.com",
+"seller_www" : "",
+"seller_fax" : "",
+"seller_phone" : "",
 "client_id" : "-1" - id kupującego (jeśi -1 to klient zostanie utworzony w systemie)
 "buyer_name" : "Nazwa klienta" - kupujący
-"buyer_tax_no" : "525-244-57-67", 
-"disable_tax_no_validation" : "", 
-"buyer_post_code" : "30-314", 
-"buyer_city" : "Warszawa", 
-"buyer_street" : "Nowa 44", 
-"buyer_country" : "", 
-"buyer_note" : "", 
-"buyer_email" : "", 
+"buyer_tax_no" : "525-244-57-67",
+"disable_tax_no_validation" : "",
+"buyer_post_code" : "30-314",
+"buyer_city" : "Warszawa",
+"buyer_street" : "Nowa 44",
+"buyer_country" : "",
+"buyer_note" : "",
+"buyer_email" : "",
 "additional_info" : "0" - czy wyświetlać dodatkowe pole na pozycjach faktury
 "additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
 "show_discount" : "0" - czy rabat
-"payment_type" : "transfer", 
+"payment_type" : "transfer",
 "payment_to_kind" : termin płatności. gdy jest tu "other_date", wtedy można określić konkretną datę w polu "payment_to", jeśli jest tu liczba np. 5 to wtedy mamy 5 dniowy okres płatności
-"payment_to" : "2013-01-16", 
-"status" : "issued", 
-"paid" : "0,00", 
+"payment_to" : "2013-01-16",
+"status" : "issued",
+"paid" : "0,00",
 "oid" : "zamowienie10021", - numer zamówienia (np z zewnętrznego systemu zamówień)
 "oid_unique" : jeśli to pole będzie ustawione na 'yes' wtedy nie system nie pozwoli stworzyc 2 faktur o takim samym OID (może to być przydatne w synchronizacji ze sklepem internetowym)
-"warehouse_id" : "1090", 
-"seller_person" : "Imie Nazwisko", 
-"buyer_first_name" : "Imie", 
-"buyer_last_name" : "Nazwisko", 
-"description" : "", 
-"paid_date" : "", 
-"currency" : "PLN", 
-"lang" : "pl", 
+"warehouse_id" : "1090",
+"seller_person" : "Imie Nazwisko",
+"buyer_first_name" : "Imie",
+"buyer_last_name" : "Nazwisko",
+"description" : "",
+"paid_date" : "",
+"currency" : "PLN",
+"lang" : "pl",
 "exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę, wg kursu NBP)
-"internal_note" : "", 
-"invoice_template_id" : "1", 
-"description_footer" : "", 
+"internal_note" : "",
+"invoice_template_id" : "1",
+"description_footer" : "",
 "description_long" : "",
 "invoice_id" : "" - pole z id powiązanego dokumentu, np. id zamówienia przy zaliczce albo id wzorcowej faktury przy fakturze cyklicznej,
 "from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma),
 "delivery_date" : "" - data wpłynięcia dokumentu (tylko przy wydatkach),
 "buyer_company" : "1" - czy klient jest firmą
 "positions":
-   		"product_id" : "1", 
-   		"name" : "Fakturownia Start", 
+   		"product_id" : "1",
+   		"name" : "Fakturownia Start",
    		"additional_info" : "", - dodatkowa informacja na pozycji faktury (np. PKWiU)
    		"discount_percent" : "", - zniżka procentowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na '1' oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "procentowo")
    		"discount" : "", - zniżka kwotowa (uwaga: aby rabat był wyliczany trzeba ustawić pole: 'show_discount' na 1 oraz przed wywołaniem należy sprawdzić czy w Ustawieniach Konta pole: "Jak obliczać rabat" ustawione jest na "kwotowo")
-   		"quantity" : "1", 
-   		"quantity_unit" : "szt", 
+   		"quantity" : "1",
+   		"quantity_unit" : "szt",
    		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
-   		"tax" : "23", 
+   		"tax" : "23",
    		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
@@ -334,8 +334,8 @@ Pole: `kind`
 	"advance" - faktura zaliczkowa
 	"final" - faktura końcowa
 	"correction" - faktura korekta
-	"vat_mp" - faktura MP 
-	"invoice_other" - inna faktura 
+	"vat_mp" - faktura MP
+	"invoice_other" - inna faktura
 	"vat_margin" - faktura marża
 	"kp" - kasa przyjmie
 	"kw" - kasa wyda
@@ -353,7 +353,7 @@ Pole: `lang`
 	"ru" - język rosyjski
 	"es" - język hiszpański
 	"it" - język włoski
-	"nl" - język niderlandzki 
+	"nl" - język niderlandzki
 	"hr" - język chorwacki
 	"ar" - język arabski
 	"sk" - język słowacki
@@ -364,7 +364,7 @@ Pole: `lang`
 	"hu" - język węgierski
 	"tr" - język turecki
 	"fa" - język perski
-	
+
 	można tworzyć faktury dwujęzyczne łącząc symbole dwóch języków przy pomocy ukośnika, np:
 	"pl/en" - język polski i angielski
 ```
@@ -390,7 +390,7 @@ Pole: `payment_type`
 	"payu" - PayU
 	"paypal" - PayPal
 	"off" - "nie wyświetlaj"
-	"dowolny_inny_wpis_tekstowy" 
+	"dowolny_inny_wpis_tekstowy"
 ```
 
 Pole: `status`
@@ -476,7 +476,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json \
 <a name="products"/>
 ##Produkty
 
-Produkty 
+Produkty
 
 Lista produktów
 
@@ -528,11 +528,11 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
 curl https://app.fakturownia.pl/login.json \
     -H 'Accept: application/json'  \
     -H 'Content-Type: application/json' \
-    -d '{                       
+    -d '{
             "login": "login_or_email",
             "password": "password"
     }'
-```				
+```
 
 To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i `url`):
 
@@ -552,7 +552,7 @@ To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i
 ##Konta Systemowe
 
 Jest to opcja dla Partnerów, którzy chcą zakładać konta Fakturowni z poziomu swojej aplikacji. Np. mogą to być
-dostawcy sklepów internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur. 
+dostawcy sklepów internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur.
 
 Klient w portalu Partnera jednym przyciskiem może założyć konto i od razu zacząć wystawiać faktury (nie musi samodzielnie zakładać konta w Fakturownia.pl)
 
@@ -564,7 +564,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/account.json \
     -H 'Content-Type: application/json' \
     -d '{
             "api_token": "API_TOKEN",
-            "account": {    
+            "account": {
                 "prefix": "prefix1"
             },
             "user": {
@@ -603,7 +603,7 @@ Po utworzeniu konta zwracane są:
 Inne pola dostępne przy tworzeniu nowego konta (pomocne przy integracji)
 
 ```shell
-	"account": {	
+	"account": {
 		"prefix": "prefix-konta",
 		"integration_fast_login": true - umożliwia automatyczne logowanie Twoich użytkowników w Fakturowni
 		"integration_logout_url": "http://twojastrona.pl/" - umożliwia powrót Twoich użytkowników na Twoją stronę po ich wylogowaniu się z Fakturowni
