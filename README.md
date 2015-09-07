@@ -294,15 +294,15 @@ Pola faktury
 "seller_person" : "Imie Nazwisko",
 "buyer_first_name" : "Imie",
 "buyer_last_name" : "Nazwisko",
-"description" : "",
 "paid_date" : "",
 "currency" : "PLN",
 "lang" : "pl",
 "exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę, wg kursu NBP)
 "internal_note" : "",
 "invoice_template_id" : "1",
-"description_footer" : "",
-"description_long" : "",
+"description" : "- opis faktury",
+"description_footer" : "", - opis umieszczony w stopce faktury
+"description_long" : "", - opis umieszczony na odwrocie faktury
 "invoice_id" : "" - pole z id powiązanego dokumentu, np. id zamówienia przy zaliczce albo id wzorcowej faktury przy fakturze cyklicznej,
 "from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma),
 "delivery_date" : "" - data wpłynięcia dokumentu (tylko przy wydatkach),
