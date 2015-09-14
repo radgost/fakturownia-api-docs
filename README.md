@@ -144,7 +144,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
 Zmiana statusu faktury
 
 ```shell
-curl "https://YOUR_DOMAIN.fakturownia.pl/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS"
+curl "https://YOUR_DOMAIN.fakturownia.pl/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS" -X POST
 ```
 
 Pobranie listy definicji faktur cyklicznych
