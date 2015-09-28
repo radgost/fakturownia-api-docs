@@ -17,6 +17,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ Wysłanie faktury E-MAILEM do klienta
 	+ Dodanie nowej faktury
 	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)
+	+ Dodanie nowej faktury korygującej
 	+ Aktualizacja faktury
 	+ Zmiana statusu faktury
 	+ Pobranie listy definicji faktur cyklicznych
@@ -122,6 +123,39 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
             "client_id": 1,
             "positions":[
                 {"product_id": 1, "quantity":2}
+            ]
+        }}'
+```
+
+Dodanie nowej faktury korygującej
+
+```shell
+curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "invoice": {
+            "kind": "correction",
+            "from_invoice_id": "CORRECTED_INVOICE_ID",
+            "client_id": 1,
+            "positions":[
+                {"name": "Product A1",
+                "quantity":-1,
+                "total_price_gross":"-10",
+                "tax":"23",
+            "correction_before_attributes": {
+                "name":"Product A1",
+                "quantity":"2",
+                "total_price_gross":"20",
+                "tax":"23",
+                "kind":"correction_before"},
+            "correction_after_attributes": {
+                "name":"Product A1",
+                "quantity":"1",
+                "total_price_gross":"10",
+                "tax":"23",
+                "kind":"correction_after"}
+            }
             ]
         }}'
 ```
