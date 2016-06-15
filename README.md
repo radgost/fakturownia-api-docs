@@ -223,6 +223,12 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
     }'
 ```
 
+Usunięcie faktury
+
+```shell
+curl -X DELETE "http://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN"
+```
+
 <a name="view_url"/>
 ##Link do podglądu faktury i pobieranie do PDF
 
