@@ -23,6 +23,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ Pobranie listy definicji faktur cyklicznych
 	+ Dodanie definicji faktury cyklicznej
 	+ Aktualizacja definicji faktury cyklicznej
+	+ Usunięcie faktury
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja](#invoices)
