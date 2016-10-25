@@ -363,6 +363,12 @@ Pola faktury
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
    		"code" : "" - kod produktu
+"calculating_strategy" => 
+{
+  "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury 
+  "sum": "sum" lub "keep_gross" lub "keep_net" - metoda sumowania kwot z pozycji 
+  "invoice_form_price_kind": "net" lub "gross" - cena jednostkowa na formatce faktury
+}
 ```
 
 Wartości pól
