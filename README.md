@@ -547,10 +547,22 @@ Lista produktów
 curl "https://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&page=1"
 ```
 
+Lista produktów ze stanem magazynowym podanego magazynu
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&warehouse_id=WAREHOUSE_ID&page=1"
+```
+
 Pobranie wybranego produktu po ID
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN"
+```
+
+Pobranie wybranego produktu po ID ze stanem magazynowym podanego magazynu
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN&warehouse_id=WAREHOUSE_ID"
 ```
 
 Dodanie produktu
