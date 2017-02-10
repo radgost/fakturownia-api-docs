@@ -10,20 +10,20 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 ## Spis treści
 + [API Token](#token)
 + [Faktury - przykłady wywołania](#examples)
-	+ Pobranie listy faktur z aktualnego miesiąca
-	+ Faktury danego klienta
-	+ Pobranie faktury po ID
-	+ Pobranie PDF-a
-	+ Wysłanie faktury E-MAILEM do klienta
-	+ Dodanie nowej faktury
-	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)
-	+ Dodanie nowej faktury korygującej
-	+ Aktualizacja faktury
-	+ Zmiana statusu faktury
-	+ Pobranie listy definicji faktur cyklicznych
-	+ Dodanie definicji faktury cyklicznej
-	+ Aktualizacja definicji faktury cyklicznej
-	+ Usunięcie faktury
+	+ [Pobranie listy faktur z aktualnego miesiąca](#f1)
+	+ Faktury danego klienta (#f2)
+	+ Pobranie faktury po ID (#f3)
+	+ Pobranie PDF-a (#f4)
+	+ Wysłanie faktury E-MAILEM do klienta (#f5)
+	+ Dodanie nowej faktury (#f6)
+	+ Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy) (#f7)
+	+ Dodanie nowej faktury korygującej (#f8)
+	+ Aktualizacja faktury (#f9)
+	+ Zmiana statusu faktury (#f10)
+	+ Pobranie listy definicji faktur cyklicznych (#f11)
+	+ Dodanie definicji faktury cyklicznej (#f12)
+	+ Aktualizacja definicji faktury cyklicznej (#f13)
+	+ Usunięcie faktury (#f14)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja](#invoices)
@@ -42,7 +42,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 <a name="examples"/>
 ##Przykłady wywołania
 
-Pobranie listy faktur z aktualnego miesiąca
+Pobranie listy faktur z aktualnego miesiąca <a name="f1"/>
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_token=API_TOKEN
@@ -50,27 +50,27 @@ curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_toke
 
 <b>UWAGA</b>: do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
 
-Faktury danego klienta
+Faktury danego klienta <a name="f2"/>
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
 ```
 
-Pobranie faktury po ID
+Pobranie faktury po ID <a name="f3"/>
 
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
-Pobranie PDF-a
+Pobranie PDF-a <a name="f4"/>
 
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices/100.pdf?api_token=API_TOKEN
 ```
 
-Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu faktury, pole "buyer_email")
+Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu faktury, pole "buyer_email") <a name="f5"/>
 
 
 ```shell
@@ -84,7 +84,7 @@ inne opcje PDF:
 * print_option=duplicate Duplikat
 
 
-Dodanie nowej faktury
+Dodanie nowej faktury <a name="f6"/>
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
@@ -111,7 +111,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     }'
 ```
 
-Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych.
+Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych. <a name="f7"/>
 Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
 
 ```shell
@@ -128,7 +128,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }}'
 ```
 
-Dodanie nowej faktury korygującej
+Dodanie nowej faktury korygującej <a name="f8"/>
 
 ```shell
 curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
@@ -162,7 +162,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }}'
 ```
 
-Aktualizacja faktury
+Aktualizacja faktury <a name="f9"/>
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
@@ -177,19 +177,19 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-Zmiana statusu faktury
+Zmiana statusu faktury <a name="f10"/>
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS" -X POST
 ```
 
-Pobranie listy definicji faktur cyklicznych
+Pobranie listy definicji faktur cyklicznych <a name="f11"/>
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json?api_token=API_TOKEN
 ```
 
-Dodanie definicji faktury cyklicznej
+Dodanie definicji faktury cyklicznej <a name="f12"/>
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
@@ -208,7 +208,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
         }}'
 ```
 
-Aktualizacja definicji faktury cyklicznej (zmiana daty wystawienia następnej faktury)
+Aktualizacja definicji faktury cyklicznej (zmiana daty wystawienia następnej faktury) <a name="f13"/>
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
@@ -223,7 +223,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
     }'
 ```
 
-Usunięcie faktury
+Usunięcie faktury <a name="f14"/>
 
 ```shell
 curl -X DELETE "http://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN"
