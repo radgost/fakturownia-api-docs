@@ -28,7 +28,17 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja](#invoices)
 + [Klienci](#clients)
+	+ [Lista klientów](#k1)
+	+ [Pobranie wybranego klienta po ID](#k2)
+	+ [Dodanie klienta](#k3)
+	+ [Aktualizacja klienta](#k4)
 + [Produkty](#products)
+	+ [Lista produktów](#p1)
+	+ [Lista produktów ze stanem magazynowym podanego magazynu](#p2)
+	+ [Pobranie wybranego produktu po ID](#p3)
+	+ [Pobranie wybranego produktu po ID ze stanem magazynowym podanego magazynu](#p4)
+	+ [Dodanie produktu](#p5)
+	+ [Aktualizacja produktu](#p6)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)
@@ -475,18 +485,21 @@ Pole: `discount_kind` - rodzaj rabatu
 <a name="clients"/>
 ##Klienci
 
+<a name="k1"/>
 Lista klientów
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&page=1"
 ```
 
+<a name="k2"/>
 Pobranie wybranego klienta po ID
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients/100.json?api_token=API_TOKEN"
 ```
 
+<a name="k3"/>
 Dodanie klienta
 
 ```shell
@@ -510,6 +523,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
         }}'
 ```
 
+<a name="k4"/>
 Aktualizacja klienta
 
 ```shell
@@ -538,35 +552,36 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json \
 <a name="products"/>
 ##Produkty
 
-Produkty
-
+<a name="p1"/>
 Lista produktów
-
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&page=1"
 ```
 
+<a name="p2"/>
 Lista produktów ze stanem magazynowym podanego magazynu
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/products.json?api_token=API_TOKEN&warehouse_id=WAREHOUSE_ID&page=1"
 ```
 
+<a name="p3"/>
 Pobranie wybranego produktu po ID
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN"
 ```
 
+<a name="p4"/>
 Pobranie wybranego produktu po ID ze stanem magazynowym podanego magazynu
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/products/100.json?api_token=API_TOKEN&warehouse_id=WAREHOUSE_ID"
 ```
 
+<a name="p5"/>
 Dodanie produktu
-
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
@@ -581,6 +596,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
         }}'
 ```
 
+<a name="p6"/>
 Aktualizacja produktu
 
 ```shell
