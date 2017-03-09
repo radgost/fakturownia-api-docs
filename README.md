@@ -128,7 +128,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
 ```
 
 <a name="f7"/>
-Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu, nabywcy i sprzedawcy wtedy nie musimy podawać pełnych danych.
+Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu (product_id), nabywcy (client_id) i sprzedawcy (department_id) wtedy nie musimy podawać pełnych danych. Opcjonalnie można podać również id odbiorcy (recipient_id).
 Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
 
 ```shell
@@ -331,21 +331,30 @@ Pola faktury
 "seller_post_code" : "02-548",
 "seller_city" : "Warszawa",
 "seller_street" : "ul. Olesińska 21",
-"seller_country" : "",
+"seller_country" : "", - kraj sprzedawcy (ISO 3166)
 "seller_email" : "platnosci@radgost123.com",
 "seller_www" : "",
 "seller_fax" : "",
 "seller_phone" : "",
 "client_id" : "-1" - id kupującego (jeśi -1 to klient zostanie utworzony w systemie)
-"buyer_name" : "Nazwa klienta" - kupujący
-"buyer_tax_no" : "525-244-57-67",
+"buyer_name" : "Nazwa klienta" - nabywca
+"buyer_tax_no" : "525-244-57-67", - numer identyfikacji podatkowej nabywcy
 "disable_tax_no_validation" : "",
-"buyer_post_code" : "30-314",
-"buyer_city" : "Warszawa",
-"buyer_street" : "Nowa 44",
-"buyer_country" : "",
-"buyer_note" : "",
-"buyer_email" : "",
+"buyer_post_code" : "30-314", - kod pocztowy nabywcy
+"buyer_city" : "Warszawa", - miasto nabywcy
+"buyer_street" : "Nowa 44", - ulica nabywcy
+"buyer_country" : "PL", - kraj nabywcy (ISO 3166)
+"buyer_note" : "", - dodatkowy opis nabywcy
+"buyer_email" : "", - email nabywcy
+"recipient_id" : "", - id odbiorcy (id klienta z systemu)
+"recipient_name" : "", - nazwa odbiorcy
+"recipient_street" : "", - ulica odbiorcy
+"recipient_post_code" : "", - kod pocztowy odbiorcy
+"recipient_city" : "", - miasto odbiorcy
+"recipient_country" : "", - kraj odbiorcy (ISO 3166)
+"recipient_email" : "", - e-mail odbiorcy
+"recipient_phone" : "", - numer telefonu odbiorcy
+"recipient_note" : "", - dodatkowy opis odbiorcy
 "additional_info" : "0" - czy wyświetlać dodatkowe pole na pozycjach faktury
 "additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
 "show_discount" : "0" - czy rabat
