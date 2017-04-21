@@ -382,6 +382,7 @@ Pola faktury
 "from_invoice_id" : "" - id faktury na podstawie której faktura została wygenerowana (przydatne np. w przypadku generacji Faktura VAT z Faktury Proforma),
 "delivery_date" : "" - data wpłynięcia dokumentu (tylko przy wydatkach),
 "buyer_company" : "1" - czy klient jest firmą
+"additional_invoice_field" : "" - wartość dodatkowego pola na fakturze, Ustawienia > Ustawienia Konta > Konfiguracja > Faktury i dokumenty > Dodatkowe pole na fakturze
 "positions":
    		"product_id" : "1",
    		"name" : "Fakturownia Start",
