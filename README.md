@@ -45,12 +45,14 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 
 
 <a name="token"/>
-##API token
+
+## API token
 
 `API_TOKEN` token trzeba pobrać z ustawień aplikacji ("Ustawienia -> Ustawienia konta -> Integracja -> Kod autoryzacyjny API")
 
 <a name="examples"/>
-##Przykłady wywołania
+
+## Przykłady wywołania
 
 <a name="f1"/>
 Pobranie listy faktur z aktualnego miesiąca
@@ -254,7 +256,8 @@ curl -X DELETE "http://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_t
 ```
 
 <a name="view_url"/>
-##Link do podglądu faktury i pobieranie do PDF
+
+## Link do podglądu faktury i pobieranie do PDF
 
 Po pobraniu danych faktury np. przez:
 
@@ -273,7 +276,8 @@ pdf: `https://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`
 Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV2` publiczny PDF będzie pod adresem `https://twojaDomena.fakturownia.pl/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
 
 <a name="use_case1"/>
-##Przykłady użycia w PHP - zakup szkolenia
+
+## Przykłady użycia w PHP - zakup szkolenia
 
 `TODO`
 
@@ -288,7 +292,8 @@ Przykład flow Portalu, który generuje dla klienta fakturę Proformę, wysyła 
 
 
 <a name="invoices"/>
-##Faktury
+
+## Faktury
 
 
 * `GET /invoices/1.json` pobranie faktury
@@ -493,7 +498,8 @@ Pole: `discount_kind` - rodzaj rabatu
 
 
 <a name="clients"/>
-##Klienci
+
+## Klienci
 
 <a name="k1"/>
 Lista klientów
@@ -560,7 +566,8 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json \
 
 
 <a name="products"/>
-##Produkty
+
+## Produkty
 
 <a name="p1"/>
 Lista produktów
@@ -623,7 +630,9 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
 ```
 
 <a name="get_token_by_api"/>
-##Logowanie i pobranie tokena przez API
+
+## Logowanie i pobranie tokena przez API
+
 ```shell
 curl https://app.fakturownia.pl/login.json \
     -H 'Accept: application/json'  \
@@ -649,7 +658,8 @@ To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i
 ```
 
 <a name="accounts"/>
-##Konta Systemowe
+
+## Konta Systemowe
 
 Jest to opcja dla Partnerów, którzy chcą zakładać konta Fakturowni z poziomu swojej aplikacji. Np. mogą to być
 dostawcy sklepów internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur.
@@ -717,7 +727,8 @@ curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN"
 ```
 
 <a name="codes"/>
-##Przykłady w PHP i Ruby
+
+## Przykłady w PHP i Ruby
 
 <https://github.com/radgost/fakturownia-api/blob/master/example1.php/>
 
