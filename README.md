@@ -625,9 +625,11 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
         "product": {
             "name": "PoroductAA2",
             "code": "A0012",
-            "price_net": "102"
+            "price_gross": "102",
+	    "tax": "23"
         }}'
 ```
+**Uwaga:** Cenna netto jest wyliczana na podstawie wartości ceny brutto oraz podatku, nie można jej edytować wprost przez API.
 
 <a name="get_token_by_api"/>
 
