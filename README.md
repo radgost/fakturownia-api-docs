@@ -321,17 +321,18 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
 Pola faktury
 
 ```shell
-"number" : "13/2012" - numer faktury (jeśli nie będzie podany wygeneruje się automatycznie)
-"kind" : "vat" - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
-"income" : "1" - faktura przychodowa (1) lub kosztowa (0)
-"issue_date" : "2013-01-16" - data wystawienia
-"place" : "Warszawa" - miejsce wystawienia
-"sell_date" : "2013-01-16" - data sprzedaży (może być data lub miesiąc postaci 2012-12)
-"category_id" : "" - id kategorii
-"department_id" : "1" - id działu firmy (w menu Ustawienia > Dane firmy należy kliknąć na firmę/dział i ID działu pojawi się w URL); Jeśli nie będzie tego pola oraz nie będzie pola 'seller_name' wtedy będą wstawione domyślne dane Twojej firmy
-"seller_name" : "Radgost Sp. z o.o." - sprzedawca
-"seller_tax_no" : "525-244-57-67" - nip sprzedawcy
-"seller_bank_account" : "24 1140 1977 0000 5921 7200 1001" - konto bankowe sprzedawcy
+"number" : "13/2012", - numer faktury (jeśli nie będzie podany wygeneruje się automatycznie)
+"kind" : "vat", - rodzaj faktury (vat, proforma, bill, receipt, advance, correction, vat_mp, invoice_other, vat_margin, kp, kw, final, estimate)
+"income" : "1", - faktura przychodowa (1) lub kosztowa (0)
+"issue_date" : "2013-01-16", - data wystawienia
+"place" : "Warszawa", - miejsce wystawienia
+"sell_date" : "2013-01-16", - data sprzedaży (może być data lub miesiąc postaci 2012-12)
+"category_id" : "", - id kategorii
+"department_id" : "1", - id działu firmy (w menu Ustawienia > Dane firmy należy kliknąć na firmę/dział i ID działu pojawi się w URL); Jeśli nie będzie tego pola oraz nie będzie pola 'seller_name' wtedy będą wstawione domyślne dane Twojej firmy
+"seller_name" : "Radgost Sp. z o.o.", - sprzedawca
+"seller_tax_no" : "525-244-57-67", - numer identyfikacji podatkowej sprzedawcy (domyślnie NIP)
+"seller_tax_no_kind" : "", - rodzaj numeru identyfikacyjnego sprzedawcy; pole puste (domyślnie) jest interpretowane jako "NIP"; w innym wypadku traktowane jako dowolny wpis własny (np. PESEL, REGON)
+"seller_bank_account" : "24 1140 1977 0000 5921 7200 1001", - konto bankowe sprzedawcy
 "seller_bank" : "BRE Bank",
 "seller_post_code" : "02-548",
 "seller_city" : "Warszawa",
@@ -343,7 +344,8 @@ Pola faktury
 "seller_phone" : "",
 "client_id" : "-1" - id kupującego (jeśi -1 to klient zostanie utworzony w systemie)
 "buyer_name" : "Nazwa klienta" - nabywca
-"buyer_tax_no" : "525-244-57-67", - numer identyfikacji podatkowej nabywcy
+"buyer_tax_no" : "525-244-57-67", - numer identyfikacji podatkowej nabywcy (domyślnie NIP)
+"buyer_tax_no_kind" : "", - rodzaj numeru identyfikacyjnego nabywcy; pole puste (domyślnie) jest interpretowane jako "NIP"; w innym wypadku traktowane jako wpis własny (np. PESEL, REGON)
 "disable_tax_no_validation" : "",
 "buyer_post_code" : "30-314", - kod pocztowy nabywcy
 "buyer_city" : "Warszawa", - miasto nabywcy
