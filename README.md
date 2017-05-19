@@ -198,8 +198,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-Aktualizacja pozycji na fakturze
-Aby edytować pozycję na fakturze, trzeba podać id pozycji:
+Aktualizacja pozycji na fakturze - aby edytować pozycję na fakturze, należy podać id pozycji.
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
