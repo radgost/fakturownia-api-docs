@@ -198,6 +198,22 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
+Aktualizacja pozycji na fakturze
+Aby edytować pozycję na fakturze, trzeba podać id pozycji:
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "positions": [{"id":32649087, "name":"test"}]
+        }
+    }'
+```
+
 <a name="f10"/>
 Zmiana statusu faktury
 
