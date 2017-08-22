@@ -19,6 +19,8 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f7)
 	+ [Dodanie nowej faktury korygującej](#f8)
 	+ [Aktualizacja faktury](#f9)
+	+ [Aktualizacja pozycji na fakturze](#f9b)
+	+ [Usunięcie pozycji na fakturze](#f9c)
 	+ [Zmiana statusu faktury](#f10)
 	+ [Pobranie listy definicji faktur cyklicznych](#f11)
 	+ [Dodanie definicji faktury cyklicznej](#f12)
@@ -198,6 +200,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
+<a name="f9b"/>
 Aktualizacja pozycji na fakturze - aby edytować pozycję na fakturze, należy podać id pozycji.
 
 ```shell
@@ -209,6 +212,22 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
         "api_token": "API_TOKEN",
         "invoice": {
             "positions": [{"id":32649087, "name":"test"}]
+        }
+    }'
+```
+
+<a name="f9c"/>
+Usunięcie pozycji na fakturze - aby usunąć pozycję na fakturze, należy podać id pozycji wraz z parametrem _destroy=1.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "positions": [{"id":32649087, "_destroy": 1}]
         }
     }'
 ```
