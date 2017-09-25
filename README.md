@@ -566,7 +566,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
             "bank_account" : "bank_account1",
             "city" : "city1",
             "country" : "",
-            "email" : "bank1",
+            "email" : "email@gmail.com",
             "person" : "person1",
             "post_code" : "post-code1",
             "phone" : "phone1",
