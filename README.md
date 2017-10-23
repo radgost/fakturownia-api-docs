@@ -41,6 +41,14 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Pobranie wybranego produktu po ID ze stanem magazynowym podanego magazynu](#p4)
 	+ [Dodanie produktu](#p5)
 	+ [Aktualizacja produktu](#p6)
++ [Dokumenty magazynowe](#warehouse_documents)
+	+ [Wszystkie dokumenty magazynowe](#wd1)
+	+ [Pobranie wybranego dokumentu po ID](#wd2)
+	+ [Dodanie dokumentu magazynowego PZ](#wd3)
+	+ [Dodanie dokumentu magazynowego WZ](#wd4)
+	+ [Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu](#wd5)
+	+ [Aktualizacja dokumentu](#wd6)
+	+ [Usunięcie dokumentu](#wd7)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)
@@ -666,6 +674,115 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
         }}'
 ```
 **Uwaga:** Cenna netto jest wyliczana na podstawie wartości ceny brutto oraz podatku, nie można jej edytować wprost przez API.
+
+<a name="warehouse_documents"/>
+
+## Dokumenty magazynowa
+
+<a name="wd1"/>
+Wszystkie dokumenty magazynowe
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json?api_token=API_TOKEN"
+```
+można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy faktur) 
+
+<a name="wd2"/>
+Pobranie wybranego dokumentu po ID
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json?api_token=API_TOKEN"
+```
+
+<a name="wd3"/>
+Dodanie dokumentu magazynowego PZ
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+				"api_token": "API_TOKEN",
+				"warehouse_document": {
+					"kind":"pz", 
+					"number": null,
+					"warehouse_id": "1",
+					"issue_date": "2017-10-23", 
+					"department_name": "Department1 SA", 
+					"client_name": "Client1 SA",
+					"warehouse_actions":[
+						{"product_name":"Produkt A1", "purchase_tax":23, "purchase_price_net":10.23, "quantity":1},
+						{"product_name":"Produkt A2", "purchase_tax":0, "purchase_price_net":50, "quantity":2}
+					]		
+				}}'
+```
+
+<a name="wd4"/>
+Dodanie dokumentu magazynowego WZ
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+				"api_token": "API_TOKEN",
+				"warehouse_document": {
+					"kind":"wz", 
+					"number": null,
+					"warehouse_id": "1",
+					"issue_date": "2017-10-23", 
+					"department_name": "Department1 SA", 
+					"client_name": "Client1 SA",
+					"warehouse_actions":[
+						{"product_id":"333", "tax":23, "price_net":10.23, "quantity":1},
+						{"product_id":"333", "tax":0, "price_net":50, "quantity":2}
+					]		
+				}}'
+```
+
+<a name="wd5"/>
+Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+				"api_token": "API_TOKEN",
+				"warehouse_document": {
+					"kind":"pz", 
+					"number": null,
+					"warehouse_id": "1",
+					"issue_date": "2017-10-23", 
+					"department_id": "222", 
+					"client_id": "111",
+					"warehouse_actions":[
+						{"product_id":"333", "purchase_tax":23, "price_net":10.23, "quantity":1},
+						{"product_id":"333", "purchase_tax":0, "price_net":50, "quantity":2}
+					]		
+				}}'
+```
+
+<a name="wd6"/>
+Aktualizacja dokumentu
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json 
+			 	-X PUT 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{"api_token": "API_TOKEN",
+					"warehouse_document": {
+						"client_name": "New client name SA"
+				    }}'
+```
+
+<a name="wd7"/>
+Usunięcie dokumentu
+
+```shell
+curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?api_token=API_TOKEN"
+```
 
 <a name="get_token_by_api"/>
 
