@@ -21,6 +21,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Aktualizacja faktury](#f9)
 	+ [Aktualizacja pozycji na fakturze](#f9b)
 	+ [Usunięcie pozycji na fakturze](#f9c)
+	+ [Dodanie pozycji na fakturze](#f9d)
 	+ [Zmiana statusu faktury](#f10)
 	+ [Pobranie listy definicji faktur cyklicznych](#f11)
 	+ [Dodanie definicji faktury cyklicznej](#f12)
@@ -236,6 +237,22 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
         "api_token": "API_TOKEN",
         "invoice": {
             "positions": [{"id":32649087, "_destroy": 1}]
+        }
+    }'
+```
+
+<a name="f9d"/>
+Dodanie pozycji na fakturze. Pozycja zostanie dopisana jako ostatnia.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
+    -X PUT \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "positions": [{"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1}]
         }
     }'
 ```
