@@ -33,6 +33,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Klienci](#clients)
 	+ [Lista klientów](#k1)
 	+ [Pobranie wybranego klienta po ID](#k2)
+	+ [Pobranie wybranego klienta po zewnętrznym ID](#k2b)
 	+ [Dodanie klienta](#k3)
 	+ [Aktualizacja klienta](#k4)
 + [Produkty](#products)
@@ -574,6 +575,13 @@ Pobranie wybranego klienta po ID
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients/100.json?api_token=API_TOKEN"
+```
+
+<a name="k2b"/>
+Pobranie wybranego klienta po zewnętrznym ID
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?external_id=100&api_token=API_TOKEN"
 ```
 
 <a name="k3"/>
