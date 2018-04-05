@@ -176,6 +176,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
                 "quantity":-1,
                 "total_price_gross":"-10",
                 "tax":"23",
+                "kind":"correction",
                 "correction_before_attributes": {
                     "name":"Product A1",
                     "quantity":"2",
