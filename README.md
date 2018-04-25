@@ -51,6 +51,14 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu](#wd5)
 	+ [Aktualizacja dokumentu](#wd6)
 	+ [Usunięcie dokumentu](#wd7)
++ [Kategorie](#categories)
+	+ [Lista kategorii](#cat1)
+	+ [Pobranie wybranej kategorii po ID](#cat2)
+	+ [Dodanie nowej kategorii](#cat3)
++ [Magazyny](#warehouses)
+	+ [Lista magazynów](#wh1)
+	+ [Pobranie wybranego magazynu po ID](#wh2)
+	+ [Dodanie nowego magazynu](#wh3)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)
@@ -701,6 +709,8 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
 ```
 **Uwaga:** Cenna netto jest wyliczana na podstawie wartości ceny brutto oraz podatku, nie można jej edytować wprost przez API.
 
+
+
 <a name="warehouse_documents"/>
 
 ## Dokumenty magazynowa
@@ -808,6 +818,75 @@ Usunięcie dokumentu
 
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?api_token=API_TOKEN"
+```
+
+
+<a name="categories"/>
+
+## Kategorie  
+
+<a name="cat1"/>  
+Lista wszystkich kategorii  
+
+```shell
+curl "http://YOUR_DOMAIN.fakturownia.pl/categories.json?api_token=API_TOKEN"
+```
+
+<a name="cat2"/>
+Pobranie pojedycznej kategorii po ID
+
+```shell
+curl "http://YOUR_DOMAIN.fakturownia.pl/categories/100.json?api_token=API_TOKEN"
+```
+
+<a name="cat3"/>
+Dodanie nowej kategorii
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/categories.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+				"api_token": "API_TOKEN",
+				"category": {
+					"name":"my_category", 
+					"description": null
+				}}'
+```
+
+
+<a name="warehouses"/>
+
+## Magazyny 
+
+<a name="wh1"/>  
+Lista wszystkich magazynów  
+
+```shell
+curl "http://YOUR_DOMAIN.fakturownia.pl/warehouses.json?api_token=API_TOKEN"
+```
+
+<a name="wh2"/>
+Pobranie pojedycznego magazynu po ID
+
+```shell
+curl "http://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token=API_TOKEN"
+```
+
+<a name="wh3"/>
+Dodanie nowego magazynu
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouses.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+				"api_token": "API_TOKEN",
+				"warehouse": {
+					"name":"my_warehouse", 
+					"kind": null,
+					"description": null
+				}}'
 ```
 
 <a name="get_token_by_api"/>
