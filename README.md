@@ -9,6 +9,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 
 ## Spis treści
 + [API Token](#token)
++ [Dodatkowe parametry dostępne przy pobieraniu listy rekordów](#list_params)
 + [Faktury - przykłady wywołania](#examples)
 	+ [Pobranie listy faktur z aktualnego miesiąca](#f1)
 	+ [Faktury danego klienta](#f2)
@@ -74,6 +75,15 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 
 `API_TOKEN` token trzeba pobrać z ustawień aplikacji ("Ustawienia -> Ustawienia konta -> Integracja -> Kod autoryzacyjny API")
 
+<a name="list_params"/>
+
+## Dodatkowe parametry dostępne przy pobieraniu listy rekordów
+Do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
+
+Parametr `page=` umożliwia iterowanie po paginowanych rekordach.
+Domyślnie przyjmuje wartość `1` i wyświetla pierwsze N rekordów, gdzie N to limit ilości zwracanych rekordów.
+Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`, itd.
+
 <a name="examples"/>
 
 ## Przykłady wywołania
@@ -82,10 +92,8 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 Pobranie listy faktur z aktualnego miesiąca
 
 ```shell
-curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_token=API_TOKEN
+curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_token=API_TOKEN&page=1
 ```
-
-<b>UWAGA</b>: do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
 
 <a name="f2"/>
 Faktury danego klienta
@@ -717,7 +725,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
 
 <a name="warehouse_documents"/>
 
-## Dokumenty magazynowa
+## Dokumenty magazynowe
 
 <a name="wd1"/>
 Wszystkie dokumenty magazynowe
