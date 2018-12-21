@@ -460,7 +460,9 @@ Pola faktury
 "paid_date" : "",
 "currency" : "PLN",
 "lang" : "pl",
-"exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę, wg kursu NBP)
+"exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę), np. "PLN"
+"exchange_kind" : "", - źródło kursu do przeliczenia waluty ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
+"exchange_currency_rate" : "", - własny kurs przeliczenia waluty (używany, gdy parametr exchange_kind ustawiony jest na "own")
 "internal_note" : "",
 "invoice_template_id" : "1",
 "description" : "- opis faktury",
