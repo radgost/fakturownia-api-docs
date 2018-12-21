@@ -84,6 +84,17 @@ Parametr `page=` umożliwia iterowanie po paginowanych rekordach.
 Domyślnie przyjmuje wartość `1` i wyświetla pierwsze N rekordów, gdzie N to limit ilości zwracanych rekordów.
 Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`, itd.
 
+Parametr `period=` umożliwia wybranie rekordów z zadanego okresu.
+Może przyjąć następujące wartości:
+- last_12_months
+- this_month
+- last_30_days
+- last_month
+- this_year
+- last_year
+- all
+- more (tutaj trzeba jeszcze dostarczyć dodatkowe parametry date_from (np. "2018-12-16") i date_to (np. "2018-12-21"))
+
 <a name="examples"/>
 
 ## Przykłady wywołania
@@ -460,7 +471,9 @@ Pola faktury
 "paid_date" : "",
 "currency" : "PLN",
 "lang" : "pl",
-"exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę, wg kursu NBP)
+"exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę), np. "PLN"
+"exchange_kind" : "", - źródło kursu do przeliczenia waluty ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
+"exchange_currency_rate" : "", - własny kurs przeliczenia waluty (używany, gdy parametr exchange_kind ustawiony jest na "own")
 "internal_note" : "",
 "invoice_template_id" : "1",
 "description" : "- opis faktury",
