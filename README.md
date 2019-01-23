@@ -523,6 +523,18 @@ Pole: `kind`
 	"kp" - kasa przyjmie
 	"kw" - kasa wyda
 	"estimate" - zamówienie
+	"vat_mp" - faktura MP
+	"vat_rr" - faktura RR
+	"correction_note" - nota korygująca
+	"accounting_note" - nota księgowa
+	"client_order" - własny dokument nieksięgowy
+	"dw" - dowód wewnętrzny
+	"wnt" - Wewnątrzwspólnotowe Nabycie Towarów
+	"wdt" - Wewnątrzwspólnotowa Dostawa Towarów
+	"import_service" - import usług
+	"import_service_eu" - import usług z UE
+	"import_products" - import towarów - procedura uproszczona
+	"export_products" - eksport towarów
 ```
 
 Pole: `lang`
