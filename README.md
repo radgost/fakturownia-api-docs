@@ -649,8 +649,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
             "person" : "person1",
             "post_code" : "post-code1",
             "phone" : "phone1",
-            "street" : "street1",
-            "street_no" : "street-no1"
+            "street" : "street1"
         }}'
 ```
 
@@ -674,8 +673,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json \
             "person" : "person2",
             "post_code" : "post-code2",
             "phone" : "phone2",
-            "street" : "street2",
-            "street_no" : "street-no2"
+            "street" : "street2"
         }}'
 ```
 
