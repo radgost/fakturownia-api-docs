@@ -64,6 +64,11 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Dodanie nowego magazynu](#wh3)
 	+ [Aktualizacja magazynu](#cat4)
 	+ [Usunięcie magazynu o podanym ID](#cat5)
++ [Działy](#departments)
+	+ [Lista działów](#dep1)
+	+ [Pobranie wybranego działu po ID](#dep2)
+	+ [Dodanie nowego działu](#dep3)
+	+ [Usunięcie działu o podanym ID](#dep4)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)
@@ -974,7 +979,49 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token
 ```
 
 
-<a name="get_token_by_api"/>
+<a name="departments"/>
+
+## Działy 
+
+<a name="dep1"/>  
+Lista wszystkich działów  
+
+```shell
+curl "http://YOUR_DOMAIN.fakturownia.pl/departments.json?api_token=API_TOKEN"
+```
+
+<a name="dep2"/>
+Pobranie pojedycznego działu po ID
+
+```shell
+curl "http://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_token=API_TOKEN"
+```
+
+<a name="dep3"/>
+Dodanie nowego działu
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/departments.json 
+				-H 'Accept: application/json'  
+				-H 'Content-Type: application/json'  
+				-d '{
+				"api_token": "API_TOKEN",
+				"department": {
+					"name":"my_warehouse", 
+					"shortcut": "short_name",
+					"tax_no": "-"
+				}}'
+```
+
+<a name="dep4"/>
+Usunięcie działu o podanym ID
+	
+```shell
+curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_token=API_TOKEN"
+```
+
+
+<a name="get_token_by_api"/>  
 
 ## Logowanie i pobranie tokena przez API
 
