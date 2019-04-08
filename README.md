@@ -68,7 +68,8 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Lista działów](#dep1)
 	+ [Pobranie wybranego działu po ID](#dep2)
 	+ [Dodanie nowego działu](#dep3)
-	+ [Usunięcie działu o podanym ID](#dep4)
+	+ [Aktualizacja_działu](#dep4) 
+  	+ [Usunięcie działu o podanym ID](#dep5)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)
@@ -1014,6 +1015,23 @@ curl https://YOUR_DOMAIN.fakturownia.pl/departments.json
 ```
 
 <a name="dep4"/>
+Aktualizacja działu 
+ 
+```shell 
+curl https://YOUR_DOMAIN.fakturownia.pl/departments/100.json  
+        -X PUT 
+        -H 'Accept: application/json'   
+        -H 'Content-Type: application/json'   
+        -d '{ 
+        "api_token": "API_TOKEN", 
+        "department": { 
+          "name":"new_name",  
+          "shortcut": "new_short_name", 
+          "tax_no": "xxx-xxx-xx-xx" 
+        }}' 
+``` 
+ 
+<a name="dep5"/> 
 Usunięcie działu o podanym ID
 	
 ```shell
