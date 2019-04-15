@@ -48,6 +48,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Dokumenty magazynowe](#warehouse_documents)
 	+ [Wszystkie dokumenty magazynowe](#wd1)
 	+ [Pobranie wybranego dokumentu po ID](#wd2)
+	+ [Dodanie dokumentu magazynowego MM](#wd3a)
 	+ [Dodanie dokumentu magazynowego PZ](#wd3)
 	+ [Dodanie dokumentu magazynowego WZ](#wd4)
 	+ [Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu](#wd5)
@@ -780,6 +781,28 @@ Pobranie wybranego dokumentu po ID
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json?api_token=API_TOKEN"
+```
+
+<a name="wd3a"/>
+Dodanie dokumentu magazynowego MM
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
+                -H 'Accept: application/json'  
+                -H 'Content-Type: application/json'  
+                -d '{
+                "api_token": "API_TOKEN",
+                "warehouse_document": {
+                    "kind":"mm", 
+                    "number": null,
+                    "warehouse_id": "1",
+                    "issue_date": "2017-10-23", 
+                    "department_name": "Department1 SA", 
+                    "client_name": "Client1 SA",
+                    "warehouse_actions":[
+                        {"product_name":"Produkt A1", "purchase_tax":23, "purchase_price_net":10.23, "quantity":1, "warehouse2_id":13}
+                    ]
+                }}'
 ```
 
 <a name="wd3"/>
