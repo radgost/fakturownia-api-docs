@@ -512,7 +512,7 @@ Pola faktury
 "buyer_company" : "1" - czy klient jest firmą
 "additional_invoice_field" : "" - wartość dodatkowego pola na fakturze, Ustawienia > Ustawienia Konta > Konfiguracja > Faktury i dokumenty > Dodatkowe pole na fakturze
 "internal_note" : "" - treść notatki prywatnej na fakturze, niewidoczna na wydruku.
-"exclude_from_stock_level" : "" - informacja, czy system powinien liczyć tę fakturę do stanów magazynowych (true, gdy faktura wystawiona na podstawie paragonu)
+"exclude_from_stock_level" : "" - informacja, czy system powinien liczyć tę fakturę do stanów magazynowych (true np., gdy faktura wystawiona na podstawie paragonu)
 "positions":
    		"product_id" : "1",
    		"name" : "Fakturownia Start",
