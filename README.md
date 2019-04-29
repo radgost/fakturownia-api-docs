@@ -28,6 +28,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Dodanie definicji faktury cyklicznej](#f12)
 	+ [Aktualizacja definicji faktury cyklicznej](#f13)
 	+ [Usunięcie faktury](#f14)
+	+ [Połączenie istniejącej faktury i paragonu](#f15)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja](#invoices)
@@ -70,7 +71,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Lista działów](#dep1)
 	+ [Pobranie wybranego działu po ID](#dep2)
 	+ [Dodanie nowego działu](#dep3)
-	+ [Aktualizacja_działu](#dep4) 
+	+ [Aktualizacja_działu](#dep4)
   	+ [Usunięcie działu o podanym ID](#dep5)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Konta systemowe](#accounts)
@@ -352,7 +353,25 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
 Usunięcie faktury
 
 ```shell
-curl -X DELETE "http://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN"
+curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN"
+```
+
+<a name="f15"/>
+Połączenie istniejącej faktury i paragonu
+
+```shell
+curl https://pawel-YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
+    -X PUT \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "from_invoice_id": ID_PARAGONU,
+            "invoice_id": ID_PARAGONU,
+            "exclude_from_stock_level": true
+        }
+    }'
 ```
 
 <a name="view_url"/>
@@ -507,10 +526,10 @@ Pola faktury
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
    		"code" : "" - kod produktu
-"calculating_strategy" => 
+"calculating_strategy" =>
 {
-  "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury 
-  "sum": "sum" lub "keep_gross" lub "keep_net" - metoda sumowania kwot z pozycji 
+  "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury
+  "sum": "sum" lub "keep_gross" lub "keep_net" - metoda sumowania kwot z pozycji
   "invoice_form_price_kind": "net" lub "gross" - cena jednostkowa na formatce faktury
 }
 ```
@@ -774,7 +793,7 @@ Wszystkie dokumenty magazynowe
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json?api_token=API_TOKEN"
 ```
-można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy faktur) 
+można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy faktur)
 
 <a name="wd2"/>
 Pobranie wybranego dokumentu po ID
@@ -788,16 +807,16 @@ Dodanie dokumentu magazynowego MM
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
-                -H 'Accept: application/json'  
-                -H 'Content-Type: application/json'  
+                -H 'Accept: application/json'
+                -H 'Content-Type: application/json'
                 -d '{
                 "api_token": "API_TOKEN",
                 "warehouse_document": {
-                    "kind":"mm", 
+                    "kind":"mm",
                     "number": null,
                     "warehouse_id": "1",
-                    "issue_date": "2017-10-23", 
-                    "department_name": "Department1 SA", 
+                    "issue_date": "2017-10-23",
+                    "department_name": "Department1 SA",
                     "client_name": "Client1 SA",
                     "warehouse_actions":[
                         {"product_name":"Produkt A1", "purchase_tax":23, "purchase_price_net":10.23, "quantity":1, "warehouse2_id":13}
@@ -809,22 +828,22 @@ curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
 Dodanie dokumentu magazynowego PZ
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"warehouse_document": {
-					"kind":"pz", 
+					"kind":"pz",
 					"number": null,
 					"warehouse_id": "1",
-					"issue_date": "2017-10-23", 
-					"department_name": "Department1 SA", 
+					"issue_date": "2017-10-23",
+					"department_name": "Department1 SA",
 					"client_name": "Client1 SA",
 					"warehouse_actions":[
 						{"product_name":"Produkt A1", "purchase_tax":23, "purchase_price_net":10.23, "quantity":1},
 						{"product_name":"Produkt A2", "purchase_tax":0, "purchase_price_net":50, "quantity":2}
-					]		
+					]
 				}}'
 ```
 
@@ -832,22 +851,22 @@ curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
 Dodanie dokumentu magazynowego WZ
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"warehouse_document": {
-					"kind":"wz", 
+					"kind":"wz",
 					"number": null,
 					"warehouse_id": "1",
-					"issue_date": "2017-10-23", 
-					"department_name": "Department1 SA", 
+					"issue_date": "2017-10-23",
+					"department_name": "Department1 SA",
 					"client_name": "Client1 SA",
 					"warehouse_actions":[
 						{"product_id":"333", "tax":23, "price_net":10.23, "quantity":1},
 						{"product_id":"333", "tax":0, "price_net":50, "quantity":2}
-					]		
+					]
 				}}'
 ```
 
@@ -855,22 +874,22 @@ curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
 Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"warehouse_document": {
-					"kind":"pz", 
+					"kind":"pz",
 					"number": null,
 					"warehouse_id": "1",
-					"issue_date": "2017-10-23", 
-					"department_id": "222", 
+					"issue_date": "2017-10-23",
+					"department_id": "222",
 					"client_id": "111",
 					"warehouse_actions":[
 						{"product_id":"333", "purchase_tax":23, "price_net":10.23, "quantity":1},
 						{"product_id":"333", "purchase_tax":0, "price_net":50, "quantity":2}
-					]		
+					]
 				}}'
 ```
 
@@ -878,10 +897,10 @@ curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents.json
 Aktualizacja dokumentu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json 
-			 	-X PUT 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json
+			 	-X PUT
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{"api_token": "API_TOKEN",
 					"warehouse_document": {
 						"client_name": "New client name SA"
@@ -898,10 +917,10 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?
 
 <a name="categories"/>
 
-## Kategorie  
+## Kategorie
 
-<a name="cat1"/>  
-Lista wszystkich kategorii  
+<a name="cat1"/>
+Lista wszystkich kategorii
 
 ```shell
 curl "http://YOUR_DOMAIN.fakturownia.pl/categories.json?api_token=API_TOKEN"
@@ -918,13 +937,13 @@ curl "http://YOUR_DOMAIN.fakturownia.pl/categories/100.json?api_token=API_TOKEN"
 Dodanie nowej kategorii
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/categories.json 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/categories.json
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"category": {
-					"name":"my_category", 
+					"name":"my_category",
 					"description": null
 				}}'
 ```
@@ -933,14 +952,14 @@ curl https://YOUR_DOMAIN.fakturownia.pl/categories.json
 Aktualizacja kategorii
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/categories/100.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/categories/100.json
 				-X PUT
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"category": {
-					"name":"my_category", 
+					"name":"my_category",
 					"description": "new_description"
 				}}'
 ```
@@ -948,17 +967,17 @@ curl https://YOUR_DOMAIN.fakturownia.pl/categories/100.json
 
 <a name="cat5"/>
 Usunięcie kategorii o podanym ID
-	
+
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/categories/100.json?api_token=API_TOKEN"
 ```
-	
+
 <a name="warehouses"/>
 
-## Magazyny 
+## Magazyny
 
-<a name="wh1"/>  
-Lista wszystkich magazynów  
+<a name="wh1"/>
+Lista wszystkich magazynów
 
 ```shell
 curl "http://YOUR_DOMAIN.fakturownia.pl/warehouses.json?api_token=API_TOKEN"
@@ -975,13 +994,13 @@ curl "http://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token=API_TOKEN"
 Dodanie nowego magazynu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/warehouses.json 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouses.json
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"warehouse": {
-					"name":"my_warehouse", 
+					"name":"my_warehouse",
 					"kind": null,
 					"description": null
 				}}'
@@ -991,14 +1010,14 @@ curl https://YOUR_DOMAIN.fakturownia.pl/warehouses.json
 Aktualizacja magazynu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json 
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json
 				-X PUT
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"warehouse": {
-					"name":"my_category", 
+					"name":"my_category",
 					"kind": null,
 					"description": "new_description"
 				}}'
@@ -1007,7 +1026,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json
 
 <a name="wh5"/>
 Usunięcie magazynu o podanym ID
-	
+
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token=API_TOKEN"
 ```
@@ -1015,10 +1034,10 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token
 
 <a name="departments"/>
 
-## Działy 
+## Działy
 
-<a name="dep1"/>  
-Lista wszystkich działów  
+<a name="dep1"/>
+Lista wszystkich działów
 
 ```shell
 curl "http://YOUR_DOMAIN.fakturownia.pl/departments.json?api_token=API_TOKEN"
@@ -1035,44 +1054,44 @@ curl "http://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_token=API_TOKEN
 Dodanie nowego działu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/departments.json 
-				-H 'Accept: application/json'  
-				-H 'Content-Type: application/json'  
+curl https://YOUR_DOMAIN.fakturownia.pl/departments.json
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
 				-d '{
 				"api_token": "API_TOKEN",
 				"department": {
-					"name":"my_warehouse", 
+					"name":"my_warehouse",
 					"shortcut": "short_name",
 					"tax_no": "-"
 				}}'
 ```
 
 <a name="dep4"/>
-Aktualizacja działu 
- 
-```shell 
-curl https://YOUR_DOMAIN.fakturownia.pl/departments/100.json  
-        -X PUT 
-        -H 'Accept: application/json'   
-        -H 'Content-Type: application/json'   
-        -d '{ 
-        "api_token": "API_TOKEN", 
-        "department": { 
-          "name":"new_name",  
-          "shortcut": "new_short_name", 
-          "tax_no": "xxx-xxx-xx-xx" 
-        }}' 
-``` 
- 
-<a name="dep5"/> 
+Aktualizacja działu
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/departments/100.json
+        -X PUT
+        -H 'Accept: application/json'
+        -H 'Content-Type: application/json'
+        -d '{
+        "api_token": "API_TOKEN",
+        "department": {
+          "name":"new_name",
+          "shortcut": "new_short_name",
+          "tax_no": "xxx-xxx-xx-xx"
+        }}'
+```
+
+<a name="dep5"/>
 Usunięcie działu o podanym ID
-	
+
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_token=API_TOKEN"
 ```
 
 
-<a name="get_token_by_api"/>  
+<a name="get_token_by_api"/>
 
 ## Logowanie i pobranie tokena przez API
 
