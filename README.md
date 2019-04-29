@@ -360,7 +360,7 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_
 Połączenie istniejącej faktury i paragonu
 
 ```shell
-curl https://pawel-YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
+curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
     -X PUT \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
