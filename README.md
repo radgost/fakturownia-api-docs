@@ -34,7 +34,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 + [Faktury - specyfikacja](#invoices)
 + [Klienci](#clients)
 	+ [Lista klientów](#k1)
-	+ [Wyszukiwanie klientów po nazwie, mailu lub nazwie skróconej](#k1b)
+	+ [Wyszukiwanie klientów po nazwie, mailu, nazwie skróconej lub numerze NIP](#k1b)
 	+ [Pobranie wybranego klienta po ID](#k2)
 	+ [Pobranie wybranego klienta po zewnętrznym ID](#k2b)
 	+ [Dodanie klienta](#k3)
@@ -646,12 +646,13 @@ curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&page=1
 ```
 
 <a name="k1b"/>
-Wyszukiwanie klientów po nazwie, mailu lub nazwie skróconej
+Wyszukiwanie klientów po nazwie, mailu, nazwie skróconej lub numerze NIP
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&name=CLIENT_NAME"
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&email=EMAIL_ADDRESS"
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&shortcut=SHORT_NAME"
+curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&tax_no=TAX_NO"
 ```
 
 <a name="k2"/>
