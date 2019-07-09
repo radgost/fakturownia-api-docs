@@ -498,6 +498,7 @@ Pola faktury
 "paid_date" : "",
 "currency" : "PLN",
 "lang" : "pl",
+"use_moss" : "0" - czy faktura MOSS
 "exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę), np. "PLN"
 "exchange_kind" : "", - źródło kursu do przeliczenia waluty ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
 "exchange_currency_rate" : "", - własny kurs przeliczenia waluty (używany, gdy parametr exchange_kind ustawiony jest na "own")
