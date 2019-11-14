@@ -960,53 +960,6 @@ curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
 				    }}'
 ```
 
-wersja pełna
-
-```shell
-curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
-				-H 'Accept: application/json' \
-				-H 'Content-Type: application/json' \
-				-d '{
-					"api_token": "API_TOKEN",
-					"banking_payment": {
-						"city": null,
-						"client_id":null,
-						"comment":null,
-						"country":null,
-						"currency":"PLN",
-						"deleted":false,
-						"department_id":null,
-						"description":"abonament roczny",
-						"email":"email@email123a.pl",
-						"first_name":"Jan",
-						"generate_invoice":true,
-						"invoice_city":"Warszawa",
-						"invoice_comment":"",
-						"invoice_country":null,
-						"invoice_id":null,
-						"invoice_name":"Company name",
-						"invoice_post_code":"00-112",
-						"invoice_street":"street 52",
-						"invoice_tax_no":"5252445767",
-						"last_name":"Kowalski",
-						"name":"Plantnosc za produkt1",
-						"oid":"",
-						"paid":true,
-						"paid_date":null,
-						"phone":null,
-						"post_code":null,
-						"price":"100.00",
-						"product_id":1,
-						"promocode":"",
-						"provider":"transfer",
-						"provider_response":null,
-						"provider_status":null,
-						"provider_title":null,
-						"quantity":1,
-						"street":null,
-						"kind": "api"
-				    }}'
-```
 
 <a name="categories"/>
 
