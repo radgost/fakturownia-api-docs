@@ -55,6 +55,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu](#wd5)
 	+ [Aktualizacja dokumentu](#wd6)
 	+ [Usunięcie dokumentu](#wd7)
++ [Płatności](#payments)	
 + [Kategorie](#categories)
 	+ [Lista kategorii](#cat1)
 	+ [Pobranie wybranej kategorii po ID](#cat2)
@@ -917,6 +918,87 @@ Usunięcie dokumentu
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?api_token=API_TOKEN"
 ```
 
+
+## Płatności
+
+<a name="p1"/>
+Wszystkie płatności
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json?api_token=API_TOKEN"
+```
+można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy płatności)
+
+<a name="p2"/>
+Pobranie wybranej płatności po ID
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payment/100.json?api_token=API_TOKEN"
+```
+
+<a name="p3"/>
+Dodawanie nowej płatności
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
+				-H 'Accept: application/json' \
+				-H 'Content-Type: application/json' \
+				-d '{
+					"api_token": "API_TOKEN",
+					"banking_payment": {
+						"name":"Payment 001",
+						"price": 100.05,
+						"invoice_id": null,
+						"paid":true,
+						"kind": "api"
+				    }}'
+```
+
+```
+curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
+				-H 'Accept: application/json' \
+				-H 'Content-Type: application/json' \
+				-d '{
+					"api_token": "API_TOKEN",
+					"banking_payment": {
+						"city": null,
+						"client_id":null,
+						"comment":null,
+						"country":null,
+						"currency":"PLN",
+						"deleted":false,
+						"department_id":null,
+						"description":"abonament roczny",
+						"email":"email@email123a.pl",
+						"first_name":"Jan",
+						"generate_invoice":true,
+						"invoice_city":"Warszawa",
+						"invoice_comment":"",
+						"invoice_country":null,
+						"invoice_id":null,
+						"invoice_name":"Company name",
+						"invoice_post_code":"00-112",
+						"invoice_street":"street 52",
+						"invoice_tax_no":"5252445767",
+						"last_name":"Kowalski",
+						"name":"Plantnosc za produkt1",
+						"oid":"",
+						"paid":true,
+						"paid_date":null,
+						"phone":null,
+						"post_code":null,
+						"price":"100.00",
+						"product_id":1,
+						"promocode":"",
+						"provider":"transfer",
+						"provider_response":null,
+						"provider_status":null,
+						"provider_title":null,
+						"quantity":1,
+						"street":null,
+						"kind": "api"
+				    }}'
+```
 
 <a name="categories"/>
 
