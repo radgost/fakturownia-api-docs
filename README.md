@@ -56,6 +56,9 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Aktualizacja dokumentu](#wd6)
 	+ [Usunięcie dokumentu](#wd7)
 + [Płatności](#payments)	
+	+ [Wszystkie płatności](#pl1)
+	+ [Pobranie wybranej płatności po ID](#pl2)
+	+ [Dodanie nowej płatności](#pl3)
 + [Kategorie](#categories)
 	+ [Lista kategorii](#cat1)
 	+ [Pobranie wybranej kategorii po ID](#cat2)
@@ -918,7 +921,7 @@ Usunięcie dokumentu
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?api_token=API_TOKEN"
 ```
 
-
+<a name="payments"/>
 ## Płatności
 
 <a name="p1"/>
