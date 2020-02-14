@@ -640,7 +640,6 @@ Pole: `discount_kind` - rodzaj rabatu
 
 Pole: `np_tax_kind` - podstawa zastosowania stawki NP
 ```shell
-    "export_products" - eksport towarów
     "export_service" - dostawa towarów oraz świadczenie usług poza terytorium kraju
     "export_service_eu" - w tym świadczenie usług, o których mowa w art.100 ust.1 pkt 4 ustawy
     "dont_specify" - nie określaj
