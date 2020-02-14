@@ -55,7 +55,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu](#wd5)
 	+ [Aktualizacja dokumentu](#wd6)
 	+ [Usunięcie dokumentu](#wd7)
-+ [Płatności](#payments)	
++ [Płatności](#payments)
 	+ [Wszystkie płatności](#pl1)
 	+ [Pobranie wybranej płatności po ID](#pl2)
 	+ [Dodanie nowej płatności](#pl3)
@@ -636,6 +636,14 @@ Pole: `discount_kind` - rodzaj rabatu
 	"percent_unit" - liczony od ceny jednostkowej
 	"percent_total" - liczony od ceny całkowitej
 	"amount" - kwotowy
+```
+
+Pole: `np_tax_kind` - podstawa zastosowania stawki NP
+```shell
+    "export_products" - eksport towarów
+    "export_service" - dostawa towarów oraz świadczenie usług poza terytorium kraju
+    "export_service_eu" - w tym świadczenie usług, o których mowa w art.100 ust.1 pkt 4 ustawy
+    "dont_specify" - nie określaj
 ```
 
 
