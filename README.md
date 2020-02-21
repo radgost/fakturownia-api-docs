@@ -538,7 +538,7 @@ Pola faktury
   "sum": "sum" lub "keep_gross" lub "keep_net" - metoda sumowania kwot z pozycji
   "invoice_form_price_kind": "net" lub "gross" - cena jednostkowa na formatce faktury
 },
-"split_payment" : "1" - 0 lub 1 w zależności, czy faktura podlega pod split payment, czy nie
+"split_payment" : "1" - 1 lub 0 w zależności, czy faktura podlega pod split payment, czy nie
 ```
 
 Wartości pól
