@@ -213,7 +213,9 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     -d '{"api_token": "API_TOKEN",
         "invoice": {
             "kind": "correction",
-            "from_invoice_id": "2432393,
+            "correction_reason": "Zła ilość",
+            "invoice_id": "2432393",
+            "from_invoice_id": "2432393",
             "client_id": 1,
             "positions":[
                 {"name": "Product A1",
