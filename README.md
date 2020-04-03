@@ -642,10 +642,14 @@ Pole: `discount_kind` - rodzaj rabatu
 ```
 
 Pole: `np_tax_kind` - podstawa zastosowania stawki NP
+> Uwaga! Dla każdej pozycji, która nie podlega opodatkowaniu VAT należy podać jako stawkę podatku jeden z wariantów stawki "np" (przykład: "tax": "na").
+
+> Warianty stawki "np" rozpoznawane przez system: "np", "n/a", "nie podlega", "not applicable", "na" - lub ich wersje pisane z wielkich liter.
+
 ```shell
     "export_service" - dostawa towarów oraz świadczenie usług poza terytorium kraju
     "export_service_eu" - w tym świadczenie usług, o których mowa w art.100 ust.1 pkt 4 ustawy
-    "dont_specify" - nie określaj
+    "not_specified" - nie określono
 ```
 
 
