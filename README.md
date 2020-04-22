@@ -5,7 +5,7 @@ Opis jak zintegrować własną aplikację lub serwis z systemem [Fakturownia](ht
 
 Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami
 
-Działające przykłady wywołania API Fakturowni znajdują się też w systemi w menu Ustawienia > API oraz na stronie: https://api.fakturownia.pl/api
+Działające przykłady wywołania API Fakturowni znajdują się też w systemi w menu Ustawienia > API oraz na stronie: https://app.fakturownia.pl/api
 
 ## Spis treści
 + [API Token](#token)
