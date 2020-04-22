@@ -1,11 +1,11 @@
 # Fakturownia API
 
 
-Opis jak zintegrować własną aplikację lub serwis z systemem <http://fakturownia.pl/>
-
-
+Opis jak zintegrować własną aplikację lub serwis z systemem [Fakturownia](https://fakturownia.pl)
 
 Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami
+
+Działające przykłady wywołania API Fakturowni znajdują się też w systemi w menu Ustawienia > API oraz na stronie: https://api.fakturownia.pl/api
 
 ## Spis treści
 + [API Token](#token)
@@ -1161,7 +1161,8 @@ curl https://app.fakturownia.pl/login.json \
     -H 'Content-Type: application/json' \
     -d '{
             "login": "login_or_email",
-            "password": "password"
+            "password": "password",
+	    "integration_token": "email-us-for-this-token"
     }'
 ```
 
@@ -1215,7 +1216,8 @@ curl https://YOUR_DOMAIN.fakturownia.pl/account.json \
                 "person": "Jan Nowak",
                 "bank": "Bank1",
                 "bank_account": "111222333444555666111"
-            }
+            },
+	    "integration_token": ""
         }'
 
 ```
@@ -1247,7 +1249,7 @@ Inne pola dostępne przy tworzeniu nowego konta (pomocne przy integracji)
 Pobranie informacji o koncie:
 
 ```shell
-curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN&integration_token="
 ```
 
 <a name="codes"/>
