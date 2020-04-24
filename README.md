@@ -528,7 +528,7 @@ Pola faktury
    		"quantity" : "1",
    		"quantity_unit" : "szt",
    		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
-   		"tax" : "23", - może być stawka lub "np", "zw" 
+   		"tax" : "23", - może być stawka lub "np" - dla nie podlega, "zw" - dla zwolniona
    		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
