@@ -508,7 +508,6 @@ Pola faktury
 "exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę), np. "PLN"
 "exchange_kind" : "", - źródło kursu do przeliczenia waluty ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
 "exchange_currency_rate" : "", - własny kurs przeliczenia waluty (używany, gdy parametr exchange_kind ustawiony jest na "own")
-"internal_note" : "",
 "invoice_template_id" : "1",
 "description" : "- opis faktury",
 "description_footer" : "", - opis umieszczony w stopce faktury
@@ -529,7 +528,7 @@ Pola faktury
    		"quantity" : "1",
    		"quantity_unit" : "szt",
    		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
-   		"tax" : "23",
+   		"tax" : "23", - może być stawka lub "np", "zw" 
    		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
