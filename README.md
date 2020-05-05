@@ -18,6 +18,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Wysłanie faktury E-MAILEM do klienta](#f5)
 	+ [Dodanie nowej faktury](#f6)
 	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f7)
+	+ [Dodanie faktury podobnej (po ID innej faktury, np. zaliczkowej z zamówienia, końcowej z zaliczkowych itp.)](#f7b)
 	+ [Dodanie nowej faktury korygującej](#f8)
 	+ [Aktualizacja faktury](#f9)
 	+ [Aktualizacja pozycji na fakturze](#f9b)
@@ -201,6 +202,91 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
                 {"product_id": 1, "quantity":2}
             ]
         }}'
+```
+
+<a name="f7b"/>
+Dodanie nowej faktury – dokumentu podobnego do faktury o podanym ID (copy_invoice_from).
+
+Dodanie identycznej faktury o podanym rodzaju
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_DOKUMENTU_ZRODLOWEGO,
+            "kind": "RODZAJ_FAKTURY"
+        }
+    }'
+```
+
+Dodanie faktury zaliczkowej na podstawie zamówienia – % pełnej kwoty
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_ZAMOWIENIA,
+            "kind": "advance",
+            "advance_creation_mode": "percent",
+            "advance_value": "10",
+            "position_name": "Zaliczka na wykonanie zamówienia ZAM-NR"
+        }
+    }'
+```
+
+Dodanie faktury zaliczkowej na podstawie zamówienia – podana kwota brutto
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_ZAMOWIENIA,
+            "kind": "advance",
+            "advance_creation_mode": "amount",
+            "advance_value": "150",
+            "position_name": "Zaliczka na wykonanie zamówienia ZAM-NR"
+        }
+    }'
+```
+
+Dodanie faktury końcowej na podstawie zamówienia i faktur zaliczkowych
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_ZAMOWIENIA,
+            "kind": "final",
+            "invoice_ids": [ID_ZALICZKI_1, ID_ZALICZKI_2, ...]
+        }
+    }'
+```
+
+Dodanie faktury VAT na podstawie faktury Proforma
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_PROFORMY,
+            "kind": "vat"
+        }
+    }'
 ```
 
 <a name="f8"/>
