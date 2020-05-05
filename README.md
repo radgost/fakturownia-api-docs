@@ -217,7 +217,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         "api_token": "API_TOKEN",
         "invoice": {
             "copy_invoice_from": ID_DOKUMENTU_ZRODLOWEGO,
-            "kind": RODZAJ_FAKTURY
+            "kind": "RODZAJ_FAKTURY"
         }
     }'
 ```
