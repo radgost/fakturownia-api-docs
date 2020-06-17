@@ -1238,7 +1238,7 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_toke
 
 <a name="get_token_by_api"/>
 
-## Logowanie i pobranie tokena przez API
+## Logowanie i pobranie danych przez API
 
 ```shell
 curl https://app.fakturownia.pl/login.json \
@@ -1247,9 +1247,11 @@ curl https://app.fakturownia.pl/login.json \
     -d '{
             "login": "login_or_email",
             "password": "password",
-	    "integration_token": "email-us-for-this-token"
+	    "integration_token": ""
     }'
 ```
+
+UWAGA: parametr ```integration_token`` jest wymagany, jeśli chcemy pobrać aktualny api_token użytkownika (aby otrzymać ten dla Twojej zintegrowanej aplikacji prosimy o kontakt z nami)
 
 To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i `url`):
 
@@ -1264,6 +1266,8 @@ To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i
 	"api_token":"XXXXXXXXXXXXXX"
 }
 ```
+
+
 
 <a name="accounts"/>
 
