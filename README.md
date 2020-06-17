@@ -1265,7 +1265,7 @@ To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i
 }
 ```
 
-UWAGA: api_token jest zwracany tylko jeśli dany użytkownik ma wygenerowany API Token (używkonik może go dodać w ustawieniach konta)
+UWAGA: api_token jest zwracany tylko jeśli dany użytkownik ma wygenerowany API Token (użytkownik może go dodać w ustawieniach konta)
 
 
 <a name="accounts"/>
