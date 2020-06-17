@@ -1251,8 +1251,6 @@ curl https://app.fakturownia.pl/login.json \
     }'
 ```
 
-UWAGA: parametr ```integration_token``` jest wymagany, jeśli chcemy pobrać aktualny api_token użytkownika (aby otrzymać integration_token dla Twojej zintegrowanej aplikacji prosimy o kontakt z nami)
-
 To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i `url`):
 
 ```shell
@@ -1267,6 +1265,7 @@ To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i
 }
 ```
 
+UWAGA: api_token jest zwracany tylko jeśli dany użytkownik ma wygenerowany API Token (używkonik może go dodać w ustawieniach konta)
 
 
 <a name="accounts"/>
@@ -1310,6 +1309,9 @@ curl https://YOUR_DOMAIN.fakturownia.pl/account.json \
         }'
 
 ```
+
+UWAGA: parametr ```integration_token``` jest wymagany, jeśli chcemy pobrać aktualny api_token użytkownika (aby otrzymać integration_token dla Twojej zintegrowanej aplikacji prosimy o kontakt z nami)
+
 
 Po utworzeniu konta zwracane są:
 
