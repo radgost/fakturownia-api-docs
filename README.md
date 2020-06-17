@@ -1251,7 +1251,7 @@ curl https://app.fakturownia.pl/login.json \
     }'
 ```
 
-UWAGA: parametr ```integration_token`` jest wymagany, jeśli chcemy pobrać aktualny api_token użytkownika (aby otrzymać ten dla Twojej zintegrowanej aplikacji prosimy o kontakt z nami)
+UWAGA: parametr ```integration_token``` jest wymagany, jeśli chcemy pobrać aktualny api_token użytkownika (aby otrzymać ten dla Twojej zintegrowanej aplikacji prosimy o kontakt z nami)
 
 To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i `url`):
 
