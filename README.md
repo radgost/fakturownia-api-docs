@@ -540,6 +540,7 @@ Pola faktury
 "sell_date" : "2013-01-16", - data sprzedaży (może być data lub miesiąc postaci 2012-12)
 "category_id" : "", - id kategorii
 "department_id" : "1", - id działu firmy (w menu Ustawienia > Dane firmy należy kliknąć na firmę/dział i ID działu pojawi się w URL); Jeśli nie będzie tego pola oraz nie będzie pola 'seller_name' wtedy będą wstawione domyślne dane Twojej firmy
+"accounting_kind": "", - rodzaj wydatku dla faktur kosztowych - (purchases, expenses, media, salary, incident, fuel0, fuel_expl50, fuel_expl75, fuel_expl100, fixed_assets, fixed_assets50, no_vat_deduction)
 "seller_name" : "Radgost Sp. z o.o.", - sprzedawca
 "seller_tax_no" : "525-244-57-67", - numer identyfikacji podatkowej sprzedawcy (domyślnie NIP)
 "seller_tax_no_kind" : "", - rodzaj numeru identyfikacyjnego sprzedawcy; pole puste (domyślnie) jest interpretowane jako "NIP"; w innym wypadku traktowane jako dowolny wpis własny (np. PESEL, REGON)
@@ -686,11 +687,26 @@ Pole: `lang`
 	"pl/en" - język polski i angielski
 ```
 
-
 Pole: `income`
 ```shell
 	"1" - fakura przychodwa
 	"0" - faktura kosztowa
+```
+
+Pole: `accounting_kind`
+```shell
+  "purchases" - Zakup towarów i materiałów
+  "expenses" - Koszty prowadzenia działalności
+  "media" - Media i usługi telekomunikacyjne
+  "salary" - Wynagrodzenia
+  "incident" - Koszty uboczne zakupu
+  "fuel0" - Zakup paliwa do pojazdów 0%
+  "fuel_expl50" - Zakup paliwa i eksploatacja pojazdu 50%
+  "fuel_expl75" - Zakup paliwa i eksploatacja pojazdu 75%
+  "fuel_expl100" - Zakup paliwa i eksploatacja pojazdu 100%
+  "fixed_assets" - Środki trwałe
+  "fixed_assets50" - Środki trwałe 50%
+  "no_vat_deduction" - Bez możliwości odliczenia podatku VAT
 ```
 
 Pole: `payment_type`
