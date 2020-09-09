@@ -30,6 +30,8 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Aktualizacja definicji faktury cyklicznej](#f13)
 	+ [Usunięcie faktury](#f14)
 	+ [Połączenie istniejącej faktury i paragonu](#f15)
+	+ [Pobranie załączników w archiwum ZIP](#f16)
+	+ [Dodanie załącznika](#f16b)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja](#invoices)
@@ -465,6 +467,38 @@ curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
         }
     }'
 ```
+
+<a name="f16"/>
+Pobranie wszystkich załączników faktury w archiwum ZIP
+
+```shell
+curl -o attachments.zip https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/attachments_zip.json?api_token=API_TOKEN
+```
+
+<a name="f16b"/>
+Dodanie nowego załącznika do faktury
+
+1. Pobranie danych niezbędnych do przesłania pliku:
+    ```shell
+    curl https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/get_new_attachment_credentials.json?api_token=API_TOKEN
+    ```
+
+2. Przesłanie pliku:
+    ```shell
+    curl -F 'AWSAccessKeyId=received_AWSAccessKeyId' \
+         -F 'key=received_key' \
+         -F 'policy=received_policy' \
+         -F 'signature=received_signature' \
+         -F 'acl=received_acl' \
+         -F 'success_action_status=received_success_action_status' \
+         -F 'file=@/file_path/name.ext' \
+         received_url
+    ```
+
+3. Dodanie załącznika (przesłanego pliku) do faktury:
+    ```shell
+    curl -X POST https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/add_attachment.json?api_token=API_TOKEN&file_name=name.ext
+    ```
 
 <a name="view_url"/>
 
