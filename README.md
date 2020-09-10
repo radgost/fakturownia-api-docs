@@ -12,26 +12,27 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 + [Dodatkowe parametry dostępne przy pobieraniu listy rekordów](#list_params)
 + [Faktury - przykłady wywołania](#examples)
 	+ [Pobranie listy faktur z aktualnego miesiąca](#f1)
-	+ [Faktury danego klienta](#f2)
-	+ [Pobranie faktury po ID](#f3)
-	+ [Pobranie PDF-a](#f4)
-	+ [Wysłanie faktury E-MAILEM do klienta](#f5)
-	+ [Dodanie nowej faktury](#f6)
-	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f7)
-	+ [Dodanie faktury podobnej (po ID innej faktury, np. zaliczkowej z zamówienia, końcowej z zaliczkowych itp.)](#f7b)
-	+ [Dodanie nowej faktury korygującej](#f8)
-	+ [Aktualizacja faktury](#f9)
-	+ [Aktualizacja pozycji na fakturze](#f9b)
-	+ [Usunięcie pozycji na fakturze](#f9c)
-	+ [Dodanie pozycji na fakturze](#f9d)
-	+ [Zmiana statusu faktury](#f10)
-	+ [Pobranie listy definicji faktur cyklicznych](#f11)
-	+ [Dodanie definicji faktury cyklicznej](#f12)
-	+ [Aktualizacja definicji faktury cyklicznej](#f13)
-	+ [Usunięcie faktury](#f14)
-	+ [Połączenie istniejącej faktury i paragonu](#f15)
-	+ [Pobranie załączników w archiwum ZIP](#f16)
-	+ [Dodanie załącznika](#f16b)
+	+ [Pobranie listy faktur wraz z ich pozycjami](#f2)
+	+ [Faktury danego klienta](#f3)
+	+ [Pobranie faktury po ID](#f4)
+	+ [Pobranie PDF-a](#f5)
+	+ [Wysłanie faktury E-MAILEM do klienta](#f6)
+	+ [Dodanie nowej faktury](#f7)
+	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f8)
+	+ [Dodanie faktury podobnej (po ID innej faktury, np. zaliczkowej z zamówienia, końcowej z zaliczkowych itp.)](#f8b)
+	+ [Dodanie nowej faktury korygującej](#f9)
+	+ [Aktualizacja faktury](#f10)
+	+ [Aktualizacja pozycji na fakturze](#f10b)
+	+ [Usunięcie pozycji na fakturze](#f10c)
+	+ [Dodanie pozycji na fakturze](#f10d)
+	+ [Zmiana statusu faktury](#f11)
+	+ [Pobranie listy definicji faktur cyklicznych](#f12)
+	+ [Dodanie definicji faktury cyklicznej](#f13)
+	+ [Aktualizacja definicji faktury cyklicznej](#f14)
+	+ [Usunięcie faktury](#f15)
+	+ [Połączenie istniejącej faktury i paragonu](#f16)
+	+ [Pobranie załączników w archiwum ZIP](#f17)
+	+ [Dodanie załącznika](#f17b)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja](#invoices)
@@ -111,6 +112,8 @@ Może przyjąć następujące wartości:
 - all
 - more (tutaj trzeba jeszcze dostarczyć dodatkowe parametry date_from (np. "2018-12-16") i date_to (np. "2018-12-21"))
 
+Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rekordów wraz z ich pozycjami
+
 <a name="examples"/>
 
 ## Przykłady wywołania
@@ -123,13 +126,20 @@ curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_toke
 ```
 
 <a name="f2"/>
+Pobranie listy faktur wraz z ich pozycjami
+
+```shell
+curl https://twojaDomena.fakturownia.pl/invoices.json?include_positions=true&api_token=API_TOKEN&page=1
+```
+
+<a name="f3"/>
 Faktury danego klienta
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
 ```
 
-<a name="f3"/>
+<a name="f4"/>
 Pobranie faktury po ID
 
 
@@ -137,7 +147,7 @@ Pobranie faktury po ID
 curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
-<a name="f4"/>
+<a name="f5"/>
 Pobranie PDF-a
 
 
@@ -145,7 +155,7 @@ Pobranie PDF-a
 curl https://twojaDomena.fakturownia.pl/invoices/100.pdf?api_token=API_TOKEN
 ```
 
-<a name="f5"/>
+<a name="f6"/>
 Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu faktury, pole "buyer_email")
 
 
@@ -160,7 +170,7 @@ inne opcje PDF:
 * print_option=duplicate Duplikat
 
 
-<a name="f6"/>
+<a name="f7"/>
 Dodanie nowej faktury
 
 ```shell
@@ -188,7 +198,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     }'
 ```
 
-<a name="f7"/>
+<a name="f8"/>
 Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu (product_id), nabywcy (client_id) i sprzedawcy (department_id) wtedy nie musimy podawać pełnych danych. Opcjonalnie można podać również id odbiorcy (recipient_id).
 Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
 
@@ -206,7 +216,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }}'
 ```
 
-<a name="f7b"/>
+<a name="f8b"/>
 Dodanie nowej faktury – dokumentu podobnego do faktury o podanym ID (copy_invoice_from).
 
 Dodanie identycznej faktury o podanym rodzaju
@@ -291,7 +301,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     }'
 ```
 
-<a name="f8"/>
+<a name="f9"/>
 Dodanie nowej faktury korygującej
 
 ```shell
@@ -329,7 +339,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }}'
 ```
 
-<a name="f9"/>
+<a name="f10"/>
 Aktualizacja faktury
 
 ```shell
@@ -345,7 +355,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f9b"/>
+<a name="f10b"/>
 Aktualizacja pozycji na fakturze - aby edytować pozycję na fakturze, należy podać id pozycji.
 
 ```shell
@@ -361,7 +371,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f9c"/>
+<a name="f10c"/>
 Usunięcie pozycji na fakturze - aby usunąć pozycję na fakturze, należy podać id pozycji wraz z parametrem _destroy=1.
 
 ```shell
@@ -377,7 +387,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f9d"/>
+<a name="f10d"/>
 Dodanie pozycji na fakturze. Pozycja zostanie dopisana jako ostatnia.
 
 ```shell
@@ -393,21 +403,21 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f10"/>
+<a name="f11"/>
 Zmiana statusu faktury
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS" -X POST
 ```
 
-<a name="f11"/>
+<a name="f12"/>
 Pobranie listy definicji faktur cyklicznych
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json?api_token=API_TOKEN
 ```
 
-<a name="f12"/>
+<a name="f13"/>
 Dodanie definicji faktury cyklicznej
 
 ```shell
@@ -427,7 +437,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
         }}'
 ```
 
-<a name="f13"/>
+<a name="f14"/>
 Aktualizacja definicji faktury cyklicznej (zmiana daty wystawienia następnej faktury)
 
 ```shell
@@ -443,14 +453,14 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
     }'
 ```
 
-<a name="f14"/>
+<a name="f15"/>
 Usunięcie faktury
 
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN"
 ```
 
-<a name="f15"/>
+<a name="f16"/>
 Połączenie istniejącej faktury i paragonu
 
 ```shell
@@ -468,14 +478,14 @@ curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
     }'
 ```
 
-<a name="f16"/>
+<a name="f17"/>
 Pobranie wszystkich załączników faktury w archiwum ZIP
 
 ```shell
 curl -o attachments.zip https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/attachments_zip.json?api_token=API_TOKEN
 ```
 
-<a name="f16b"/>
+<a name="f17b"/>
 Dodanie nowego załącznika do faktury
 
 1. Pobranie danych niezbędnych do przesłania pliku:
@@ -1074,7 +1084,7 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?
 
 ## Płatności
 
-<a name="p1"/>
+<a name="pl1"/>
 Wszystkie płatności
 
 ```shell
@@ -1084,14 +1094,14 @@ curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json?api_token=API_TOK
 można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy płatności)
 
 
-<a name="p2"/>
+<a name="pl2"/>
 Pobranie wybranej płatności po ID
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payment/100.json?api_token=API_TOKEN"
 ```
 
-<a name="p3"/>
+<a name="pl3"/>
 Dodawanie nowej płatności
 
 ```shell
