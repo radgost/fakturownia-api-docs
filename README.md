@@ -32,7 +32,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Połączenie istniejącej faktury i paragonu](#f15)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
-+ [Faktury - specyfikacja](#invoices)
++ [Faktury - specyfikacja, rodzaje pól, kody GTU](#invoices)
 + [Klienci](#clients)
 	+ [Lista klientów](#k1)
 	+ [Wyszukiwanie klientów po nazwie, mailu, nazwie skróconej lub numerze NIP](#k1b)
@@ -605,6 +605,7 @@ Pola faktury
 "additional_invoice_field" : "" - wartość dodatkowego pola na fakturze, Ustawienia > Ustawienia Konta > Konfiguracja > Faktury i dokumenty > Dodatkowe pole na fakturze
 "internal_note" : "" - treść notatki prywatnej na fakturze, niewidoczna na wydruku.
 "exclude_from_stock_level" : "" - informacja, czy system powinien liczyć tę fakturę do stanów magazynowych (true np., gdy faktura wystawiona na podstawie paragonu)
+"gtu_codes" : [""] - wartości kodów GTU produktów zawartych na fakturze - UWAGA - podane wartości nadpiszą wartości kodów GTU pobranych z kart produktów podawanych w pozycjach faktury, wartości tych kodów są nadrzędne dla całej faktury
 "positions":
    		"product_id" : "1",
    		"name" : "Fakturownia Start",
@@ -618,7 +619,8 @@ Pola faktury
    		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
-   		"code" : "" - kod produktu
+   		"code" : "" - kod produktu,
+        "gtu_code" : "" - kod GTU produktu
 "calculating_strategy" =>
 {
   "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury
@@ -736,7 +738,78 @@ Pole: `np_tax_kind` - podstawa zastosowania stawki NP
     "export_service_eu" - w tym świadczenie usług, o których mowa w art.100 ust.1 pkt 4 ustawy
     "not_specified" - nie określono
 ```
+## Faktury - kody GTU
+Więcej informacji o kodach GTU można znaleźć na naszej stronie pomocy: https://pomoc.fakturownia.pl/78131182-Kody-GTU-grupowanie-towarow-i-uslug  
+Jeśli podczas tworzenia nowej faktury chcemy umieścic na niej kody GTU, możemy to zrobić na kilka sposobów.
 
+* `Automatyczne pobieranie kodów z produktów istniejących` - jeśli dodajemy pozycję na fakturze korzystając z ID produktu, które już ma zapisany kod GTU w systemie, wtedy nowa faktura automatycznie pobierze kody GTU wszystkich produktów i wyświetli je na wydruku (jeśli tylko jest włączona opcja zamieszczenia kodów na wydruku faktury)  
+
+* `Podanie kodów wraz z pozycjami na fakturze` - możemy podać kod GTU bezpośrednio dla każdej pozycji na fakturze korzystając z pola `gtu_code`
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "invoice": {
+            "payment_to_kind": 5,
+            "client_id": 1,
+            "positions":[
+                {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1, "gtu_code": "GTU_01"},
+                {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3,  "gtu_code": "GTU_04"}
+            ]
+        }}'
+```
+* `Podanie kodów łącznie dla całej faktury` - możemy również podać zestaw kodów GTU łącznie dla całej faktury korzystając z pola `gtu_codes`. UWAGA - kody te są nadrzędne dla całej faktury - tylko wartości z `gtu_codes` zostaną wyświetlone na fakturze. Według przykładu poniżej na fakturze zostaną wyświetlone tylko kody ` "GTU_03", "GTU_04"`, niezależnie czy na pozycjach zostały podane inne kody GTU, bądź czy produkty z przykładu o id 1 lub 5 mają inne kody zdefiniowane w systemie.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "kind":"vat",
+            "number": null,
+            "sell_date": "2013-01-16",
+            "issue_date": "2013-01-16",
+            "payment_to": "2013-01-23",
+            "seller_name": "Wystawca Sp. z o.o.",
+            "seller_tax_no": "5252445767",
+            "buyer_name": "Klient1 Sp. z o.o.",
+            "buyer_email": "buyer@testemail.pl",
+            "buyer_tax_no": "5252445767",
+            "gtu_codes": ["GTU_03", "GTU_04"],
+            "positions":[
+                {"product_id": 1, "quantity":2},
+                {"product_id": 5, "quantity":4},
+                {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3,  "gtu_code": "GTU_07"} #Kod GTU_07 nie pojawi się na fakturze
+            ]
+        }
+    }'
+```
+
+
+Pole: `gtu_codes` - typy kodów GTU
+```shell
+Dla produktów:
+"GTU_01" - Dostawa napojów alkoholowych - alkoholu etylowego, piwa, wina, napojów fermentowanych i wyrobów pośrednich, w rozumieniu przepisów o podatku akcyzowym
+"GTU_02" - Dostawa towarów, o których mowa w art. 103 ust. 5aa ustawy
+"GTU_03" - Dostawa oleju opałowego w rozumieniu przepisów o podatku akcyzowym oraz olejów smarowych, pozostałych olejów o kodach CN od 2710 19 71 do 2710 19 99, z wyłączeniem wyrobów o kodzie CN 2710 19 85 (oleje białe, parafina ciekła) oraz smarów plastycznych zaliczanych do kodu CN 2710 19 99, olejów smarowych o kodzie CN 2710 20 90, preparatów smarowych objętych pozycją CN 3403, z wyłączeniem smarów plastycznych objętych tą pozycją
+"GTU_04" - Dostawa wyrobów tytoniowych, suszu tytoniowego, płynu do papierosów elektronicznych i wyrobów nowatorskich, w rozumieniu przepisów o podatku akcyzowym
+"GTU_05" - Dostawa odpadów - wyłącznie określonych w poz. 79-91 załącznika nr 15 do ustawy
+"GTU_06" - Dostawa urządzeń elektronicznych oraz części i materiałów do nich, wyłącznie określonych w poz. 7-9, 59-63, 65, 66, 69 i 94-96 załącznika nr 15 do ustawy
+"GTU_07" - Dostawa pojazdów oraz części samochodowych o kodach wyłącznie CN 8701 - 8708 oraz CN 8708 10
+"GTU_08" - Dostawa metali szlachetnych oraz nieszlachetnych - wyłącznie określonych w poz. 1-3 załącznika nr 12 do ustawy oraz w poz. 12-25, 33-40, 45, 46, 56 i 78 załącznika nr 15 do ustawy
+"GTU_09" - Dostawa leków oraz wyrobów medycznych - produktów leczniczych, środków spożywczych specjalnego przeznaczenia żywieniowego oraz wyrobów medycznych, objętych obowiązkiem zgłoszenia, o którym mowa w art. 37av ust. 1 ustawy z dnia 6 września 2001 r. - Prawo farmaceutyczne (Dz. U. z 2019 r. poz. 499, z późn. zm.)
+"GTU_10" - Dostawa budynków, budowli i gruntów
+
+
+Dla usług:
+"GTU_11" - Świadczenie usług w zakresie przenoszenia uprawnień do emisji gazów cieplarnianych, o których mowa w ustawie z dnia 12 czerwca 2015 r. o systemie handlu uprawnieniami do emisji gazów cieplarnianych (Dz. U. z 2018 r. poz. 1201 i 2538 oraz z 2019 r. poz. 730, 1501 i 1532)
+"GTU_12" - Świadczenie usług o charakterze niematerialnym - wyłącznie: doradczych, księgowych, prawnych, zarządczych, szkoleniowych, marketingowych, firm centralnych (head offices), reklamowych, badania rynku i opinii publicznej, w zakresie badań naukowych i prac rozwojowych
+"GTU_13" - Świadczenie usług transportowych i gospodarki magazynowej - Sekcja H PKWiU 2015 symbol ex 49.4, ex 52.1
+```
 
 <a name="clients"/>
 
