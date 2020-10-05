@@ -620,7 +620,7 @@ Pola faktury
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
    		"code" : "" - kod produktu,
-        "gtu_code" : "" - kod GTU produktu
+              "gtu_code" : "" - kod GTU produktu
 "calculating_strategy" =>
 {
   "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury
@@ -803,7 +803,6 @@ Dla produktów:
 "GTU_08" - Dostawa metali szlachetnych oraz nieszlachetnych - wyłącznie określonych w poz. 1-3 załącznika nr 12 do ustawy oraz w poz. 12-25, 33-40, 45, 46, 56 i 78 załącznika nr 15 do ustawy
 "GTU_09" - Dostawa leków oraz wyrobów medycznych - produktów leczniczych, środków spożywczych specjalnego przeznaczenia żywieniowego oraz wyrobów medycznych, objętych obowiązkiem zgłoszenia, o którym mowa w art. 37av ust. 1 ustawy z dnia 6 września 2001 r. - Prawo farmaceutyczne (Dz. U. z 2019 r. poz. 499, z późn. zm.)
 "GTU_10" - Dostawa budynków, budowli i gruntów
-
 
 Dla usług:
 "GTU_11" - Świadczenie usług w zakresie przenoszenia uprawnień do emisji gazów cieplarnianych, o których mowa w ustawie z dnia 12 czerwca 2015 r. o systemie handlu uprawnieniami do emisji gazów cieplarnianych (Dz. U. z 2018 r. poz. 1201 i 2538 oraz z 2019 r. poz. 730, 1501 i 1532)
