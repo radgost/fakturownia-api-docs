@@ -1096,7 +1096,7 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?
 
 ## Płatności
 
-<a name="p1"/>
+<a name="pl1"/>
 Wszystkie płatności
 
 ```shell
@@ -1106,14 +1106,14 @@ curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json?api_token=API_TOK
 można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy płatności)
 
 
-<a name="p2"/>
+<a name="pl2"/>
 Pobranie wybranej płatności po ID
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payment/100.json?api_token=API_TOKEN"
 ```
 
-<a name="p3"/>
+<a name="pl3"/>
 Dodawanie nowej płatności
 
 ```shell
