@@ -666,7 +666,7 @@ Pola faktury
    		"total_price_gross" : "72,57",
    		"code" : "" - kod produktu,
                 "gtu_code" : "" - kod GTU produktu
-"calculating_strategy" =>
+"calculating_strategy":
 {
   "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury
   "sum": "sum" lub "keep_gross" lub "keep_net" - metoda sumowania kwot z pozycji
