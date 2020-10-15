@@ -1,40 +1,44 @@
 # Fakturownia API
 
 
-Opis jak zintegrować własną aplikację lub serwis z systemem <http://fakturownia.pl/>
+Opis jak zintegrować własną aplikację lub serwis z systemem [Fakturownia.pl](https://fakturownia.pl)
 
+Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami.
 
-
-Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz zarządzać tymi dokumentami, a także klientami i produktami
+Działające przykłady wywołania API Fakturowni znajdują się też w w systemie Fakturownia (po zalogowaniu) w menu <b>Ustawienia > API</b> oraz na stronie: https://app.fakturownia.pl/api
 
 ## Spis treści
 + [API Token](#token)
 + [Dodatkowe parametry dostępne przy pobieraniu listy rekordów](#list_params)
 + [Faktury - przykłady wywołania](#examples)
 	+ [Pobranie listy faktur z aktualnego miesiąca](#f1)
-	+ [Faktury danego klienta](#f2)
-	+ [Pobranie faktury po ID](#f3)
-	+ [Pobranie PDF-a](#f4)
-	+ [Wysłanie faktury E-MAILEM do klienta](#f5)
-	+ [Dodanie nowej faktury](#f6)
-	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f7)
-	+ [Dodanie nowej faktury korygującej](#f8)
-	+ [Aktualizacja faktury](#f9)
-	+ [Aktualizacja pozycji na fakturze](#f9b)
-	+ [Usunięcie pozycji na fakturze](#f9c)
-	+ [Dodanie pozycji na fakturze](#f9d)
-	+ [Zmiana statusu faktury](#f10)
-	+ [Pobranie listy definicji faktur cyklicznych](#f11)
-	+ [Dodanie definicji faktury cyklicznej](#f12)
-	+ [Aktualizacja definicji faktury cyklicznej](#f13)
-	+ [Usunięcie faktury](#f14)
-	+ [Połączenie istniejącej faktury i paragonu](#f15)
+	+ [Pobranie listy faktur wraz z ich pozycjami](#f2)
+	+ [Faktury danego klienta](#f3)
+	+ [Pobranie faktury po ID](#f4)
+	+ [Pobranie PDF-a](#f5)
+	+ [Wysłanie faktury E-MAILEM do klienta](#f6)
+	+ [Dodanie nowej faktury](#f7)
+	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f8)
+	+ [Dodanie faktury podobnej (po ID innej faktury, np. zaliczkowej z zamówienia, końcowej z zaliczkowych itp.)](#f8b)
+	+ [Dodanie nowej faktury korygującej](#f9)
+	+ [Aktualizacja faktury](#f10)
+	+ [Aktualizacja pozycji na fakturze](#f10b)
+	+ [Usunięcie pozycji na fakturze](#f10c)
+	+ [Dodanie pozycji na fakturze](#f10d)
+	+ [Zmiana statusu faktury](#f11)
+	+ [Pobranie listy definicji faktur cyklicznych](#f12)
+	+ [Dodanie definicji faktury cyklicznej](#f13)
+	+ [Aktualizacja definicji faktury cyklicznej](#f14)
+	+ [Usunięcie faktury](#f15)
+	+ [Połączenie istniejącej faktury i paragonu](#f16)
+	+ [Pobranie załączników w archiwum ZIP](#f17)
+	+ [Dodanie załącznika](#f17b)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
-+ [Faktury - specyfikacja](#invoices)
++ [Faktury - specyfikacja, rodzaje pól, kody GTU](#invoices)
 + [Klienci](#clients)
 	+ [Lista klientów](#k1)
-	+ [Wyszukiwanie klientów po nazwie, mailu lub nazwie skróconej](#k1b)
+	+ [Wyszukiwanie klientów po nazwie, mailu, nazwie skróconej lub numerze NIP](#k1b)
 	+ [Pobranie wybranego klienta po ID](#k2)
 	+ [Pobranie wybranego klienta po zewnętrznym ID](#k2b)
 	+ [Dodanie klienta](#k3)
@@ -56,6 +60,10 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Aktualizacja dokumentu](#wd6)
 	+ [Usunięcie dokumentu](#wd7)
 	+ [Połączenie istniejących faktur i dokumentu magazynowego](#wd8)
++ [Płatności](#payments)
+	+ [Wszystkie płatności](#pl1)
+	+ [Pobranie wybranej płatności po ID](#pl2)
+	+ [Dodanie nowej płatności](#pl3)
 + [Kategorie](#categories)
 	+ [Lista kategorii](#cat1)
 	+ [Pobranie wybranej kategorii po ID](#cat2)
@@ -105,6 +113,8 @@ Może przyjąć następujące wartości:
 - all
 - more (tutaj trzeba jeszcze dostarczyć dodatkowe parametry date_from (np. "2018-12-16") i date_to (np. "2018-12-21"))
 
+Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rekordów wraz z ich pozycjami
+
 <a name="examples"/>
 
 ## Przykłady wywołania
@@ -117,13 +127,20 @@ curl https://twojaDomena.fakturownia.pl/invoices.json?period=this_month&api_toke
 ```
 
 <a name="f2"/>
+Pobranie listy faktur wraz z ich pozycjami
+
+```shell
+curl https://twojaDomena.fakturownia.pl/invoices.json?include_positions=true&api_token=API_TOKEN&page=1
+```
+
+<a name="f3"/>
 Faktury danego klienta
 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices.json?client_id=ID_KLIENTA&api_token=API_TOKEN
 ```
 
-<a name="f3"/>
+<a name="f4"/>
 Pobranie faktury po ID
 
 
@@ -131,7 +148,7 @@ Pobranie faktury po ID
 curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 ```
 
-<a name="f4"/>
+<a name="f5"/>
 Pobranie PDF-a
 
 
@@ -139,7 +156,7 @@ Pobranie PDF-a
 curl https://twojaDomena.fakturownia.pl/invoices/100.pdf?api_token=API_TOKEN
 ```
 
-<a name="f5"/>
+<a name="f6"/>
 Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu faktury, pole "buyer_email")
 
 
@@ -154,7 +171,7 @@ inne opcje PDF:
 * print_option=duplicate Duplikat
 
 
-<a name="f6"/>
+<a name="f7"/>
 Dodanie nowej faktury
 
 ```shell
@@ -182,7 +199,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     }'
 ```
 
-<a name="f7"/>
+<a name="f8"/>
 Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu (product_id), nabywcy (client_id) i sprzedawcy (department_id) wtedy nie musimy podawać pełnych danych. Opcjonalnie można podać również id odbiorcy (recipient_id).
 Zostanie wystawiona Faktura VAT z aktualnym dniem i z 5 dniowym terminem płatności.
 
@@ -200,7 +217,92 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }}'
 ```
 
-<a name="f8"/>
+<a name="f8b"/>
+Dodanie nowej faktury – dokumentu podobnego do faktury o podanym ID (copy_invoice_from).
+
+Dodanie identycznej faktury o podanym rodzaju
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_DOKUMENTU_ZRODLOWEGO,
+            "kind": "RODZAJ_FAKTURY"
+        }
+    }'
+```
+
+Dodanie faktury zaliczkowej na podstawie zamówienia – % pełnej kwoty
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_ZAMOWIENIA,
+            "kind": "advance",
+            "advance_creation_mode": "percent",
+            "advance_value": "10",
+            "position_name": "Zaliczka na wykonanie zamówienia ZAM-NR"
+        }
+    }'
+```
+
+Dodanie faktury zaliczkowej na podstawie zamówienia – podana kwota brutto
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_ZAMOWIENIA,
+            "kind": "advance",
+            "advance_creation_mode": "amount",
+            "advance_value": "150",
+            "position_name": "Zaliczka na wykonanie zamówienia ZAM-NR"
+        }
+    }'
+```
+
+Dodanie faktury końcowej na podstawie zamówienia i faktur zaliczkowych
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_ZAMOWIENIA,
+            "kind": "final",
+            "invoice_ids": [ID_ZALICZKI_1, ID_ZALICZKI_2, ...]
+        }
+    }'
+```
+
+Dodanie faktury VAT na podstawie faktury Proforma
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "copy_invoice_from": ID_PROFORMY,
+            "kind": "vat"
+        }
+    }'
+```
+
+<a name="f9"/>
 Dodanie nowej faktury korygującej
 
 ```shell
@@ -210,7 +312,9 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     -d '{"api_token": "API_TOKEN",
         "invoice": {
             "kind": "correction",
-            "from_invoice_id": "2432393,
+            "correction_reason": "Zła ilość",
+            "invoice_id": "2432393",
+            "from_invoice_id": "2432393",
             "client_id": 1,
             "positions":[
                 {"name": "Product A1",
@@ -236,7 +340,7 @@ curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }}'
 ```
 
-<a name="f9"/>
+<a name="f10"/>
 Aktualizacja faktury
 
 ```shell
@@ -252,7 +356,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f9b"/>
+<a name="f10b"/>
 Aktualizacja pozycji na fakturze - aby edytować pozycję na fakturze, należy podać id pozycji.
 
 ```shell
@@ -268,7 +372,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f9c"/>
+<a name="f10c"/>
 Usunięcie pozycji na fakturze - aby usunąć pozycję na fakturze, należy podać id pozycji wraz z parametrem _destroy=1.
 
 ```shell
@@ -284,7 +388,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f9d"/>
+<a name="f10d"/>
 Dodanie pozycji na fakturze. Pozycja zostanie dopisana jako ostatnia.
 
 ```shell
@@ -300,21 +404,21 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices/111.json \
     }'
 ```
 
-<a name="f10"/>
+<a name="f11"/>
 Zmiana statusu faktury
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/invoices/111/change_status.json?api_token=API_TOKEN&status=STATUS" -X POST
 ```
 
-<a name="f11"/>
+<a name="f12"/>
 Pobranie listy definicji faktur cyklicznych
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json?api_token=API_TOKEN
 ```
 
-<a name="f12"/>
+<a name="f13"/>
 Dodanie definicji faktury cyklicznej
 
 ```shell
@@ -334,7 +438,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings.json \
         }}'
 ```
 
-<a name="f13"/>
+<a name="f14"/>
 Aktualizacja definicji faktury cyklicznej (zmiana daty wystawienia następnej faktury)
 
 ```shell
@@ -350,14 +454,14 @@ curl https://YOUR_DOMAIN.fakturownia.pl/recurrings/111.json \
     }'
 ```
 
-<a name="f14"/>
+<a name="f15"/>
 Usunięcie faktury
 
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN"
 ```
 
-<a name="f15"/>
+<a name="f16"/>
 Połączenie istniejącej faktury i paragonu
 
 ```shell
@@ -374,6 +478,38 @@ curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
         }
     }'
 ```
+
+<a name="f17"/>
+Pobranie wszystkich załączników faktury w archiwum ZIP
+
+```shell
+curl -o attachments.zip https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/attachments_zip.json?api_token=API_TOKEN
+```
+
+<a name="f17b"/>
+Dodanie nowego załącznika do faktury
+
+1. Pobranie danych niezbędnych do przesłania pliku:
+    ```shell
+    curl https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/get_new_attachment_credentials.json?api_token=API_TOKEN
+    ```
+
+2. Przesłanie pliku:
+    ```shell
+    curl -F 'AWSAccessKeyId=received_AWSAccessKeyId' \
+         -F 'key=received_key' \
+         -F 'policy=received_policy' \
+         -F 'signature=received_signature' \
+         -F 'acl=received_acl' \
+         -F 'success_action_status=received_success_action_status' \
+         -F 'file=@/file_path/name.ext' \
+         received_url
+    ```
+
+3. Dodanie załącznika (przesłanego pliku) do faktury:
+    ```shell
+    curl -X POST https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/add_attachment.json?api_token=API_TOKEN&file_name=name.ext
+    ```
 
 <a name="view_url"/>
 
@@ -449,6 +585,7 @@ Pola faktury
 "sell_date" : "2013-01-16", - data sprzedaży (może być data lub miesiąc postaci 2012-12)
 "category_id" : "", - id kategorii
 "department_id" : "1", - id działu firmy (w menu Ustawienia > Dane firmy należy kliknąć na firmę/dział i ID działu pojawi się w URL); Jeśli nie będzie tego pola oraz nie będzie pola 'seller_name' wtedy będą wstawione domyślne dane Twojej firmy
+"accounting_kind": "", - rodzaj wydatku dla faktur kosztowych - (purchases, expenses, media, salary, incident, fuel0, fuel_expl50, fuel_expl75, fuel_expl100, fixed_assets, fixed_assets50, no_vat_deduction)
 "seller_name" : "Radgost Sp. z o.o.", - sprzedawca
 "seller_tax_no" : "525-244-57-67", - numer identyfikacji podatkowej sprzedawcy (domyślnie NIP)
 "seller_tax_no_kind" : "", - rodzaj numeru identyfikacyjnego sprzedawcy; pole puste (domyślnie) jest interpretowane jako "NIP"; w innym wypadku traktowane jako dowolny wpis własny (np. PESEL, REGON)
@@ -499,10 +636,10 @@ Pola faktury
 "paid_date" : "",
 "currency" : "PLN",
 "lang" : "pl",
+"use_moss" : "0" - czy faktura MOSS
 "exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę), np. "PLN"
 "exchange_kind" : "", - źródło kursu do przeliczenia waluty ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
 "exchange_currency_rate" : "", - własny kurs przeliczenia waluty (używany, gdy parametr exchange_kind ustawiony jest na "own")
-"internal_note" : "",
 "invoice_template_id" : "1",
 "description" : "- opis faktury",
 "description_footer" : "", - opis umieszczony w stopce faktury
@@ -514,6 +651,7 @@ Pola faktury
 "additional_invoice_field" : "" - wartość dodatkowego pola na fakturze, Ustawienia > Ustawienia Konta > Konfiguracja > Faktury i dokumenty > Dodatkowe pole na fakturze
 "internal_note" : "" - treść notatki prywatnej na fakturze, niewidoczna na wydruku.
 "exclude_from_stock_level" : "" - informacja, czy system powinien liczyć tę fakturę do stanów magazynowych (true np., gdy faktura wystawiona na podstawie paragonu)
+"gtu_codes" : [""] - wartości kodów GTU produktów zawartych na fakturze - UWAGA - podane wartości nadpiszą wartości kodów GTU pobranych z kart produktów podawanych w pozycjach faktury, wartości tych kodów są nadrzędne dla całej faktury
 "positions":
    		"product_id" : "1",
    		"name" : "Fakturownia Start",
@@ -523,17 +661,19 @@ Pola faktury
    		"quantity" : "1",
    		"quantity_unit" : "szt",
    		"price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
-   		"tax" : "23",
+   		"tax" : "23", - może być stawka lub "np" - dla nie podlega, "zw" - dla zwolniona
    		"price_gross" : "72,57", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
-   		"code" : "" - kod produktu
-"calculating_strategy" =>
+   		"code" : "" - kod produktu,
+                "gtu_code" : "" - kod GTU produktu
+"calculating_strategy":
 {
   "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury
   "sum": "sum" lub "keep_gross" lub "keep_net" - metoda sumowania kwot z pozycji
   "invoice_form_price_kind": "net" lub "gross" - cena jednostkowa na formatce faktury
-}
+},
+"split_payment" : "1" - 1 lub 0 w zależności, czy faktura podlega pod split payment, czy nie
 ```
 
 Wartości pól
@@ -594,11 +734,26 @@ Pole: `lang`
 	"pl/en" - język polski i angielski
 ```
 
-
 Pole: `income`
 ```shell
 	"1" - fakura przychodwa
 	"0" - faktura kosztowa
+```
+
+Pole: `accounting_kind`
+```shell
+  "purchases" - Zakup towarów i materiałów
+  "expenses" - Koszty prowadzenia działalności
+  "media" - Media i usługi telekomunikacyjne
+  "salary" - Wynagrodzenia
+  "incident" - Koszty uboczne zakupu
+  "fuel0" - Zakup paliwa do pojazdów 0%
+  "fuel_expl50" - Zakup paliwa i eksploatacja pojazdu 50%
+  "fuel_expl75" - Zakup paliwa i eksploatacja pojazdu 75%
+  "fuel_expl100" - Zakup paliwa i eksploatacja pojazdu 100%
+  "fixed_assets" - Środki trwałe
+  "fixed_assets50" - Środki trwałe 50%
+  "no_vat_deduction" - Bez możliwości odliczenia podatku VAT
 ```
 
 Pole: `payment_type`
@@ -634,6 +789,87 @@ Pole: `discount_kind` - rodzaj rabatu
 	"amount" - kwotowy
 ```
 
+Pole: `np_tax_kind` - podstawa zastosowania stawki NP
+> Uwaga! Dla każdej pozycji, która nie podlega opodatkowaniu VAT należy podać jako stawkę podatku jeden z wariantów stawki "np" (przykład: "tax": "na").
+
+> Warianty stawki "np" rozpoznawane przez system: "np", "n/a", "nie podlega", "not applicable", "na" - lub ich wersje pisane z wielkich liter.
+
+```shell
+    "export_service" - dostawa towarów oraz świadczenie usług poza terytorium kraju
+    "export_service_eu" - w tym świadczenie usług, o których mowa w art.100 ust.1 pkt 4 ustawy
+    "not_specified" - nie określono
+```
+## Faktury - kody GTU
+Więcej informacji o kodach GTU można znaleźć na naszej stronie pomocy: https://pomoc.fakturownia.pl/78131182-Kody-GTU-grupowanie-towarow-i-uslug  
+Jeśli podczas tworzenia nowej faktury chcemy umieścic na niej kody GTU, możemy to zrobić na kilka sposobów.
+
+* `Automatyczne pobieranie kodów z produktów istniejących` - jeśli dodajemy pozycję na fakturze korzystając z ID produktu, które już ma zapisany kod GTU w systemie, wtedy nowa faktura automatycznie pobierze kody GTU wszystkich produktów i wyświetli je na wydruku (jeśli tylko jest włączona opcja zamieszczenia kodów na wydruku faktury)  
+
+* `Podanie kodów wraz z pozycjami na fakturze` - możemy podać kod GTU bezpośrednio dla każdej pozycji na fakturze korzystając z pola `gtu_code`
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "invoice": {
+            "payment_to_kind": 5,
+            "client_id": 1,
+            "positions":[
+                {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1, "gtu_code": "GTU_01"},
+                {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3,  "gtu_code": "GTU_04"}
+            ]
+        }}'
+```
+* `Podanie kodów łącznie dla całej faktury` - możemy również podać zestaw kodów GTU łącznie dla całej faktury korzystając z pola `gtu_codes`. UWAGA - kody te są nadrzędne dla całej faktury - tylko wartości z `gtu_codes` zostaną wyświetlone na fakturze. Według przykładu poniżej na fakturze zostaną wyświetlone tylko kody ` "GTU_03", "GTU_04"`, niezależnie czy na pozycjach zostały podane inne kody GTU, bądź czy produkty z przykładu o id 1 lub 5 mają inne kody zdefiniowane w systemie.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "kind":"vat",
+            "number": null,
+            "sell_date": "2013-01-16",
+            "issue_date": "2013-01-16",
+            "payment_to": "2013-01-23",
+            "seller_name": "Wystawca Sp. z o.o.",
+            "seller_tax_no": "5252445767",
+            "buyer_name": "Klient1 Sp. z o.o.",
+            "buyer_email": "buyer@testemail.pl",
+            "buyer_tax_no": "5252445767",
+            "gtu_codes": ["GTU_03", "GTU_04"],
+            "positions":[
+                {"product_id": 1, "quantity":2},
+                {"product_id": 5, "quantity":4},
+                {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3,  "gtu_code": "GTU_07"} #Kod GTU_07 nie pojawi się na fakturze
+            ]
+        }
+    }'
+```
+
+
+Pole: `gtu_codes` - typy kodów GTU
+```shell
+Dla produktów:
+"GTU_01" - Dostawa napojów alkoholowych - alkoholu etylowego, piwa, wina, napojów fermentowanych i wyrobów pośrednich, w rozumieniu przepisów o podatku akcyzowym
+"GTU_02" - Dostawa towarów, o których mowa w art. 103 ust. 5aa ustawy
+"GTU_03" - Dostawa oleju opałowego w rozumieniu przepisów o podatku akcyzowym oraz olejów smarowych, pozostałych olejów o kodach CN od 2710 19 71 do 2710 19 99, z wyłączeniem wyrobów o kodzie CN 2710 19 85 (oleje białe, parafina ciekła) oraz smarów plastycznych zaliczanych do kodu CN 2710 19 99, olejów smarowych o kodzie CN 2710 20 90, preparatów smarowych objętych pozycją CN 3403, z wyłączeniem smarów plastycznych objętych tą pozycją
+"GTU_04" - Dostawa wyrobów tytoniowych, suszu tytoniowego, płynu do papierosów elektronicznych i wyrobów nowatorskich, w rozumieniu przepisów o podatku akcyzowym
+"GTU_05" - Dostawa odpadów - wyłącznie określonych w poz. 79-91 załącznika nr 15 do ustawy
+"GTU_06" - Dostawa urządzeń elektronicznych oraz części i materiałów do nich, wyłącznie określonych w poz. 7-9, 59-63, 65, 66, 69 i 94-96 załącznika nr 15 do ustawy
+"GTU_07" - Dostawa pojazdów oraz części samochodowych o kodach wyłącznie CN 8701 - 8708 oraz CN 8708 10
+"GTU_08" - Dostawa metali szlachetnych oraz nieszlachetnych - wyłącznie określonych w poz. 1-3 załącznika nr 12 do ustawy oraz w poz. 12-25, 33-40, 45, 46, 56 i 78 załącznika nr 15 do ustawy
+"GTU_09" - Dostawa leków oraz wyrobów medycznych - produktów leczniczych, środków spożywczych specjalnego przeznaczenia żywieniowego oraz wyrobów medycznych, objętych obowiązkiem zgłoszenia, o którym mowa w art. 37av ust. 1 ustawy z dnia 6 września 2001 r. - Prawo farmaceutyczne (Dz. U. z 2019 r. poz. 499, z późn. zm.)
+"GTU_10" - Dostawa budynków, budowli i gruntów
+
+Dla usług:
+"GTU_11" - Świadczenie usług w zakresie przenoszenia uprawnień do emisji gazów cieplarnianych, o których mowa w ustawie z dnia 12 czerwca 2015 r. o systemie handlu uprawnieniami do emisji gazów cieplarnianych (Dz. U. z 2018 r. poz. 1201 i 2538 oraz z 2019 r. poz. 730, 1501 i 1532)
+"GTU_12" - Świadczenie usług o charakterze niematerialnym - wyłącznie: doradczych, księgowych, prawnych, zarządczych, szkoleniowych, marketingowych, firm centralnych (head offices), reklamowych, badania rynku i opinii publicznej, w zakresie badań naukowych i prac rozwojowych
+"GTU_13" - Świadczenie usług transportowych i gospodarki magazynowej - Sekcja H PKWiU 2015 symbol ex 49.4, ex 52.1
+```
 
 <a name="clients"/>
 
@@ -647,12 +883,13 @@ curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&page=1
 ```
 
 <a name="k1b"/>
-Wyszukiwanie klientów po nazwie, mailu lub nazwie skróconej
+Wyszukiwanie klientów po nazwie, mailu, nazwie skróconej lub numerze NIP
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&name=CLIENT_NAME"
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&email=EMAIL_ADDRESS"
 curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&shortcut=SHORT_NAME"
+curl "https://YOUR_DOMAIN.fakturownia.pl/clients.json?api_token=API_TOKEN&tax_no=TAX_NO"
 ```
 
 <a name="k2"/>
@@ -933,6 +1170,45 @@ curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json
 					}}'
 ```
 
+<a name="payments"/>
+
+## Płatności
+
+<a name="pl1"/>
+Wszystkie płatności
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json?api_token=API_TOKEN"
+```
+
+można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy płatności)
+
+
+<a name="pl2"/>
+Pobranie wybranej płatności po ID
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payment/100.json?api_token=API_TOKEN"
+```
+
+<a name="pl3"/>
+Dodawanie nowej płatności
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
+				-H 'Accept: application/json' \
+				-H 'Content-Type: application/json' \
+				-d '{
+					"api_token": "API_TOKEN",
+					"banking_payment": {
+						"name":"Payment 001",
+						"price": 100.05,
+						"invoice_id": null,
+						"paid":true,
+						"kind": "api"
+				    }}'
+```
+
 
 <a name="categories"/>
 
@@ -1112,7 +1388,7 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_toke
 
 <a name="get_token_by_api"/>
 
-## Logowanie i pobranie tokena przez API
+## Logowanie i pobranie danych przez API
 
 ```shell
 curl https://app.fakturownia.pl/login.json \
@@ -1120,7 +1396,8 @@ curl https://app.fakturownia.pl/login.json \
     -H 'Content-Type: application/json' \
     -d '{
             "login": "login_or_email",
-            "password": "password"
+            "password": "password",
+	    "integration_token": ""
     }'
 ```
 
@@ -1137,6 +1414,9 @@ To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i
 	"api_token":"XXXXXXXXXXXXXX"
 }
 ```
+
+UWAGA: api_token jest zwracany tylko jeśli dany użytkownik ma wygenerowany API Token (użytkownik może go dodać w ustawieniach konta)
+
 
 <a name="accounts"/>
 
@@ -1174,10 +1454,14 @@ curl https://YOUR_DOMAIN.fakturownia.pl/account.json \
                 "person": "Jan Nowak",
                 "bank": "Bank1",
                 "bank_account": "111222333444555666111"
-            }
+            },
+	    "integration_token": ""
         }'
 
 ```
+
+UWAGA: parametr ```integration_token``` jest wymagany, jeśli chcemy pobrać aktualny api_token użytkownika (aby otrzymać integration_token dla Twojej zintegrowanej aplikacji prosimy o kontakt z nami)
+
 
 Po utworzeniu konta zwracane są:
 
@@ -1206,7 +1490,7 @@ Inne pola dostępne przy tworzeniu nowego konta (pomocne przy integracji)
 Pobranie informacji o koncie:
 
 ```shell
-curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN&integration_token="
 ```
 
 <a name="codes"/>
