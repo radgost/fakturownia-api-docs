@@ -55,6 +55,7 @@ Dzięki API można z innych systemów wystawiać faktury/rachunki/paragony oraz 
 	+ [Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu](#wd5)
 	+ [Aktualizacja dokumentu](#wd6)
 	+ [Usunięcie dokumentu](#wd7)
+	+ [Połączenie istniejących faktur i dokumentu magazynowego](#wd8)
 + [Kategorie](#categories)
 	+ [Lista kategorii](#cat1)
 	+ [Pobranie wybranej kategorii po ID](#cat2)
@@ -360,7 +361,7 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_
 Połączenie istniejącej faktury i paragonu
 
 ```shell
-curl https://pawel-YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
+curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
     -X PUT \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
@@ -512,6 +513,7 @@ Pola faktury
 "buyer_company" : "1" - czy klient jest firmą
 "additional_invoice_field" : "" - wartość dodatkowego pola na fakturze, Ustawienia > Ustawienia Konta > Konfiguracja > Faktury i dokumenty > Dodatkowe pole na fakturze
 "internal_note" : "" - treść notatki prywatnej na fakturze, niewidoczna na wydruku.
+"exclude_from_stock_level" : "" - informacja, czy system powinien liczyć tę fakturę do stanów magazynowych (true np., gdy faktura wystawiona na podstawie paragonu)
 "positions":
    		"product_id" : "1",
    		"name" : "Fakturownia Start",
@@ -912,6 +914,23 @@ Usunięcie dokumentu
 
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?api_token=API_TOKEN"
+```
+
+<a name="wd8"/>
+Połączenie istniejących faktur i dokumentu magazynowego
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json
+				-X PUT
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
+				-d '{"api_token": "API_TOKEN",
+					"warehouse_document": {
+						"invoice_ids": [
+							100,
+							111
+						]
+					}}'
 ```
 
 
