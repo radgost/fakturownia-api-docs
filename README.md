@@ -650,7 +650,8 @@ Pola faktury
 "additional_invoice_field" : "" - wartość dodatkowego pola na fakturze, Ustawienia > Ustawienia Konta > Konfiguracja > Faktury i dokumenty > Dodatkowe pole na fakturze
 "internal_note" : "" - treść notatki prywatnej na fakturze, niewidoczna na wydruku.
 "exclude_from_stock_level" : "" - informacja, czy system powinien liczyć tę fakturę do stanów magazynowych (true np., gdy faktura wystawiona na podstawie paragonu)
-"gtu_codes" : [""] - wartości kodów GTU produktów zawartych na fakturze - UWAGA - podane wartości nadpiszą wartości kodów GTU pobranych z kart produktów podawanych w pozycjach faktury, wartości tych kodów są nadrzędne dla całej faktury
+"gtu_codes" : [] - wartości kodów GTU produktów zawartych na fakturze - UWAGA - podane wartości nadpiszą wartości kodów GTU pobranych z kart produktów podawanych w pozycjach faktury, wartości tych kodów są nadrzędne dla całej faktury
+"procedure_designations" : [] - oznaczenia dotyczące procedur
 "positions":
    		"product_id" : "1",
    		"name" : "Fakturownia Start",
@@ -798,6 +799,24 @@ Pole: `np_tax_kind` - podstawa zastosowania stawki NP
     "export_service_eu" - w tym świadczenie usług, o których mowa w art.100 ust.1 pkt 4 ustawy
     "not_specified" - nie określono
 ```
+
+Pole: `procedure_designations` - oznaczenia dotyczące procedur
+```shell
+  "SW" - Dostawa w ramach sprzedaży wysyłkowej z terytorium kraju, o której mowa w art. 23 ustawy,
+  "EE" - Świadczenie usług telekomunikacyjnych, nadawczych i elektronicznych, o których mowa w art. 28k ustawy,
+  "TP" - Istniejące powiązania między nabywcą a dokonującym dostawy towarów lub usługodawcą, o których mowa w art. 32 ust. 2 pkt 1 ustawy,
+  "TT_WNT" - Wewnątrzwspólnotowe nabycie towarów dokonane przez drugiego w kolejności podatnika VAT w ramach transakcji trójstronnej w procedurze uproszczonej, o której mowa w dziale XII rozdziale 8 ustawy,
+  "TT_D" - Dostawa towarów poza terytorium kraju dokonana przez drugiego w kolejności podatnika VAT w ramach transakcji trójstronnej w procedurze uproszczonej, o której mowa w dziale XII rozdziale 8 ustawy,
+  "MR_T" - Świadczenie usług turystyki opodatkowane na zasadach marży zgodnie z art. 119 ustawy,
+  "MR_UZ" - Dostawa towarów używanych, dzieł sztuki, przedmiotów kolekcjonerskich i antyków, opodatkowana na zasadach marży zgodnie z art. 120 ustawy,
+  "I_42" - Wewnątrzwspólnotowa dostawa towarów następująca po imporcie tych towarów w ramach procedury celnej 42 (import),
+  "I_63" - Wewnątrzwspólnotowa dostawa towarów następująca po imporcie tych towarów w ramach procedury celnej 63 (import),
+  "B_SPV" - Transfer bonu jednego przeznaczenia dokonany przez podatnika działającego we własnym imieniu, opodatkowany zgodnie z art. 8a ust. 1 ustawy,
+  "B_SPV_DOSTAWA" - Dostawa towarów oraz świadczenie usług, których dotyczy bon jednego przeznaczenia na rzecz podatnika, który wyemitował bon zgodnie z art. 8a ust. 4 ustawy,
+  "B_MPV_PROWIZJA" - Świadczenie usług pośrednictwa oraz innych usług dotyczących transferu bonu różnego przeznaczenia, opodatkowane zgodnie z art. 8b ust. 2 ustawy,
+  "MPP" - Transakcja objęta obowiązkiem stosowania mechanizmu podzielonej płatności
+```
+
 ## Faktury - kody GTU
 Więcej informacji o kodach GTU można znaleźć na naszej stronie pomocy: https://pomoc.fakturownia.pl/78131182-Kody-GTU-grupowanie-towarow-i-uslug  
 Jeśli podczas tworzenia nowej faktury chcemy umieścic na niej kody GTU, możemy to zrobić na kilka sposobów.
