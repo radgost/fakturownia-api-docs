@@ -59,6 +59,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Dodanie dokumentu magazynowego PZ dla istniejącego klienta, działu i produktu](#wd5)
 	+ [Aktualizacja dokumentu](#wd6)
 	+ [Usunięcie dokumentu](#wd7)
+	+ [Połączenie istniejących faktur i dokumentu magazynowego](#wd8)
 + [Płatności](#payments)
 	+ [Wszystkie płatności](#pl1)
 	+ [Pobranie wybranej płatności po ID](#pl2)
@@ -1169,6 +1170,23 @@ Usunięcie dokumentu
 
 ```shell
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/100.json?api_token=API_TOKEN"
+```
+
+<a name="wd8"/>
+Połączenie istniejących faktur i dokumentu magazynowego
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/warehouse_documents/555.json
+				-X PUT
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
+				-d '{"api_token": "API_TOKEN",
+					"warehouse_document": {
+						"invoice_ids": [
+							100,
+							111
+						]
+					}}'
 ```
 
 <a name="payments"/>
