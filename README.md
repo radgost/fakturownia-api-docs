@@ -675,6 +675,8 @@ Pola faktury
   "invoice_form_price_kind": "net" lub "gross" - cena jednostkowa na formatce faktury
 },
 "split_payment" : "1" - 1 lub 0 w zależności, czy faktura podlega pod split payment, czy nie
+"accounting_vat_tax_date": "2020-12-18", Data księgowania podatku VAT (jeśli włączono w ustawieniach)
+"accounting_income_tax_date": "2020-12-18", Data księgowania podatku dochodowego (jeśli włączono w ustawieniach)
 ```
 
 Wartości pól
