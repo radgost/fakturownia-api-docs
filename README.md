@@ -43,6 +43,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Pobranie wybranego klienta po zewnętrznym ID](#k2b)
 	+ [Dodanie klienta](#k3)
 	+ [Aktualizacja klienta](#k4)
+	+ [Usunięcie klienta](#k5)
 + [Produkty](#products)
 	+ [Lista produktów](#p1)
 	+ [Lista produktów ze stanem magazynowym podanego magazynu](#p2)
@@ -973,7 +974,12 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients/111.json \
             "street" : "street2"
         }}'
 ```
+<a name="k5"/>
+Usunięcie klienta
 
+```shell
+curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/clients/CLIENT_ID.json?api_token=API_TOKEN"
+```
 
 <a name="products"/>
 
