@@ -1241,7 +1241,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
 Pobranie płatności wraz z danymi przypiętych faktur
 
 ```shell
-curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payment.json?include=invoices&api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json?include=invoices&api_token=API_TOKEN"
 ```
 
 <a name="categories"/>
