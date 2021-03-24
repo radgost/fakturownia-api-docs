@@ -66,7 +66,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Pobranie wybranej płatności po ID](#pl2)
 	+ [Dodanie nowej płatności](#pl3)
 	+ [Pobranie płatności wraz z danymi przypiętych faktur](#pl4)
-	+ [Łączenie nowych płatności z istniejącymi dokumentami](#pl5)
+	+ [Dodanie nowej płatności powiązanej z istniejącymi fakturami](#pl5)
 	+ [Aktualizacja płatności](#pl6)
 	+ [Usuwanie płatności](#pl7)
 + [Kategorie](#categories)
@@ -1247,7 +1247,7 @@ Pobranie płatności wraz z danymi przypiętych faktur
 curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json?include=invoices&api_token=API_TOKEN"
 ```
 <a name="pl5"/>
-Łączenie nowych płatności z istniejącymi dokumentami
+Dodanie nowej płatności powiązanej z istniejącymi fakturami
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
