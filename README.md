@@ -66,6 +66,9 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Pobranie wybranej płatności po ID](#pl2)
 	+ [Dodanie nowej płatności](#pl3)
 	+ [Pobranie płatności wraz z danymi przypiętych faktur](#pl4)
+	+ [Łączenie nowych płatności z istniejącymi dokumentami](#pl5)
+	+ [Aktualizacja płatności](#pl6)
+	+ [Usuwanie płatności](#pl7)
 + [Kategorie](#categories)
 	+ [Lista kategorii](#cat1)
 	+ [Pobranie wybranej kategorii po ID](#cat2)
@@ -1242,6 +1245,47 @@ Pobranie płatności wraz z danymi przypiętych faktur
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json?include=invoices&api_token=API_TOKEN"
+```
+<a name="pl5"/>
+Łączenie nowych płatności z istniejącymi dokumentami
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments.json \
+				-H 'Accept: application/json' \
+				-H 'Content-Type: application/json' \
+				-d '{
+					"api_token": "API_TOKEN",
+					"banking_payment": {
+						"name":"Payment 003",
+						"price": 200,
+						"invoice_ids": [555, 666],
+						"paid":true,
+						"kind": "api"
+						}}'
+```
+
+Trzeba pamiętać, że faktury zostaną opłacone w takiej kolejności, w jakiej zostały podane w atrybucie `invoice_ids` - jeśli faktura o id = 555 została wystawiona na kwotę 100 zł, a faktura o id = 666 na 200 zł, to po dodaniu płatności pierwsza faktura zostanie opłacona w całości, natomiast druga zostanie opłacona w połowie.
+
+<a name="pl6"/>
+Aktualizacja płatności
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/banking/payments/555.json
+				-X PATCH
+				-H 'Accept: application/json'
+				-H 'Content-Type: application/json'
+				-d '{"api_token": "API_TOKEN",
+					"banking_payment": {
+						"name": "New payment name",
+						"price": 100
+						}}'
+```
+
+<a name="pl7"/>
+Usuwanie płatności
+
+```shell
+curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/banking/payments/555.json?api_token=API_TOKEN"
 ```
 
 <a name="categories"/>
