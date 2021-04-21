@@ -120,6 +120,8 @@ Może przyjąć następujące wartości:
 
 Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rekordów wraz z ich pozycjami
 
+Parametr `income=` z wartością `no` umożliwia pobranie faktur kosztowych (wydatków)
+
 <a name="examples"/>
 
 ## Przykłady wywołania
