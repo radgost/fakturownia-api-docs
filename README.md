@@ -51,6 +51,11 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Pobranie wybranego produktu po ID ze stanem magazynowym podanego magazynu](#p4)
 	+ [Dodanie produktu](#p5)
 	+ [Aktualizacja produktu](#p6)
++ [Cenniki](#price_lists)
+	+ [Lista cenników](#pricel1)
+	+ [Dodanie cennika](#pricel2)
+	+ [Aktualizacja cennika](#pricel3)
+	+ [Usunięcie cennika](#pricel4)
 + [Dokumenty magazynowe](#warehouse_documents)
 	+ [Wszystkie dokumenty magazynowe](#wd1)
 	+ [Pobranie wybranego dokumentu po ID](#wd2)
@@ -1054,8 +1059,72 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products/333.json \
 **Uwaga:** Cenna netto jest wyliczana na podstawie wartości ceny brutto oraz podatku, nie można jej edytować wprost przez API.
 
 
+<a name="price_lists"/>
+
+## Cenniki
 
 <a name="warehouse_documents"/>
+
+<a name="pricel1"/>
+Lista cenników
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/price_lists.json?api_token=API_TOKEN"
+```
+można przekazywać takie same parametry jakie są przekazywane w aplikacji (na stronie listy faktur)
+
+<a name="pricel2"/>
+Dodanie cennika
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/price_lists.json
+                -H 'Accept: application/json'
+                -H 'Content-Type: application/json'
+                -d '{
+                "api_token": "API_TOKEN",
+                "price_list": {
+                    "name": "Nazwa cennika",
+		    "description": "Opis",
+		    "currency": "PLN",
+                    "price_list_positions_attributes": {
+		    	"0": {
+				"priceable_id": "ID produktu",
+				"priceable_name": "Nazwa produktu",
+				"priceable_type": "Product",
+				"use_percentage": "0",
+				"percentage": "",
+				"price_net": "111.0",
+				"price_gross": "136.53",
+				"use_tax": "1",
+				"tax": "23"
+			}
+		    }
+                }}'
+```
+
+<a name="pricel3"/>
+Aktualizacja cennika
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/price_lists/100.json
+		-X PUT
+                -H 'Accept: application/json'
+                -H 'Content-Type: application/json'
+                -d '{
+                "api_token": "API_TOKEN",
+                "price_list": {
+                    "name": "Nazwa cennika",
+		    "description": "Opis",
+		    "currency": "PLN",
+                }}'
+```
+
+<a name="pricel4"/>
+Usunięcie cennika
+
+```shell
+curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/price_lists/100.json?api_token=API_TOKEN"
+```
 
 ## Dokumenty magazynowe
 
