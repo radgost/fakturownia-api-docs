@@ -738,7 +738,7 @@ Pole: `lang`
 	"ar" - język arabski
 	"sk" - język słowacki
 	"sl" - język słoweński
-	"he" - język grecki
+	"el" - język grecki
 	"et" - język estoński
 	"cn" - język chiński
 	"hu" - język węgierski
