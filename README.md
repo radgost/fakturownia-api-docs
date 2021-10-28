@@ -127,6 +127,8 @@ Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rek
 
 Parametr `income=` z wartością `no` umożliwia pobranie faktur kosztowych (wydatków)
 
+Parametr `number=` umożliwia pobranie faktury o wskazanym numerze
+
 <a name="examples"/>
 
 ## Przykłady wywołania
