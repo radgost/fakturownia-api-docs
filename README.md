@@ -93,6 +93,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Aktualizacja_działu](#dep4)
   	+ [Usunięcie działu o podanym ID](#dep5)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
++ [Dodawanie użytkowników](#usersystem)
 + [Konta systemowe](#accounts)
 + [Przykłady w PHP i Ruby](#codes)
 
@@ -1567,6 +1568,40 @@ To zapytanie zwraca token i informacje o URL konta w Fakturowni (pola `prefix` i
 ```
 
 UWAGA: api_token jest zwracany tylko jeśli dany użytkownik ma wygenerowany API Token (użytkownik może go dodać w ustawieniach konta)
+
+
+<a name="usersystem"/>
+## Dodawanie użytkowników
+
+Po utworzeniu konta API i określeniu właściciela (patrz wyżej), możesz dodać innych użytkowników do konta poprzez API i zdefiniować ich rolę.
+</br>Aby dodać użytkownika do konta, musisz wysłać: :</br>
+   - kod API Twojego konta (api_token)<br/>
+   - Twój kod do umieszczenia na stronie (integration_token). Aby go otrzymać skontaktuj się z nami poprzez wiadomość e-mail info@fakturownia.pl.</br>
+   - określenia parametru ```invite``` :<br/>
+	  - jeśli użytkownik musi zostać stworzony ("false"): oprócz przesłania adresu e-mail należy także wybrać hasło
+	  - jeśli użytkownik już istnieje i jest powiązany z kontem w Fakturowni ("true"): wymagany jest tylko jego adres e-mail <br/>
+   - rola użytkownika (```role```):
+   	- dla jednej z domyślnych ról wybierz wartość: "member" dla zwykłego użytkownika, "admin" dla administratora lub "accountant" dla księgowego.
+   	- w przypadku niestandardowej roli wpisz wartość "role_1234" lub 1234, która reprezentuje niestandardowy identyfikator roli konta.<br/>  
+    - identyfikatory działu (```department_ids```), do których ma dostęp użytkownik nie będący administratorem.<br
+
+Aby dowiedzieć się więcej o rolach użytkowników zapraszamy do bazy wiedzy: https://pomoc.fakturownia.pl/28889135-Wlasne-role-uprawnienia-uzytkownika-w-Fakturowni.<br/>  
+
+```shell
+POST https://YOUR_DOMAIN.fakturownia.pl/account/add_user.json
+Content-Type: application/json
+{
+  "api_token": "API_TOKEN",
+  "integration_token": "INTEGRATION_TOKEN",
+  "user": {
+    "invite": true,
+    "email": "email@test.pl",
+    "password": "Password123",
+    "role": "member",
+    "department_ids": []
+  }
+}
+```
 
 
 <a name="accounts"/>
