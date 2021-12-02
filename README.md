@@ -1576,8 +1576,8 @@ UWAGA: api_token jest zwracany tylko jeśli dany użytkownik ma wygenerowany API
 
 Po utworzeniu konta API i określeniu właściciela (patrz wyżej), możesz dodać innych użytkowników do konta poprzez API i zdefiniować ich rolę.
 </br>Aby dodać użytkownika do konta, musisz wysłać: :</br>
-   - kod API Twojego konta (api_token)<br/>
-   - Twój kod do umieszczenia na stronie (integration_token). Aby go otrzymać skontaktuj się z nami poprzez wiadomość e-mail info@fakturownia.pl.</br>
+   - kod API Twojego konta (```api_token```)<br/>
+   - Twój kod do umieszczenia na stronie (```integration_token```). Aby go otrzymać skontaktuj się z nami poprzez wiadomość e-mail info@fakturownia.pl.</br>
    - określenia parametru ```invite``` :<br/>
 	  - jeśli użytkownik musi zostać stworzony ("false"): oprócz przesłania adresu e-mail należy także wybrać hasło
 	  - jeśli użytkownik już istnieje i jest powiązany z kontem w Fakturowni ("true"): wymagany jest tylko jego adres e-mail <br/>
