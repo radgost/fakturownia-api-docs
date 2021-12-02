@@ -1571,6 +1571,7 @@ UWAGA: api_token jest zwracany tylko jeśli dany użytkownik ma wygenerowany API
 
 
 <a name="usersystem"/>
+
 ## Dodawanie użytkowników
 
 Po utworzeniu konta API i określeniu właściciela (patrz wyżej), możesz dodać innych użytkowników do konta poprzez API i zdefiniować ich rolę.
@@ -1580,7 +1581,7 @@ Po utworzeniu konta API i określeniu właściciela (patrz wyżej), możesz doda
    - określenia parametru ```invite``` :<br/>
 	  - jeśli użytkownik musi zostać stworzony ("false"): oprócz przesłania adresu e-mail należy także wybrać hasło
 	  - jeśli użytkownik już istnieje i jest powiązany z kontem w Fakturowni ("true"): wymagany jest tylko jego adres e-mail <br/>
-   - rola użytkownika (```role```):
+   - rola użytkownika (```role```) :<br/>
    	- dla jednej z domyślnych ról wybierz wartość: "member" dla zwykłego użytkownika, "admin" dla administratora lub "accountant" dla księgowego.
    	- w przypadku niestandardowej roli wpisz wartość "role_1234" lub 1234, która reprezentuje niestandardowy identyfikator roli konta.<br/>  
     - identyfikatory działu (```department_ids```), do których ma dostęp użytkownik nie będący administratorem.<br
