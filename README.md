@@ -1582,9 +1582,9 @@ Po utworzeniu konta API i określeniu właściciela (patrz wyżej), możesz doda
 	  - jeśli użytkownik musi zostać stworzony ("false"): oprócz przesłania adresu e-mail należy także wybrać hasło
 	  - jeśli użytkownik już istnieje i jest powiązany z kontem w Fakturowni ("true"): wymagany jest tylko jego adres e-mail <br/>
    - rola użytkownika (```role```) :<br/>
-   	- dla jednej z domyślnych ról wybierz wartość: "member" dla zwykłego użytkownika, "admin" dla administratora lub "accountant" dla księgowego.
-   	- w przypadku niestandardowej roli wpisz wartość "role_1234" lub 1234, która reprezentuje niestandardowy identyfikator roli konta.<br/>  
-    - identyfikatory działu (```department_ids```), do których ma dostęp użytkownik nie będący administratorem.<br
+	  - dla jednej z domyślnych ról wybierz wartość: "member" dla zwykłego użytkownika, "admin" dla administratora lub "accountant" dla księgowego.
+	  - w przypadku niestandardowej roli wpisz wartość "role_1234" lub 1234, która reprezentuje niestandardowy identyfikator roli konta.<br/>  
+	  - identyfikatory działu (```department_ids```), do których ma dostęp użytkownik nie będący administratorem.<br
 
 Aby dowiedzieć się więcej o rolach użytkowników zapraszamy do bazy wiedzy: https://pomoc.fakturownia.pl/28889135-Wlasne-role-uprawnienia-uzytkownika-w-Fakturowni.<br/>  
 
