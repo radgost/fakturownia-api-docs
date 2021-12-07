@@ -33,6 +33,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Połączenie istniejącej faktury i paragonu](#f16)
 	+ [Pobranie załączników w archiwum ZIP](#f17)
 	+ [Dodanie załącznika](#f17b)
+	+ [Wydruk fiskalny](#f18)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja, rodzaje pól, kody GTU](#invoices)
@@ -525,6 +526,16 @@ Dodanie nowego załącznika do faktury
     ```shell
     curl -X POST https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/add_attachment.json?api_token=API_TOKEN&file_name=name.ext
     ```
+
+<a name="f18"/>
+
+## Wydruk fiskalny
+
+```shell
+curl https://twojaDomena.fakturownia.pl/invoices/fiscal_print?api_token=API_TOKEN&invoice_ids[]=111&invoice_ids[]=112
+```
+
+Za pomocą parametru `invoice_ids[]` przekazujemy id faktur do wydrukowania
 
 <a name="view_url"/>
 
