@@ -1128,8 +1128,18 @@ curl https://YOUR_DOMAIN.fakturownia.pl/price_lists/100.json
                 "api_token": "API_TOKEN",
                 "price_list": {
                     "name": "Nazwa cennika",
-		    "description": "Opis",
-		    "currency": "PLN",
+                    "description": "Opis",
+                    "currency": "PLN",
+                    "price_list_positions_attributes": {
+                        "0": {
+                            "id": "ID pozycji",
+                            "priceable_id": "ID produktu",
+                            "price_net": "10.0",
+                            "price_gross": "10.80"
+                            "use_tax": "1",
+                            "tax": "8"
+                        }
+                    }
                 }}'
 ```
 
