@@ -703,6 +703,9 @@ Pola faktury
 "split_payment" : "1" - 1 lub 0 w zależności, czy faktura podlega pod split payment, czy nie
 "accounting_vat_tax_date": "2020-12-18", Data księgowania podatku VAT (jeśli włączono w ustawieniach)
 "accounting_income_tax_date": "2020-12-18", Data księgowania podatku dochodowego (jeśli włączono w ustawieniach)
+"skonto_active": "1" - 1 lub 0 w zależności, czy faktura skonto ma być aktywne, czy nie
+"skonto_discount_date": "2021-08-13", Termin płatności dla skonta
+"skonto_discount_value": "10", Procent upustu
 ```
 
 Wartości pól
