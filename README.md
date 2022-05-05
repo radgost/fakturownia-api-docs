@@ -693,7 +693,8 @@ Pola faktury
    		"total_price_net" : "59,00", - jeśli nie jest podana to zostanie wyliczona
    		"total_price_gross" : "72,57",
    		"code" : "" - kod produktu,
-                "gtu_code" : "" - kod GTU produktu
+                "gtu_code" : "" - kod GTU produktu,
+		"lump_sum_tax" : "17", - stawka ryczałtu (możliwa do ustawienia jedynie, gdy wystawiamy fakturę dla działu lub firmy z włączoną opcją "Płatnik zryczałtowanego podatku dochodowego")
 "calculating_strategy":
 {
   "position": "default" lub "keep_gross" - metoda wyliczania kwot na pozycjach faktury
