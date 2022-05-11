@@ -20,6 +20,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Dodanie nowej faktury](#f7)
 	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f8)
 	+ [Dodanie faktury podobnej (po ID innej faktury, np. zaliczkowej z zamówienia, końcowej z zaliczkowych itp.)](#f8b)
+    + [Dodanie faktury OSS](#f8c)
 	+ [Dodanie nowej faktury korygującej](#f9)
 	+ [Aktualizacja faktury](#f10)
 	+ [Aktualizacja pozycji na fakturze](#f10b)
@@ -30,10 +31,11 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Dodanie definicji faktury cyklicznej](#f13)
 	+ [Aktualizacja definicji faktury cyklicznej](#f14)
 	+ [Usunięcie faktury](#f15)
-	+ [Połączenie istniejącej faktury i paragonu](#f16)
-	+ [Pobranie załączników w archiwum ZIP](#f17)
-	+ [Dodanie załącznika](#f17b)
-	+ [Wydruk fiskalny](#f18)
+    + [Anulowanie faktury](#f16)
+	+ [Połączenie istniejącej faktury i paragonu](#f17)
+	+ [Pobranie załączników w archiwum ZIP](#f18)
+	+ [Dodanie załącznika](#f18b)
+	+ [Wydruk fiskalny](#f19)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja, rodzaje pól, kody GTU](#invoices)
@@ -116,6 +118,7 @@ Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`
 
 Parametr `period=` umożliwia wybranie rekordów z zadanego okresu.
 Może przyjąć następujące wartości:
+```shell
 - last_12_months
 - this_month
 - last_30_days
@@ -124,6 +127,7 @@ Może przyjąć następujące wartości:
 - last_year
 - all
 - more (tutaj trzeba jeszcze dostarczyć dodatkowe parametry date_from (np. "2018-12-16") i date_to (np. "2018-12-21"))
+```
 
 Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rekordów wraz z ich pozycjami
 
@@ -214,6 +218,37 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }
     }'
 ```
+<b>Klient: nowy lub istniejący </b></br>
+Podczas dodawania nowego dokumentu system automatycznie stara się dopasować przesłane dane nabywcy (pola zaczynające się od słowa "buyer") z istniejącym na koncie klientem. Jeśli nie uda się dopasować żadnego istniejącego klienta, system utworzy nowego. Gdy dodajemy dokument dla klienta, którego mamy już w bazie, zamiast pól zaczynających się od słowa "buyer" zaleca się używanie samego identyfikatora klienta - "client_id".
+Wówczas na wystawianym dokumencie dane nabywcy będą identyczne jak dane w karcie wskazanego klienta.
+Możesz zaktualizować niektóre dane na karcie klienta (np.: adres), dodając parametr `"buyer_override": true`. Przykład:
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+	-H 'Accept: application/json' \
+	-H 'Content-Type: application/json' \
+	-d '{"api_token": "API_TOKEN",
+		"invoice": {
+            "kind":"vat",
+            "number": null,
+            "sell_date": "2013-01-16",
+            "issue_date": "2013-01-16",
+            "payment_to": "2013-01-23",
+            "seller_name": "Wystawca Sp. z o.o.",
+            "seller_tax_no": "5252445767",
+            "client_id": 1,
+                "buyer_post_code": "06000",
+                "buyer_city": "Nice",
+                "buyer_street": "Rue de la Joie 11",
+                "buyer_country": "FR",
+                "buyer_override": true,
+            "positions":[
+                {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
+                {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":3}
+            ]
+	    }}'
+```
+
 
 <a name="f8"/>
 Dodanie nowej faktury - minimalna wersja (tylko pola wymagane), gdy mamy Id produktu (product_id), nabywcy (client_id) i sprzedawcy (department_id) wtedy nie musimy podawać pełnych danych. Opcjonalnie można podać również id odbiorcy (recipient_id).
@@ -314,6 +349,55 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         "invoice": {
             "copy_invoice_from": ID_PROFORMY,
             "kind": "vat"
+        }
+    }'
+```
+
+<a name="f8c"/>
+Dodanie faktury OSS
+
+Jeśli w ustawieniach konta zaznaczyłeś opcję "Faktury OSS", możesz utworzyć fakturę oznaczoną jako sprzedaż OSS poprzez dopisanie parametru "use_oss":
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "kind":"vat",
+            "seller_name": "Wystawca Sp. z o.o.",
+            "seller_country": "PL",
+            "buyer_name": "Klient1 Sp. z o.o."
+            "buyer_country": "FR",
+            "use_oss": true,
+            "positions":[
+                {"name":"Produkt A1", "tax":20, "total_price_gross":50, "quantity":3}
+            ]
+        }
+    }'
+```
+
+Dodanie do żądania rekordu  "identify_oss": "1" spowoduje, że system przed oznaczeniem dokumentu jako "OSS" najpierw sprawdzi, czy spełnia on odpowiednie warunki. W przypadku nieprawidłowych danych, system nie oznaczy faktury jako faktura "OSS" - na przykład, jeśli na przesłanej fakturze kraj Nabywcy będzie taki sam jak kraj Sprzedawcy. Rekord ten należy przesłać równolegle, na tym samym poziomie, co "api_token" i "invoice".
+
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "identify_oss": "1" ,
+        "invoice": {
+            "kind":"vat",
+            "seller_name": "Wystawca Sp. z o.o.",
+            "seller_country": "PL",
+            "buyer_name": "Klient1 Sp. z o.o."
+            "buyer_country": "FR",
+            "use_oss": true,
+            "positions":[
+                {"name":"Produkt A1", "tax":20, "total_price_gross":50, "quantity":3}
+            ]
         }
     }'
 ```
@@ -478,6 +562,25 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_
 ```
 
 <a name="f16"/>
+Anulownanie faktury
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/cancel.json \
+        -X POST \
+	-H 'Accept:application/json' \
+	-H 'Content-Type: application/json' \
+	-d '{
+	        "api_token": "API_TOKEN",
+            "cancel_invoice_id": ID_FAKTURY,
+		    "cancel_reason": "Powód anulowania (opcjonalnie)"
+	 }'
+```
+
+Aby wyświetlić powód anulowania wskazany w anulowanym dokumencie, dołącz parametr `additional_fields[invoice]=cancel_reason` w adresie URL żądania. Przykład:
+
+https://YOUR_DOMAIN.fakturownia.pl/invoices/ID_FAKTURY.json?api_token=API_TOKEN&additional_fields[invoice]=cancel_reason
+
+<a name="f17"/>
 Połączenie istniejącej faktury i paragonu
 
 ```shell
@@ -495,14 +598,14 @@ curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
     }'
 ```
 
-<a name="f17"/>
+<a name="f18"/>
 Pobranie wszystkich załączników faktury w archiwum ZIP
 
 ```shell
 curl -o attachments.zip https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/attachments_zip.json?api_token=API_TOKEN
 ```
 
-<a name="f17b"/>
+<a name="f18b"/>
 Dodanie nowego załącznika do faktury
 
 1. Pobranie danych niezbędnych do przesłania pliku:
@@ -527,7 +630,7 @@ Dodanie nowego załącznika do faktury
     curl -X POST https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/add_attachment.json?api_token=API_TOKEN&file_name=name.ext
     ```
 
-<a name="f18"/>
+<a name="f19"/>
 
 ## Wydruk fiskalny
 
@@ -662,7 +765,7 @@ Pola faktury
 "paid_date" : "",
 "currency" : "PLN",
 "lang" : "pl",
-"use_moss" : "0" - czy faktura MOSS
+"use_oss" (wcześniej "use_moss"): "1", - 1 lub 0 w zależności, czy dokument ma zostać  sklasyfikowany jako sprzedaż "OSS" (dowiedz się więcej tutaj: https://fakturownia.pl/oss-zamiast-moss-czy-ciebie-takze-dotkna-zmiany-w-prawie).
 "exchange_currency" : "", - przeliczona waluta (przeliczanie sumy i podatku na inną walutę), np. "PLN"
 "exchange_kind" : "", - źródło kursu do przeliczenia waluty ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
 "exchange_currency_rate" : "", - własny kurs przeliczenia waluty (używany, gdy parametr exchange_kind ustawiony jest na "own")
@@ -976,6 +1079,19 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
             "post_code" : "post-code1",
             "phone" : "phone1",
             "street" : "street1"
+        }}'
+```
+
+Tylko parametr "name" jest obowiązkowy. Domyślnie każdy nowy klient ma status firmy ("company": true). Aby utworzyć klienta ze wskazaniem, że jest to osoba prywatna należy przesłać parametr  ```company``` (o wartości „false”) oraz parametr ```last_name``` (nazwisko):
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{"api_token": "API_TOKEN",
+        "client": {
+            "last_name": "LAST_NAME",
+            "company": false
         }}'
 ```
 
