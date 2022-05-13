@@ -20,7 +20,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Dodanie nowej faktury](#f7)
 	+ [Dodanie nowej faktury (po ID klienta, produktu, sprzedawcy)](#f8)
 	+ [Dodanie faktury podobnej (po ID innej faktury, np. zaliczkowej z zamówienia, końcowej z zaliczkowych itp.)](#f8b)
-    + [Dodanie faktury OSS](#f8c)
+	+ [Dodanie faktury OSS](#f8c)
 	+ [Dodanie nowej faktury korygującej](#f9)
 	+ [Aktualizacja faktury](#f10)
 	+ [Aktualizacja pozycji na fakturze](#f10b)
@@ -31,7 +31,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Dodanie definicji faktury cyklicznej](#f13)
 	+ [Aktualizacja definicji faktury cyklicznej](#f14)
 	+ [Usunięcie faktury](#f15)
-    + [Anulowanie faktury](#f16)
+	+ [Anulowanie faktury](#f16)
 	+ [Połączenie istniejącej faktury i paragonu](#f17)
 	+ [Pobranie załączników w archiwum ZIP](#f18)
 	+ [Dodanie załącznika](#f18b)
@@ -378,7 +378,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     }'
 ```
 
-Dodanie do żądania rekordu  "identify_oss": "1" spowoduje, że system przed oznaczeniem dokumentu jako "OSS" najpierw sprawdzi, czy spełnia on odpowiednie warunki. W przypadku nieprawidłowych danych, system nie oznaczy faktury jako faktura "OSS" - na przykład, jeśli na przesłanej fakturze kraj Nabywcy będzie taki sam jak kraj Sprzedawcy. Rekord ten należy przesłać równolegle, na tym samym poziomie, co "api_token" i "invoice".
+Dodanie do żądania rekordu  "identify_oss": "1" spowoduje, że system przed oznaczeniem dokumentu jako "OSS" najpierw sprawdzi, czy spełnia on odpowiednie warunki. W przypadku nieprawidłowych danych, system nie oznaczy faktury jako faktura "OSS" - na przykład, jeśli na przesłanej fakturze kraj Nabywcy będzie taki sam jak kraj Sprzedawcy. Rekord ten należy dodać w tym samym miejscu, co "api_token" i "invoice".
 
 
 ```shell
@@ -562,7 +562,7 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json?api_
 ```
 
 <a name="f16"/>
-Anulownanie faktury
+Anulowanie faktury
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/invoices/cancel.json \
