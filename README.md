@@ -678,7 +678,7 @@ Pola faktury
 "exchange_kind" : "", - źródło kursu do przeliczenia waluty ("ecb", "nbp", "cbr", "nbu", "nbg", "own")
 "exchange_currency_rate" : "", - własny kurs przeliczenia waluty (używany, gdy parametr exchange_kind ustawiony jest na "own")
 "invoice_template_id" : "1",
-"description" : "", - opis faktury
+"description" : "", - uwagi na fakturze
 "description_footer" : "", - opis umieszczony w stopce faktury
 "description_long" : "", - opis umieszczony na odwrocie faktury
 "invoice_id" : "" - pole z id powiązanego dokumentu, np. id zamówienia przy zaliczce albo id wzorcowej faktury przy fakturze cyklicznej,
