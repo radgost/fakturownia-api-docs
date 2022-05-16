@@ -219,7 +219,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     }'
 ```
 <b>Klient: nowy lub istniejący </b></br>
-Podczas dodawania nowego dokumentu system automatycznie stara się dopasować przesłane dane nabywcy (pola zaczynające się od słowa "buyer") z istniejącym na koncie klientem. Jeśli nie uda się dopasować żadnego istniejącego klienta, system utworzy nowego. Gdy dodajemy dokument dla klienta, którego mamy już w bazie, zamiast pól zaczynających się od słowa "buyer" zaleca się używanie samego identyfikatora klienta - "client_id".
+Podczas dodawania nowego dokumentu system automatycznie stara się dopasować przesłane dane nabywcy z istniejącym na koncie klientem. W dopasowaniu biorą udział następujące pola: "buyer_name", "buyer_tax_no", "buyer_email" (i/lub dla klienta prywatnego "buyer_first_name" i "buyer_last_name"). Jeśli nie uda się dopasować żadnego istniejącego klienta, system utworzy nowego. Gdy dodajemy dokument dla klienta, którego mamy już w bazie, zamiast pól zaczynających się od słowa "buyer" zaleca się używanie samego identyfikatora klienta - "client_id".
 Wówczas na wystawianym dokumencie dane nabywcy będą identyczne jak dane w karcie wskazanego klienta.
 Możesz zaktualizować niektóre dane na karcie klienta (np.: adres), dodając parametr `"buyer_override": true`. Przykład:
 
