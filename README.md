@@ -1225,44 +1225,43 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
 Pola klienta
 
 ```shell
-    "name": nazwa klienta
-    "shortcut": skrócona nazwa klienta
-    "tax_no_kind": rodzaj numeru identyfikacyjnego np.: "NIP", "PESEL" itd. (domyślna wartość to "NIP")
-    "tax_no": numer identyfikacyjny
-    "register_number": numer REGON
-    "accounting_id": identyfikator w programie księgowym
-    "post_code": kod pocztowy
-    "city": miasto
-    "street": ulica
-    "street_no": numer domu
-    "country": kraj
-    "use_delivery_address": "1" lub "0", jeśi "1" wówczas można podać inny adres korespondencyjny w parametrze "delivery_address"
-    "delivery_address": inny adres korespondencyjny
-    "first_name": imię
-    "last_name": nazwisko
-    "email": email
-    "phone": telefon
-    "mobile_phone": telefon komórkowy
-    "www": strona www
-    "fax": fax
-    "note": dodatkowy opis klienta
-    "tag_list": lista tagów, deklarujemy ją w następujący sposób: "tag_list": ["tag1", "tag2", ...itd]
+    "name": "Klient testowy" - nazwa klienta
+    "shortcut": "Klient" - skrócona nazwa klienta
+    "tax_no_kind": "NIP" - rodzaj numeru identyfikacyjnego np.: "NIP", "PESEL" itd.
+    "tax_no": "1234567890" - numer identyfikacyjny
+    "register_number": "123456789" - numer REGON
+    "accounting_id": "" - identyfikator w programie księgowym
+    "post_code": "00-100" - kod pocztowy
+    "city": "Warszawa" - miasto
+    "street": "Długa 1" - ulica
+    "country": "PL" - kraj nabywcy (ISO 3166)
+    "use_delivery_address": "1" lub "0", jeśli "1" wówczas można podać inny adres korespondencyjny w parametrze "delivery_address"
+    "delivery_address": "" - inny adres korespondencyjny
+    "first_name": "" - imię
+    "last_name": "" - nazwisko
+    "email": "" - email
+    "phone": "" - telefon
+    "mobile_phone": "" - telefon komórkowy
+    "www": "" - strona www
+    "fax": "" - fax
+    "note": "" - dodatkowy opis klienta
+    "tag_list": ["tag1", "tag2", ...itd] - lista tagów
     "company": "1" lub "0" (domyślna wartość tego parametru to "1"), użyj "1" - gdy klient jest firmą lub "0" - gdy klient jest osobą prywatną
     "kind": rodzaj klienta, możliwe opcje do wyboru:
         "buyer" - kupujący
         "seller" - sprzedający
         "both" - kupujący lub sprzedający
-    "category_id": id kategorii,
-    "bank": nazwa banku,
-    "bank_account": numer rachunku bankowego,
-    "discount": domyślny rabat wyrażony w procentach, podajemy tylko liczbę np.: 15, oznacza to 15% rabatu
-    "default_tax": domyślny podatek, podajemy wartość liczbową np.: 23
-    "price_list_id": domyślny cennik, podajemy id cennika
+    "category_id": "" - id kategorii,
+    "bank": "" - nazwa banku,
+    "bank_account": "" - numer rachunku bankowego,
+    "discount": "10" - domyślny rabat wyrażony w procentach, podajemy tylko liczbę np.: 15, oznacza to 15% rabatu
+    "default_tax": "23" - domyślny podatek, podajemy wartość liczbową np.: 23
+    "price_list_id": "" - domyślny cennik, podajemy id cennika
     "payment_to_kind": domyślny termin płatności, możliwe opcje do wyboru:
         liczba całkowita np.: "30" - co oznacza 30-dniowy termin płatności
         "0" - natychmiast
         "off" - nie wyświetlaj
-        dowalna data np.: "2022-12-31"
+        dowolna data np.: "2022-12-31"
     "default_payment_type": domyślny rodzaj płatności, możliwe opcje do wyboru:
         "transfer" - przelew
         "card" - karta płatnicza
@@ -1277,12 +1276,12 @@ Pola klienta
         "paypal" - PayPal
         "off" - "nie wyświetlaj"
         "dowolny_inny_wpis_tekstowy"
-    "disable_auto_reminders": nie wysyłaj automatycznych przypomnień, wartość "1" lub "0" (domyślnie "0")
-    "person": osoba przyjmująca fakturę np.: "Imię Nazwisko"
-    "buyer_id": powiązany nabywca, należy podać jego id
-    "mass_payment_code": indywidualne konto bankowe (lub końcówka konta)
-    "external_id": id klienta,
-    "tp_client_connection": powiązania pomiędzy podmiotami (automatyczne dodanie kodu TP do dokumentu), wartość "1" lub "0" (domyślnie "0")
+    "disable_auto_reminders": "1" lub "0" - nie wysyłaj automatycznych przypomnień (domyślnie "0")
+    "person": "Imię Nazwisko" - osoba przyjmująca fakturę
+    "buyer_id": "" - powiązany nabywca, należy podać jego id
+    "mass_payment_code": "" - indywidualne konto bankowe (lub końcówka konta)
+    "external_id": "" - id klienta,
+    "tp_client_connection": "1" lub "0"  - powiązania pomiędzy podmiotami (automatyczne dodanie kodu TP do dokumentu) (domyślnie "0")
 ```
 
 <a name="k4"/>
@@ -1392,6 +1391,47 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
                 }
             },
         }}'
+```
+
+Pola produktu
+
+```shell
+    "name": "Produkt testowy" - nazwa
+    "code": "PT35610" - kod produktu
+    "ean_code": "5901296385074"- kod EAN
+    "description": "Opis produktu" - opis
+    "price_net": "100" - cenna netto
+    "tax": "23" - podatek VAT może być wyrażony jako konkretna stawka np.: "5", "17" lub:
+        "np" - nie podlega
+        "zw" - zwolniony
+        "disabled" - nie wyświetlaj
+    "price_gross": "123" - cenna brutto
+    "currency": "PLN" - waluta
+    "category_id": "" - id kategorii
+    "tag_list": ["tag1", "tag2", ... itd] - lista tagów
+    "service": "1" lub "0" - czy produkt jest usługą
+    "electronic_service": "1"1 lub "0" - czy produkt jest usługą elektroniczną
+    "gtu_codes": ["GTU_03", "GTU_04", ... itd] - kody GTU
+    "limited": "1" lub "0" - ograniczenie ilościowe (magazynowe)
+    "stock_level": "9.0" - dostępna ilość
+    "purchase_price_net": "10" - cena zakupu netto
+    "purchase_tax": "23" - podatek VAT
+    "purchase_price_gross": "12.30" - cena zakupu brutto
+    "package": "1" lub "0" - czy jest zestawem
+    "quantity_unit": "szt" - jednostka
+    "quantity": "1.0" - domyślnie sprzedawana ilość
+    "additional_info": "" - PKWiU
+    "supplier_code": "" - kod u dostawcy
+    "accounting_id": "" - kod księgowy (sprzedaż)
+    "disabled": "1" lub "0" - czy nieaktywny
+    "use_moss": "1" lub "0" - czy podlega pod OSS
+    "use_product_warehouses": "1" lub "0" - czy osobne ceny sprzedaży dla magazynów
+    "size": "" - rozmiar
+    "size_width": "" - szerokość
+    "size_height": "" - wysokość
+    "size_unit": "m" lub "cm" - jednostka wysokości/szerokości
+    "weight": "" - waga
+    "weight_unit": "kg" lub "g" - jednostka wagi
 ```
 
 <a name="p6"/>
