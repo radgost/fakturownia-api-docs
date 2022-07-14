@@ -1230,14 +1230,14 @@ Pola klienta
     "tax_no_kind": rodzaj numeru identyfikacyjnego np.: "NIP", "PESEL" itd. (domyślna wartość to "NIP")
     "tax_no": numer identyfikacyjny
     "register_number": numer REGON
-    "accounting_id": Identyfikator w programie księgowym
+    "accounting_id": identyfikator w programie księgowym
     "post_code": kod pocztowy
     "city": miasto
     "street": ulica
     "street_no": numer domu
     "country": kraj
     "use_delivery_address": "1" lub "0", jeśi "1" wówczas można podać inny adres korespondencyjny w parametrze "delivery_address"
-    "delivery_address": inny adres korespondenycjny
+    "delivery_address": inny adres korespondencyjny
     "first_name": imię
     "last_name": nazwisko
     "email": email
@@ -1255,8 +1255,8 @@ Pola klienta
     "category_id": id kategorii,
     "bank": nazwa banku,
     "bank_account": numer rachunku bankowego,
-    "discount": domyślny rabat wyrażony w procentach, podajemy tylko liczbę np.: 15, oznacza to 15% rabat
-    "default_tax": domyślny podatek, podajemy watość liczbową np.: 23
+    "discount": domyślny rabat wyrażony w procentach, podajemy tylko liczbę np.: 15, oznacza to 15% rabatu
+    "default_tax": domyślny podatek, podajemy wartość liczbową np.: 23
     "price_list_id": domyślny cennik, podajemy id cennika
     "payment_to_kind": domyślny termin płatności, możliwe opcje do wyboru:
         liczba całkowita np.: "30" - co oznacza 30-dniowy termin płatności
@@ -1277,7 +1277,7 @@ Pola klienta
         "paypal" - PayPal
         "off" - "nie wyświetlaj"
         "dowolny_inny_wpis_tekstowy"
-    "disable_auto_reminders": nie wysyłaj automatycznych przypomnień, wartość "1" lub "0" (domślnie "0")
+    "disable_auto_reminders": nie wysyłaj automatycznych przypomnień, wartość "1" lub "0" (domyślnie "0")
     "person": osoba przyjmująca fakturę np.: "Imię Nazwisko"
     "buyer_id": powiązany nabywca, należy podać jego id
     "mass_payment_code": indywidualne konto bankowe (lub końcówka konta)
