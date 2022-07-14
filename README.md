@@ -1245,7 +1245,7 @@ Pola klienta
     "www": "" - strona www
     "fax": "" - fax
     "note": "" - dodatkowy opis klienta
-    "tag_list": ["tag1", "tag2", ...itd] - lista tagów
+    "tag_list": ["tag1", "tag2"] - lista tagów
     "company": "1" lub "0" (domyślna wartość tego parametru to "1"), użyj "1" - gdy klient jest firmą lub "0" - gdy klient jest osobą prywatną
     "kind": rodzaj klienta, możliwe opcje do wyboru:
         "buyer" - kupujący
@@ -1408,10 +1408,10 @@ Pola produktu
     "price_gross": "123" - cenna brutto
     "currency": "PLN" - waluta
     "category_id": "" - id kategorii
-    "tag_list": ["tag1", "tag2", ... itd] - lista tagów
+    "tag_list": ["tag1", "tag2"] - lista tagów
     "service": "1" lub "0" - czy produkt jest usługą
-    "electronic_service": "1"1 lub "0" - czy produkt jest usługą elektroniczną
-    "gtu_codes": ["GTU_03", "GTU_04", ... itd] - kody GTU
+    "electronic_service": "1" lub "0" - czy produkt jest usługą elektroniczną
+    "gtu_codes": ["GTU_01"] - kod GTU
     "limited": "1" lub "0" - ograniczenie ilościowe (magazynowe)
     "stock_level": "9.0" - dostępna ilość
     "purchase_price_net": "10" - cena zakupu netto
