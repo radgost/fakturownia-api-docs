@@ -33,10 +33,12 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Usunięcie faktury](#f15)
 	+ [Anulowanie faktury](#f16)
 	+ [Połączenie istniejącej faktury i paragonu](#f17)
+    + [Dodawanie faktury do istniejącego paragonu](#f17b)
 	+ [Pobranie załączników w archiwum ZIP](#f18)
 	+ [Dodanie załącznika](#f18b)
 	+ [Wydruk fiskalny](#f19)
 	+ [Faktura korekta](#f20)
+    + [Dodanie domyślnych uwag z ustawień konta](#f21)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja, rodzaje pól, kody GTU](#invoices)
@@ -114,8 +116,9 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 Do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
 
 Parametr `page=` umożliwia iterowanie po paginowanych rekordach.
-Domyślnie przyjmuje wartość `1` i wyświetla pierwsze N rekordów, gdzie N to limit ilości zwracanych rekordów.
-Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`, itd.
+Domyślnie przyjmuje wartość `1` i wyświetla pierwsze N rekordów, gdzie N to limit ilości zwracanych rekordów. Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`, itd.
+
+N można ustawiać za pomocą parametru `per_page=` (gdzie 100 to jego maksymalna wartość).
 
 Parametr `period=` umożliwia wybranie rekordów z zadanego okresu.
 Może przyjąć następujące wartości:
@@ -135,6 +138,19 @@ Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rek
 Parametr `income=` z wartością `no` umożliwia pobranie faktur kosztowych (wydatków)
 
 Parametr `number=` umożliwia pobranie faktury o wskazanym numerze
+
+Parametr `kind=` pozwala pobrać tylko jeden konkretny rodzaj dokumentów np.: `kind=accounting_note`
+
+Parametr `kinds=` pozwala wybrać kilka różnych rodzajów dokumentów np.: `&kinds[]=vat&kinds[]=proforma`
+
+Parametr `search_date_type=` okraśla po jakej dacie chcemy wyszukiwać dokumenty. Może przyjmować następujące wartości:
+
+```shell
+`issue_date` - data wystawienia
+`paid_date` - data płatności
+`transaction_date` - data sprzedaży
+```
+Domyślnie ustawiona jest data wystawienia `issue_date`.
 
 <a name="examples"/>
 
@@ -585,7 +601,7 @@ https://YOUR_DOMAIN.fakturownia.pl/invoices/ID_FAKTURY.json?api_token=API_TOKEN&
 Połączenie istniejącej faktury i paragonu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/ID_FAKTURY.json \
     -X PUT \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
@@ -598,6 +614,31 @@ curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
         }
     }'
 ```
+
+<a name="f17b"/>
+Dodawanie faktury do istniejącego paragonu
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -X POST \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "from_invoice_id": ID_PARAGONU,
+            "additional_params":"for_receipt",
+            "exclude_from_stock_level": true,
+            "buyer_name": "Klient1 Sp. z o.o.",
+            "buyer_tax_no": "5252445767",
+            "positions": [
+                {"name":"Produkt A1","quantity":"1","tax":"23","total_price_gross":"10,23"}
+            ]
+        }
+    }'
+```
+
+Dane `buyer_name`, `buyer_tax_no`, `positions` wypełniamy danymi z paragonu.
 
 <a name="f18"/>
 Pobranie wszystkich załączników faktury w archiwum ZIP
@@ -650,6 +691,32 @@ Pobranie faktury korekty wraz z dwoma dodatkowymi polami "Treść korygowana" i 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN&additional_fields[invoice]=corrected_content_before,corrected_content_after
 ```
+<a name="f21"/>
+
+## Dodanie domyślnych uwag z ustawień konta
+
+Do faktury można dodać domyśle uwagi z ustawień konta korzystając z parametru: `fill_default_descriptions`:
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -X POST \
+	-H 'Accept:application/json' \
+	-H 'Content-Type: application/json' \
+	-d '{
+	        "api_token": "API_TOKEN",
+            "fill_default_descriptions":true,
+            "invoice": {
+                "kind":"vat",
+                "seller_name": "Wystawca Sp. z o.o.",
+                "seller_tax_no": "5252445767",
+                "buyer_name": "Klient1 Sp. z o.o.",
+                "positions":[
+                    {"name":"towar", "quantity":1, "total_price_gross": 123}
+                ]
+            }
+	 }'
+```
+
 
 <a name="view_url"/>
 
