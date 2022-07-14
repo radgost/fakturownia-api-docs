@@ -57,6 +57,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Pobranie wybranego produktu po ID](#p3)
 	+ [Pobranie wybranego produktu po ID ze stanem magazynowym podanego magazynu](#p4)
 	+ [Dodanie produktu](#p5)
+    + [Dodanie produktu, który jest zestawem](#p5b)
 	+ [Aktualizacja produktu](#p6)
 + [Cenniki](#price_lists)
 	+ [Lista cenników](#pricel1)
@@ -1044,7 +1045,8 @@ Pole: `status`
 
 Pole: `discount_kind` - rodzaj rabatu
 ```shell
-	"percent_unit" - liczony od ceny jednostkowej
+	"percent_unit" - liczony od ceny jednostkowej netto
+    "percent_unit_gross" - liczony od ceny jednostkowej brutto
 	"percent_total" - liczony od ceny całkowitej
 	"amount" - kwotowy
 ```
@@ -1220,6 +1222,69 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
         }}'
 ```
 
+Pola klienta
+
+```shell
+    "name": nazwa klienta
+    "shortcut": skrócona nazwa klienta
+    "tax_no_kind": rodzaj numeru identyfikacyjnego np.: "NIP", "PESEL" itd. (domyślna wartość to "NIP")
+    "tax_no": numer identyfikacyjny
+    "register_number": numer REGON
+    "accounting_id": Identyfikator w programie księgowym
+    "post_code": kod pocztowy
+    "city": miasto
+    "street": ulica
+    "street_no": numer domu
+    "country": kraj
+    "use_delivery_address": "1" lub "0", jeśi "1" wówczas można podać inny adres korespondencyjny w parametrze "delivery_address"
+    "delivery_address": inny adres korespondenycjny
+    "first_name": imię
+    "last_name": nazwisko
+    "email": email
+    "phone": telefon
+    "mobile_phone": telefon komórkowy
+    "www": strona www
+    "fax": fax
+    "note": dodatkowy opis klienta
+    "tag_list": lista tagów, deklarujemy ją w następujący sposób: "tag_list": ["tag1", "tag2", ...itd]
+    "company": "1" lub "0" (domyślna wartość tego parametru to "1"), użyj "1" - gdy klient jest firmą lub "0" - gdy klient jest osobą prywatną
+    "kind": rodzaj klienta, możliwe opcje do wyboru:
+        "buyer" - kupujący
+        "seller" - sprzedający
+        "both" - kupujący lub sprzedający
+    "category_id": id kategorii,
+    "bank": nazwa banku,
+    "bank_account": numer rachunku bankowego,
+    "discount": domyślny rabat wyrażony w procentach, podajemy tylko liczbę np.: 15, oznacza to 15% rabat
+    "default_tax": domyślny podatek, podajemy watość liczbową np.: 23
+    "price_list_id": domyślny cennik, podajemy id cennika
+    "payment_to_kind": domyślny termin płatności, możliwe opcje do wyboru:
+        liczba całkowita np.: "30" - co oznacza 30-dniowy termin płatności
+        "0" - natychmiast
+        "off" - nie wyświetlaj
+        dowalna data np.: "2022-12-31"
+    "default_payment_type": domyślny rodzaj płatności, możliwe opcje do wyboru:
+        "transfer" - przelew
+        "card" - karta płatnicza
+        "cash" -  gotówka
+        "barter" - barter
+        "cheque" - czek
+        "bill_of_exchange" - weksel
+        "cash_on_delivery" - opłata za pobraniem
+        "compensation" - kompensata
+        "letter_of_credit" - akredytywa
+        "payu" - PayU
+        "paypal" - PayPal
+        "off" - "nie wyświetlaj"
+        "dowolny_inny_wpis_tekstowy"
+    "disable_auto_reminders": nie wysyłaj automatycznych przypomnień, wartość "1" lub "0" (domślnie "0")
+    "person": osoba przyjmująca fakturę np.: "Imię Nazwisko"
+    "buyer_id": powiązany nabywca, należy podać jego id
+    "mass_payment_code": indywidualne konto bankowe (lub końcówka konta)
+    "external_id": id klienta,
+    "tp_client_connection": powiązania pomiędzy podmiotami (automatyczne dodanie kodu TP do dokumentu), wartość "1" lub "0" (domyślnie "0")
+```
+
 <a name="k4"/>
 Aktualizacja klienta
 
@@ -1295,6 +1360,37 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
             "code": "A001",
             "price_net": "100",
             "tax": "23"
+        }}'
+```
+
+<a name="p5b"/>
+Dodanie produktu, który jest zestawem
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json'  \
+    -d '{"api_token": "API_TOKEN",
+        "product": {
+            "name": "zestaw",
+            "price_net": "100",
+            "tax": "23",
+            "service": "true",
+            "package": "true",
+            "package_products_details": {
+                "0": {
+                    "quantity": 1,
+                    "id": PRODUCT_ID
+                },
+                "1": {
+                    "quantity": 1,
+                    "id": PRODUCT_ID
+                },
+                "2": {
+                    "quantity": 1,
+                    "id": PRODUCT_ID
+                }
+            },
         }}'
 ```
 
