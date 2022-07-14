@@ -39,6 +39,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Wydruk fiskalny](#f19)
 	+ [Faktura korekta](#f20)
     + [Dodanie domyślnych uwag z ustawień konta](#f21)
+    + [Zaczytanie cen produktów z cennika podczas wystawiania faktury](#f22)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja, rodzaje pól, kody GTU](#invoices)
@@ -672,6 +673,21 @@ Dodanie nowego załącznika do faktury
     curl -X POST https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/add_attachment.json?api_token=API_TOKEN&file_name=name.ext
     ```
 
+4. Domyślnie załączniki nie są widoczne dla klientów. Aby to zmienić, można wysłać następujące żądanie:
+
+    ```shell
+        curl https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json \
+        -X PUT \
+        -H 'Accept: application/json'  \
+        -H 'Content-Type: application/json' \
+        -d '{
+            "api_token": "API_TOKEN",
+            "invoice": {
+                "show_attachments": true
+            }
+        }'
+    ```
+
 <a name="f19"/>
 
 ## Wydruk fiskalny
@@ -717,6 +733,32 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
 	 }'
 ```
 
+<a name="f22"/>
+
+## Zaczytanie cen produktów z cennika podczas wystawiania faktury
+
+Jeśli cena produktu na fakturze ma pochodzić z cennika (a nie karty produktu), w żądaniu dodatkowo należy podać `use_prices_from_price_lists: true` oraz `price_list_id: ID_CENNIKA`.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -X POST \
+	-H 'Accept:application/json' \
+	-H 'Content-Type: application/json' \
+	-d '{
+	        "api_token": "API_TOKEN",
+            "invoice": {
+                "use_prices_from_price_lists": true,
+                "price_list_id": ID_CENNIKA,
+                "seller_name": "Wystawca Sp. z o.o.",
+                "buyer_name": "Klient1 Sp. z o.o.",
+                "positions":[
+                    { "product_id": id_produktu, "quantity": 1}
+                ]
+            }
+	 }'
+```
+
+Jeśli w żądaniu przesyłamy `client_id`, a w karcie tego klienta mamy określony domyślny cennik, wówczas wystarczy przesłać samo `"use_prices_from_price_lists": true` bez konieczności podawania dodatkowo `price_list_id`.
 
 <a name="view_url"/>
 
@@ -830,14 +872,15 @@ Pola faktury
 "additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
 "show_discount" : "0" - czy rabat
 "payment_type" : "transfer",
-"payment_to_kind" : termin płatności. gdy jest tu "other_date", wtedy można określić konkretną datę w polu "payment_to", jeśli jest tu liczba np. 5 to wtedy mamy 5 dniowy okres płatności
+"payment_to_kind" : pozwala określić termin płatności. Można tu podać liczbę np.: 5, wówczas mamy 5-dniowy termin płatności. Wpisanie "off" spowoduje, że faktura nie będzie miała wskazanego terminu płatności. Jeśli natomiast podamy "other_date", wówczas sami będziemy mogli zadeklarować ostateczną datę zapłaty poprzez uzupełnienie parametru "payment_to".
 "payment_to" : "2013-01-16",
 "status" : "issued",
 "paid" : "0,00",
 "oid" : "zamowienie10021", - numer zamówienia (np z zewnętrznego systemu zamówień)
 "oid_unique" : jeśli to pole będzie ustawione na 'yes' wtedy nie system nie pozwoli stworzyc 2 faktur o takim samym OID (może to być przydatne w synchronizacji ze sklepem internetowym)
 "warehouse_id" : "1090",
-"seller_person" : "Imie Nazwisko",
+"seller_person" : imię i nazwisko wystawcy np.: "Imię Nazwisko",
+"buyer_person": imię i nazwisko odbiorcy np.: "Imię Nazwisko". W przypadku przesłania żądania dla osoby prywatnej ("buyer_company": false) bez podania w nim pola "buyer_person", zostanie ono uzupełnione automatycznie danymi nabywcy ("buyer_first_name" i "buyer_last_name"). Jeśli jednak nie chcemy mieć podpisu odbiorcy na fakturze, możemy w żądaniu przesłać "buyer_person": "".
 "buyer_first_name" : "Imie",
 "buyer_last_name" : "Nazwisko",
 "paid_date" : "",
