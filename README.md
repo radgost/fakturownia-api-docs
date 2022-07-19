@@ -664,10 +664,10 @@ curl https://twojaDomena.fakturownia.pl/invoices/100.json?api_token=API_TOKEN
 API zwraca nam m.in. pole `token` na podstawie którego możemy otrzymać linki do podglądu faktury oraz do pobrania PDF-a z wygenrowaną fakturą.
 Linki takie umożliwiają odwołanie się do wybranej faktury  bez konieczności logowania - czyli możemy np. te linki przesłać klientowi, który otrzyma dostęp do faktury i PDF-a.
 
-Lini te są postaci:
+Linki te są postaci:
 
 podgląd: `https://twojaDomena.fakturownia.pl/invoice/{{token}}`
-pdf: `https://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`
+pdf: `https://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf`, `https://twojaDomena.fakturownia.pl/invoice/{{token}}.pdf?inline=yes`
 
 Np dla tokenu równego: `HBO3Npx2OzSW79RQL7XV2` publiczny PDF będzie pod adresem `https://twojaDomena.fakturownia.pl/invoice/HBO3Npx2OzSW79RQL7XV2.pdf`
 
