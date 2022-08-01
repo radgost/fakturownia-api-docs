@@ -96,6 +96,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Dodanie nowego działu](#dep3)
 	+ [Aktualizacja_działu](#dep4)
   	+ [Usunięcie działu o podanym ID](#dep5)
+	+ [Dodanie logo](#dep6)
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Dodawanie użytkowników](#usersystem)
 + [Konta systemowe](#accounts)
@@ -1692,6 +1693,14 @@ Usunięcie działu o podanym ID
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_token=API_TOKEN"
 ```
 
+<a name="dep6"/>
+Dodanie logo
+
+```shell
+curl -X PUT  https://YOUR_DOMAIN.fakturownia.pl/departments/DEPARTMENT_ID.json \
+    -F 'api_token=API_TOKEN' \
+    -F 'department[logo]=@/file_path/logo.png'
+```
 
 <a name="get_token_by_api"/>
 
