@@ -33,10 +33,13 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Usunięcie faktury](#f15)
 	+ [Anulowanie faktury](#f16)
 	+ [Połączenie istniejącej faktury i paragonu](#f17)
+    + [Dodawanie faktury do istniejącego paragonu](#f17b)
 	+ [Pobranie załączników w archiwum ZIP](#f18)
 	+ [Dodanie załącznika](#f18b)
 	+ [Wydruk fiskalny](#f19)
 	+ [Faktura korekta](#f20)
+    + [Dodanie domyślnych uwag z ustawień konta](#f21)
+    + [Zaczytanie cen produktów z cennika podczas wystawiania faktury](#f22)
 + [Link do podglądu faktury i pobieranie do PDF](#view_url)
 + [Przykłady użycia  - zakup szkolenia](#use_case1)
 + [Faktury - specyfikacja, rodzaje pól, kody GTU](#invoices)
@@ -54,6 +57,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Pobranie wybranego produktu po ID](#p3)
 	+ [Pobranie wybranego produktu po ID ze stanem magazynowym podanego magazynu](#p4)
 	+ [Dodanie produktu](#p5)
+    + [Dodanie produktu, który jest zestawem](#p5b)
 	+ [Aktualizacja produktu](#p6)
 + [Cenniki](#price_lists)
 	+ [Lista cenników](#pricel1)
@@ -115,8 +119,9 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 Do wywołań można przekazywać dodatkowe parametry - te same które są używane w aplikacji, np. `page=`, `period=` itp.
 
 Parametr `page=` umożliwia iterowanie po paginowanych rekordach.
-Domyślnie przyjmuje wartość `1` i wyświetla pierwsze N rekordów, gdzie N to limit ilości zwracanych rekordów.
-Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`, itd.
+Domyślnie przyjmuje wartość `1` i wyświetla pierwsze N rekordów, gdzie N to limit ilości zwracanych rekordów. Aby uzyskać kolejne N rekordów, należy wywołać akcję z parametrem `page=2`, itd.
+
+N można ustawiać za pomocą parametru `per_page=` (gdzie 100 to jego maksymalna wartość).
 
 Parametr `period=` umożliwia wybranie rekordów z zadanego okresu.
 Może przyjąć następujące wartości:
@@ -136,6 +141,19 @@ Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rek
 Parametr `income=` z wartością `no` umożliwia pobranie faktur kosztowych (wydatków)
 
 Parametr `number=` umożliwia pobranie faktury o wskazanym numerze
+
+Parametr `kind=` pozwala pobrać tylko jeden konkretny rodzaj dokumentów np.: `kind=accounting_note`
+
+Parametr `kinds=` pozwala wybrać kilka różnych rodzajów dokumentów np.: `&kinds[]=vat&kinds[]=proforma`
+
+Parametr `search_date_type=` okraśla po jakej dacie chcemy wyszukiwać dokumenty. Może przyjmować następujące wartości:
+
+```shell
+`issue_date` - data wystawienia
+`paid_date` - data płatności
+`transaction_date` - data sprzedaży
+```
+Domyślnie ustawiona jest data wystawienia `issue_date`.
 
 <a name="examples"/>
 
@@ -586,7 +604,7 @@ https://YOUR_DOMAIN.fakturownia.pl/invoices/ID_FAKTURY.json?api_token=API_TOKEN&
 Połączenie istniejącej faktury i paragonu
 
 ```shell
-curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices/ID_FAKTURY.json \
     -X PUT \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
@@ -599,6 +617,31 @@ curl https://YOUR_DOMAIN.fakturownia.test/invoices/ID_FAKTURY.json \
         }
     }'
 ```
+
+<a name="f17b"/>
+Dodawanie faktury do istniejącego paragonu
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -X POST \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "invoice": {
+            "from_invoice_id": ID_PARAGONU,
+            "additional_params":"for_receipt",
+            "exclude_from_stock_level": true,
+            "buyer_name": "Klient1 Sp. z o.o.",
+            "buyer_tax_no": "5252445767",
+            "positions": [
+                {"name":"Produkt A1","quantity":"1","tax":"23","total_price_gross":"10,23"}
+            ]
+        }
+    }'
+```
+
+Dane `buyer_name`, `buyer_tax_no`, `positions` wypełniamy danymi z paragonu.
 
 <a name="f18"/>
 Pobranie wszystkich załączników faktury w archiwum ZIP
@@ -632,6 +675,21 @@ Dodanie nowego załącznika do faktury
     curl -X POST https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID/add_attachment.json?api_token=API_TOKEN&file_name=name.ext
     ```
 
+4. Domyślnie załączniki nie są widoczne dla klientów. Aby to zmienić, można wysłać następujące żądanie:
+
+    ```shell
+        curl https://YOUR_DOMAIN.fakturownia.pl/invoices/INVOICE_ID.json \
+        -X PUT \
+        -H 'Accept: application/json'  \
+        -H 'Content-Type: application/json' \
+        -d '{
+            "api_token": "API_TOKEN",
+            "invoice": {
+                "show_attachments": true
+            }
+        }'
+    ```
+
 <a name="f19"/>
 
 ## Wydruk fiskalny
@@ -651,6 +709,58 @@ Pobranie faktury korekty wraz z dwoma dodatkowymi polami "Treść korygowana" i 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN&additional_fields[invoice]=corrected_content_before,corrected_content_after
 ```
+<a name="f21"/>
+
+## Dodanie domyślnych uwag z ustawień konta
+
+Do faktury można dodać domyśle uwagi z ustawień konta korzystając z parametru: `fill_default_descriptions`:
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -X POST \
+	-H 'Accept:application/json' \
+	-H 'Content-Type: application/json' \
+	-d '{
+	        "api_token": "API_TOKEN",
+            "fill_default_descriptions":true,
+            "invoice": {
+                "kind":"vat",
+                "seller_name": "Wystawca Sp. z o.o.",
+                "seller_tax_no": "5252445767",
+                "buyer_name": "Klient1 Sp. z o.o.",
+                "positions":[
+                    {"name":"towar", "quantity":1, "total_price_gross": 123}
+                ]
+            }
+	 }'
+```
+
+<a name="f22"/>
+
+## Zaczytanie cen produktów z cennika podczas wystawiania faktury
+
+Jeśli cena produktu na fakturze ma pochodzić z cennika (a nie karty produktu), w żądaniu dodatkowo należy podać `use_prices_from_price_lists: true` oraz `price_list_id: ID_CENNIKA`.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+    -X POST \
+	-H 'Accept:application/json' \
+	-H 'Content-Type: application/json' \
+	-d '{
+	        "api_token": "API_TOKEN",
+            "invoice": {
+                "use_prices_from_price_lists": true,
+                "price_list_id": ID_CENNIKA,
+                "seller_name": "Wystawca Sp. z o.o.",
+                "buyer_name": "Klient1 Sp. z o.o.",
+                "positions":[
+                    { "product_id": id_produktu, "quantity": 1}
+                ]
+            }
+	 }'
+```
+
+Jeśli w żądaniu przesyłamy `client_id`, a w karcie tego klienta mamy określony domyślny cennik, wówczas wystarczy przesłać samo `"use_prices_from_price_lists": true` bez konieczności podawania dodatkowo `price_list_id`.
 
 <a name="view_url"/>
 
@@ -764,14 +874,15 @@ Pola faktury
 "additional_info_desc" : "PKWiU" - nazwa dodatkowej kolumny na pozycjach faktury
 "show_discount" : "0" - czy rabat
 "payment_type" : "transfer",
-"payment_to_kind" : termin płatności. gdy jest tu "other_date", wtedy można określić konkretną datę w polu "payment_to", jeśli jest tu liczba np. 5 to wtedy mamy 5 dniowy okres płatności
+"payment_to_kind" : pozwala określić termin płatności. Można tu podać liczbę np.: 5, wówczas mamy 5-dniowy termin płatności. Wpisanie "off" spowoduje, że faktura nie będzie miała wskazanego terminu płatności. Jeśli natomiast podamy "other_date", wówczas sami będziemy mogli zadeklarować ostateczną datę zapłaty poprzez uzupełnienie parametru "payment_to".
 "payment_to" : "2013-01-16",
 "status" : "issued",
 "paid" : "0,00",
 "oid" : "zamowienie10021", - numer zamówienia (np z zewnętrznego systemu zamówień)
 "oid_unique" : jeśli to pole będzie ustawione na 'yes' wtedy nie system nie pozwoli stworzyc 2 faktur o takim samym OID (może to być przydatne w synchronizacji ze sklepem internetowym)
 "warehouse_id" : "1090",
-"seller_person" : "Imie Nazwisko",
+"seller_person" : imię i nazwisko wystawcy np.: "Imię Nazwisko",
+"buyer_person": imię i nazwisko odbiorcy np.: "Imię Nazwisko". W przypadku przesłania żądania dla osoby prywatnej ("buyer_company": false) bez podania w nim pola "buyer_person", zostanie ono uzupełnione automatycznie danymi nabywcy ("buyer_first_name" i "buyer_last_name"). Jeśli jednak nie chcemy mieć podpisu odbiorcy na fakturze, możemy w żądaniu przesłać "buyer_person": "".
 "buyer_first_name" : "Imie",
 "buyer_last_name" : "Nazwisko",
 "paid_date" : "",
@@ -935,7 +1046,8 @@ Pole: `status`
 
 Pole: `discount_kind` - rodzaj rabatu
 ```shell
-	"percent_unit" - liczony od ceny jednostkowej
+	"percent_unit" - liczony od ceny jednostkowej netto
+    "percent_unit_gross" - liczony od ceny jednostkowej brutto
 	"percent_total" - liczony od ceny całkowitej
 	"amount" - kwotowy
 ```
@@ -1111,6 +1223,68 @@ curl https://YOUR_DOMAIN.fakturownia.pl/clients.json \
         }}'
 ```
 
+Pola klienta
+
+```shell
+    "name": "Klient testowy" - nazwa klienta
+    "shortcut": "Klient" - skrócona nazwa klienta
+    "tax_no_kind": "NIP" - rodzaj numeru identyfikacyjnego np.: "NIP", "PESEL" itd.
+    "tax_no": "1234567890" - numer identyfikacyjny
+    "register_number": "123456789" - numer REGON
+    "accounting_id": "" - identyfikator w programie księgowym
+    "post_code": "00-100" - kod pocztowy
+    "city": "Warszawa" - miasto
+    "street": "Długa 1" - ulica
+    "country": "PL" - kraj nabywcy (ISO 3166)
+    "use_delivery_address": "1" lub "0", jeśli "1" wówczas można podać inny adres korespondencyjny w parametrze "delivery_address"
+    "delivery_address": "" - inny adres korespondencyjny
+    "first_name": "" - imię
+    "last_name": "" - nazwisko
+    "email": "" - email
+    "phone": "" - telefon
+    "mobile_phone": "" - telefon komórkowy
+    "www": "" - strona www
+    "fax": "" - fax
+    "note": "" - dodatkowy opis klienta
+    "tag_list": ["tag1", "tag2"] - lista tagów
+    "company": "1" lub "0" (domyślna wartość tego parametru to "1"), użyj "1" - gdy klient jest firmą lub "0" - gdy klient jest osobą prywatną
+    "kind": rodzaj klienta, możliwe opcje do wyboru:
+        "buyer" - kupujący
+        "seller" - sprzedający
+        "both" - kupujący lub sprzedający
+    "category_id": "" - id kategorii,
+    "bank": "" - nazwa banku,
+    "bank_account": "" - numer rachunku bankowego,
+    "discount": "10" - domyślny rabat wyrażony w procentach, podajemy tylko liczbę np.: 15, oznacza to 15% rabatu
+    "default_tax": "23" - domyślny podatek, podajemy wartość liczbową np.: 23
+    "price_list_id": "" - domyślny cennik, podajemy id cennika
+    "payment_to_kind": domyślny termin płatności, możliwe opcje do wyboru:
+        liczba całkowita np.: "30" - co oznacza 30-dniowy termin płatności
+        "0" - natychmiast
+        "off" - nie wyświetlaj
+        dowolna data np.: "2022-12-31"
+    "default_payment_type": domyślny rodzaj płatności, możliwe opcje do wyboru:
+        "transfer" - przelew
+        "card" - karta płatnicza
+        "cash" -  gotówka
+        "barter" - barter
+        "cheque" - czek
+        "bill_of_exchange" - weksel
+        "cash_on_delivery" - opłata za pobraniem
+        "compensation" - kompensata
+        "letter_of_credit" - akredytywa
+        "payu" - PayU
+        "paypal" - PayPal
+        "off" - "nie wyświetlaj"
+        "dowolny_inny_wpis_tekstowy"
+    "disable_auto_reminders": "1" lub "0" - nie wysyłaj automatycznych przypomnień (domyślnie "0")
+    "person": "Imię Nazwisko" - osoba przyjmująca fakturę
+    "buyer_id": "" - powiązany nabywca, należy podać jego id
+    "mass_payment_code": "" - indywidualne konto bankowe (lub końcówka konta)
+    "external_id": "" - id klienta,
+    "tp_client_connection": "1" lub "0"  - powiązania pomiędzy podmiotami (automatyczne dodanie kodu TP do dokumentu) (domyślnie "0")
+```
+
 <a name="k4"/>
 Aktualizacja klienta
 
@@ -1187,6 +1361,78 @@ curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
             "price_net": "100",
             "tax": "23"
         }}'
+```
+
+<a name="p5b"/>
+Dodanie produktu, który jest zestawem
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/products.json \
+    -H 'Accept: application/json'  \
+    -H 'Content-Type: application/json'  \
+    -d '{"api_token": "API_TOKEN",
+        "product": {
+            "name": "zestaw",
+            "price_net": "100",
+            "tax": "23",
+            "service": "true",
+            "package": "true",
+            "package_products_details": {
+                "0": {
+                    "quantity": 1,
+                    "id": PRODUCT_ID
+                },
+                "1": {
+                    "quantity": 1,
+                    "id": PRODUCT_ID
+                },
+                "2": {
+                    "quantity": 1,
+                    "id": PRODUCT_ID
+                }
+            },
+        }}'
+```
+
+Pola produktu
+
+```shell
+    "name": "Produkt testowy" - nazwa
+    "code": "PT35610" - kod produktu
+    "ean_code": "5901296385074"- kod EAN
+    "description": "Opis produktu" - opis
+    "price_net": "100" - cenna netto
+    "tax": "23" - podatek VAT może być wyrażony jako konkretna stawka np.: "5", "17" lub:
+        "np" - nie podlega
+        "zw" - zwolniony
+        "disabled" - nie wyświetlaj
+    "price_gross": "123" - cenna brutto
+    "currency": "PLN" - waluta
+    "category_id": "" - id kategorii
+    "tag_list": ["tag1", "tag2"] - lista tagów
+    "service": "1" lub "0" - czy produkt jest usługą
+    "electronic_service": "1" lub "0" - czy produkt jest usługą elektroniczną
+    "gtu_codes": ["GTU_01"] - kod GTU
+    "limited": "1" lub "0" - ograniczenie ilościowe (magazynowe)
+    "stock_level": "9.0" - dostępna ilość
+    "purchase_price_net": "10" - cena zakupu netto
+    "purchase_tax": "23" - podatek VAT
+    "purchase_price_gross": "12.30" - cena zakupu brutto
+    "package": "1" lub "0" - czy jest zestawem
+    "quantity_unit": "szt" - jednostka
+    "quantity": "1.0" - domyślnie sprzedawana ilość
+    "additional_info": "" - PKWiU
+    "supplier_code": "" - kod u dostawcy
+    "accounting_id": "" - kod księgowy (sprzedaż)
+    "disabled": "1" lub "0" - czy nieaktywny
+    "use_moss": "1" lub "0" - czy podlega pod OSS
+    "use_product_warehouses": "1" lub "0" - czy osobne ceny sprzedaży dla magazynów
+    "size": "" - rozmiar
+    "size_width": "" - szerokość
+    "size_height": "" - wysokość
+    "size_unit": "m" lub "cm" - jednostka wysokości/szerokości
+    "weight": "" - waga
+    "weight_unit": "kg" lub "g" - jednostka wagi
 ```
 
 <a name="p6"/>
