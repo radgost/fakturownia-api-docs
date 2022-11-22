@@ -698,7 +698,8 @@ Dodanie nowego załącznika do faktury
 curl https://twojaDomena.fakturownia.pl/invoices/fiscal_print?api_token=API_TOKEN&invoice_ids[]=111&invoice_ids[]=112&fiskator_name=NAZWA_DRUKARKI
 ```
 
-Za pomocą parametru `invoice_ids[]` przekazujemy id faktur do wydrukowania
+Za pomocą parametru `invoice_ids[]` przekazujemy id faktur do wydrukowania.
+
 Za pomocą parametru `fiskator_name` możemy przekazać nazwę drukarki, na której uruchomi się wydruk (przydatne jeśli mamy połączoną więcej niż jedną drukarkę).
 
 <a name="f20"/>
