@@ -158,7 +158,7 @@ Domyślnie ustawiona jest data wystawienia `issue_date`.
 Parametr `order=` pozwala wybrać wartość, według której będzie ustalona kolejność wyświetlania faktur.
 Dostepne wartości:
 `number`, numer faktury
-`updated_at`, sortowanie według daty modyfikacji faktury rosnąco/malejąco
+`updated_at`, daty ostatniej modyfikacji
 `price_net`, cena netto
 `price_gross`, cena brutto
 `price_tax`, podatek
@@ -221,14 +221,14 @@ Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu f
 ```shell
 curl -X POST https://twojaDomena.fakturownia.pl/invoices/100/send_by_email.json?api_token=API_TOKEN
 ```
-opcjonalne parametry do wywołania send_by_email:
+Opcjonalne parametry do wywołania send_by_email:
 
 Parametr `email_to=` z wartością `email1,email2,email3,` umożliwia przekazanie listy adresatów emaila z fakturą.
 Można ustawić w ten sposób do 5 adresów email.
 
 Parametr `email_cc=` z wartością `email1,email2,email3` umożliwia przekazanie listy adresatów do których wyślemy kopię emaila (email cc).
 
-Parametr `email_pdf=` z wartością `true` umożliwa dołączenie w załączniku pliku pdf z fakturą
+Parametr `email_pdf=` z wartością `true` umożliwa dołączenie w załączniku pliku pdf z fakturą.
 
 Parametr `update_buyer_email=` z wartością `true` umożliwa aktualizację emaila odbiorcy na fakturze (musimy również przekazać parametr `email_to`).
 Jeśli na fakturze jest ustawiony odbiorca (recipient) to aktualizujemy `recipient_email`, zamiast `buyer_email`.
