@@ -146,7 +146,7 @@ Parametr `kind=` pozwala pobrać tylko jeden konkretny rodzaj dokumentów np.: `
 
 Parametr `kinds=` pozwala wybrać kilka różnych rodzajów dokumentów np.: `&kinds[]=vat&kinds[]=proforma`
 
-Parametr `search_date_type=` okraśla po jakej dacie chcemy wyszukiwać dokumenty. Może przyjmować następujące wartości:
+Parametr `search_date_type=` określa po jakiej dacie chcemy wyszukiwać dokumenty. Może przyjmować następujące wartości:
 
 ```shell
 `issue_date` - data wystawienia
@@ -154,6 +154,24 @@ Parametr `search_date_type=` okraśla po jakej dacie chcemy wyszukiwać dokument
 `transaction_date` - data sprzedaży
 ```
 Domyślnie ustawiona jest data wystawienia `issue_date`.
+
+Parametr `order=` pozwala wybrać wartość, według której będzie ustalona kolejność wyświetlania faktur.
+Dostepne wartości:
+`number`, numer faktury
+`updated_at`, sortowanie według daty modyfikacji faktury rosnąco/malejąco
+`price_net`, cena netto
+`price_gross`, cena brutto
+`price_tax`, podatek
+`issue_date`, data wystawienia dokumentu
+`payment_to`, termin płatności
+`paid_date`, data płatności
+`transaction_date` data sprzedaży
+`buyer_name`, nazwa kupującego
+`buyer_tax_no`, nip kupującego
+`seller_name`, nazwa sprzedającego
+`oid`, zewnętrzny identyfikator faktury
+
+Można dodać do parametru `.desc` aby zmienić kolejność sortowania na malejącą np. `updated_at.desc`.
 
 <a name="examples"/>
 
@@ -203,6 +221,18 @@ Wysłanie faktury e-mailem do klienta (na e-mail klienta podany przy tworzeniu f
 ```shell
 curl -X POST https://twojaDomena.fakturownia.pl/invoices/100/send_by_email.json?api_token=API_TOKEN
 ```
+opcjonalne parametry do wywołania send_by_email:
+
+Parametr `email_to=` z wartością `email1,email2,email3,` umożliwia przekazanie listy adresatów emaila z fakturą.
+Można ustawić w ten sposób do 5 adresów email.
+
+Parametr `email_cc=` z wartością `email1,email2,email3` umożliwia przekazanie listy adresatów do których wyślemy kopię emaila (email cc).
+
+Parametr `email_pdf=` z wartością `true` umożliwa dołączenie w załączniku pliku pdf z fakturą
+
+Parametr `update_buyer_email=` z wartością `true` umożliwa aktualizację emaila odbiorcy na fakturze (musimy również przekazać parametr `email_to`).
+Jeśli na fakturze jest ustawiony odbiorca (recipient) to aktualizujemy `recipient_email`, zamiast `buyer_email`.
+
 
 inne opcje PDF:
 * print_option=original - Oryginał
