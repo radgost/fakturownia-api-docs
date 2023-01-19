@@ -2026,7 +2026,8 @@ Content-Type: application/json
 ## Konta Systemowe
 
 <a name="a1"/>
-Zakładanie konta
+
+### Zakładanie konta
 
 Jest to opcja dla Partnerów, którzy chcą zakładać konta Fakturowni z poziomu swojej aplikacji. Np. mogą to być
 dostawcy sklepów internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur.
@@ -2094,14 +2095,16 @@ Inne pola dostępne przy tworzeniu nowego konta (pomocne przy integracji)
 ```
 
 <a name="a2"/>
-Pobranie informacji o koncie:
+
+### Pobranie informacji o koncie:
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN&integration_token="
 ```
 
 <a name="a3"/>
-Usuwanie konta
+
+### Usuwanie konta
 
 Po wysłaniu żadania dalsza procedura usunięcia konta jest identyczna jak przy zrobieniu tego przez aplikację tj. zostanie wysłany email z linkiem potwierdzającym usunięcie konta.
 
@@ -2126,7 +2129,8 @@ przykład odpowiedzi:
 
 
 <a name="a4"/>
-Odłączanie konta
+
+### Odłączanie konta
 
 Ten endpoint służy do odłączania konta (dalej SUB_DOMAIN) od biura księgowego.
 
