@@ -104,6 +104,10 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 + [Logowanie i pobranie Tokena przez API](#get_token_by_api)
 + [Dodawanie użytkowników](#usersystem)
 + [Konta systemowe](#accounts)
+    + [Zakładanie konta](#a1)
+    + [Pobieranie informacji o koncie](#a2)
+    + [Usuwanie konta](#a3)
+    + [Odłączanie konta](#a4)
 + [Przykłady w PHP i Ruby](#codes)
 
 
@@ -2021,6 +2025,10 @@ Content-Type: application/json
 
 ## Konta Systemowe
 
+<a name="a1"/>
+
+### Zakładanie konta
+
 Jest to opcja dla Partnerów, którzy chcą zakładać konta Fakturowni z poziomu swojej aplikacji. Np. mogą to być
 dostawcy sklepów internetowych, systemów rezerwacji itp lub innych systemów którzy chcą udostępnić swoim użytkownikom funkcjonalność wystawiania faktur.
 
@@ -2086,10 +2094,102 @@ Inne pola dostępne przy tworzeniu nowego konta (pomocne przy integracji)
 	}
 ```
 
-Pobranie informacji o koncie:
+<a name="a2"/>
+
+### Pobranie informacji o koncie:
 
 ```shell
 curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN&integration_token="
+```
+
+<a name="a3"/>
+
+### Usuwanie konta
+
+Po wysłaniu żądania dalsza procedura usunięcia konta jest identyczna, jak przy zrobieniu tego przez aplikację tj. zostanie wysłany e-mail z linkiem potwierdzającym usunięcie konta.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/account/delete.json \
+    -X POST \
+    -H 'Accept:application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN"
+    }'
+```
+
+przykład odpowiedzi:
+
+```shell
+{
+    "code": "success",
+    "message": "Link do usunięcia konta wysłany!"
+}
+```
+
+
+<a name="a4"/>
+
+### Odłączanie konta
+
+Ten endpoint służy do odłączania konta (dalej SUB_DOMAIN) od biura księgowego.
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/account/unlink.json \
+    -X PATCH \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "prefix": "SUB_DOMAIN_1"
+    }'
+```
+
+albo
+
+```shell
+curl https://YOUR_DOMAIN.fakturownia.pl/account/unlink.json \
+    -X PATCH \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "api_token": "API_TOKEN",
+        "prefix": ["SUB_DOMAIN_1", "SUB_DOMAIN_2", "SUB_DOMAIN_3"]
+    }'
+```
+
+przykłady odpowiedzi:
+
+SUB_DOMAIN_3 nie było podpięte
+```shell
+{
+    "code": "success",
+    "message": "Konta odłączone",
+    "result": {
+        "unlinked": [
+            "SUB_DOMAIN_1",
+            "SUB_DOMAIN_2"
+        ],
+        "not_unlinked": [
+            "SUB_DOMAIN_3"
+        ]
+    }
+}
+```
+
+żadne konto nie było podpięte
+```shell
+{
+    "code": "error",
+    "message": "Brak kont do odłączenia",
+    "result": {
+        "not_unlinked": [
+            "SUB_DOMAIN_1",
+            "SUB_DOMAIN_2",
+            "SUB_DOMAIN_3"
+        ]
+    }
+}
 ```
 
 <a name="codes"/>
