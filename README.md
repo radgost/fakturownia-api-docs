@@ -2106,7 +2106,7 @@ curl "https://YOUR_DOMAIN.fakturownia.pl/account.json?api_token=API_TOKEN&integr
 
 ### Usuwanie konta
 
-Po wysłaniu żadania dalsza procedura usunięcia konta jest identyczna jak przy zrobieniu tego przez aplikację tj. zostanie wysłany email z linkiem potwierdzającym usunięcie konta.
+Po wysłaniu żądania dalsza procedura usunięcia konta jest identyczna, jak przy zrobieniu tego przez aplikację tj. zostanie wysłany e-mail z linkiem potwierdzającym usunięcie konta.
 
 ```shell
 curl https://YOUR_DOMAIN.fakturownia.pl/account/delete.json \
