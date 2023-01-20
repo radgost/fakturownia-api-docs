@@ -156,20 +156,22 @@ Parametr `search_date_type=` określa po jakiej dacie chcemy wyszukiwać dokumen
 Domyślnie ustawiona jest data wystawienia `issue_date`.
 
 Parametr `order=` pozwala wybrać wartość, według której będzie ustalona kolejność wyświetlania faktur.
-Dostepne wartości:
-`number`, numer faktury
-`updated_at`, daty ostatniej modyfikacji
-`price_net`, cena netto
-`price_gross`, cena brutto
-`price_tax`, podatek
-`issue_date`, data wystawienia dokumentu
-`payment_to`, termin płatności
-`paid_date`, data płatności
-`transaction_date` data sprzedaży
-`buyer_name`, nazwa kupującego
-`buyer_tax_no`, nip kupującego
-`seller_name`, nazwa sprzedającego
-`oid`, zewnętrzny identyfikator faktury
+
+```shell
+`number` - numer faktury
+`updated_at` - daty ostatniej modyfikacji
+`price_net` - cena netto
+`price_gross` - cena brutto
+`price_tax` - podatek
+`issue_date` - data wystawienia dokumentu
+`payment_to` - termin płatności
+`paid_date` - data płatności
+`transaction_date` - data sprzedaży
+`buyer_name` - nazwa kupującego
+`buyer_tax_no` - nip kupującego
+`seller_name` - nazwa sprzedającego
+`oid` - zewnętrzny identyfikator faktury
+```
 
 Można dodać do parametru `.desc` aby zmienić kolejność sortowania na malejącą np. `updated_at.desc`.
 
