@@ -144,6 +144,8 @@ Parametr `include_positions=` z wartością `true` umożliwia pobranie listy rek
 
 Parametr `income=` z wartością `no` umożliwia pobranie faktur kosztowych (wydatków)
 
+Parametr `invoice_ids` umożliwia przekazanie id faktur do pobrania np.: `invoice_ids=123,456,789`
+
 Parametr `number=` umożliwia pobranie faktury o wskazanym numerze
 
 Parametr `kind=` pozwala pobrać tylko jeden konkretny rodzaj dokumentów np.: `kind=accounting_note`
