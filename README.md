@@ -94,6 +94,8 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 	+ [Dodanie nowego magazynu](#wh3)
 	+ [Aktualizacja magazynu](#cat4)
 	+ [Usunięcie magazynu o podanym ID](#cat5)
++ [Akcje magazynowe](#warehouse_actions)
+	+ [Lista akcji magazynowych](#wa1)
 + [Działy](#departments)
 	+ [Lista działów](#dep1)
 	+ [Pobranie wybranego działu po ID](#dep2)
@@ -464,7 +466,7 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
 Dodanie nowej faktury korygującej
 
 ```shell
-curl http://YOUR_DOMAIN.fakturownia.pl/invoices.json \
+curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
     -d '{"api_token": "API_TOKEN",
@@ -1812,14 +1814,14 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/banking/payments/555.json?api
 Lista wszystkich kategorii
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/categories.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/categories.json?api_token=API_TOKEN"
 ```
 
 <a name="cat2"/>
 Pobranie pojedycznej kategorii po ID
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/categories/100.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/categories/100.json?api_token=API_TOKEN"
 ```
 
 <a name="cat3"/>
@@ -1869,14 +1871,14 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/categories/100.json?api_token
 Lista wszystkich magazynów
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/warehouses.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/warehouses.json?api_token=API_TOKEN"
 ```
 
 <a name="wh2"/>
 Pobranie pojedycznego magazynu po ID
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token=API_TOKEN"
 ```
 
 <a name="wh3"/>
@@ -1920,6 +1922,34 @@ Usunięcie magazynu o podanym ID
 curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token=API_TOKEN"
 ```
 
+<a name="warehouse_actions"/>
+
+## Akcje magazynowe
+
+<a name="wa1"/>
+Lista wszystkich akcji magazynowych
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/warehouse_actions.json?api_token=API_TOKEN"
+```
+
+Do wywołań można przekazywać dodatkowe parametry - takie same, które są używane w aplikacji, np. `page=`, `per_page=` itp.
+
+Parametr `warehouse_id=` wypisze tylko akcje dla danego id magazynu
+
+Parametr `kind=` wypisze tylko akcje danego rodzaju
+
+Parametr `product_id=` wypisze tylko akcje dla danego id produktu
+
+Parametr `date_from=` akcje utworzone po wybranej dacie
+
+Parametr `date_to=` akcje utworzone przed wybraną datą
+
+Parametr `from_warehouse_document=` akcje wydań połączone do wybranego dokumentu magazynowego
+
+Parametr `to_warehouse_document=` akcje przyjęcia połączone do wybranego dokumentu magazynowego
+
+Parametr `warehouse_document_id=` wszystkie akcje magazynowego dla wybranego dokumentu magazynowego
 
 <a name="departments"/>
 
@@ -1929,14 +1959,14 @@ curl -X DELETE "https://YOUR_DOMAIN.fakturownia.pl/warehouses/100.json?api_token
 Lista wszystkich działów
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/departments.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/departments.json?api_token=API_TOKEN"
 ```
 
 <a name="dep2"/>
 Pobranie pojedycznego działu po ID
 
 ```shell
-curl "http://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_token=API_TOKEN"
+curl "https://YOUR_DOMAIN.fakturownia.pl/departments/100.json?api_token=API_TOKEN"
 ```
 
 <a name="dep3"/>
