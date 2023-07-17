@@ -892,6 +892,8 @@ Pola faktury
 "seller_www" : "",
 "seller_fax" : "",
 "seller_phone" : "",
+"use_invoice_issuer": "1",
+"invoice_issuer": "Dane Wystawcy",
 "client_id" : "-1" - id kupującego (jeśi -1 to klient zostanie utworzony w systemie)
 "buyer_name" : "Nazwa klienta" - nabywca
 "buyer_tax_no" : "525-244-57-67", - numer identyfikacji podatkowej nabywcy (domyślnie NIP)
