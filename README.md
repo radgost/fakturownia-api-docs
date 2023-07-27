@@ -111,6 +111,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
     + [Usuwanie konta](#a3)
     + [Odłączanie konta](#a4)
 + [Przykłady w PHP i Ruby](#codes)
++ [Webhooki](#webhooks)
 
 
 <a name="token"/>
@@ -2268,3 +2269,19 @@ SUB_DOMAIN_3 nie było podpięte
 <https://github.com/radgost/fakturownia-api/blob/master/example1.rb/>
 
 Ruby Gem do integracji z Fakturownia.pl: <https://github.com/kkempin/fakturownia/>
+
+<a name="webhooks"/>
+
+## Webhooki
+
+* `GET /webhooks.json` - pobranie listy webhooków
+* `GET /webhooks/1.json` - pobranie webhooka
+* `POST /webhooks.json` - dodanie nowego webhooka
+* `PUT /webhooks/1.json` - aktualizacja webhooka
+* `DELETE /webhooks/1.json` - skasowanie webhooka
+
+Przykład:
+
+```shell
+curl "https://YOUR_DOMAIN.fakturownia.pl/webhooks.json?api_token=API_TOKEN"
+```
