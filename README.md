@@ -752,6 +752,13 @@ Pobranie faktury korekty wraz z dwoma dodatkowymi polami "Treść korygowana" i 
 ```shell
 curl https://twojaDomena.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN&additional_fields[invoice]=corrected_content_before,corrected_content_after
 ```
+
+Pobranie faktury korekty wraz z informacją "przed / po korekcie" w pozycjach:
+
+```shell
+curl https://twojaDomena.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN&correction_positions=full
+```
+
 <a name="f21"/>
 
 ## Dodanie domyślnych uwag z ustawień konta
