@@ -788,6 +788,13 @@ curl https://YOUR_DOMAIN.fakturownia.pl/invoices.json \
         }]
     }}'
 ```
+
+Pobranie faktury korekty wraz z informacją "przed / po korekcie" w pozycjach:
+
+```shell
+curl https://twojaDomena.fakturownia.pl/invoices/INVOICE_ID.json?api_token=API_TOKEN&correction_positions=full
+```
+
 <a name="f21"/>
 
 ## Dodanie domyślnych uwag z ustawień konta
