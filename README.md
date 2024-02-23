@@ -1023,6 +1023,8 @@ Pola faktury
 "skonto_discount_date": "2021-08-13", Termin płatności dla skonta
 "skonto_discount_value": "10", Procent upustu
 "exempt_tax_kind": "", Podstawa zwolnienia z podatku VAT (stosowana, gdy pozycja ma tax="zw", wcześniej należy również włączyć opcję "Wybór podstawy zastosowania stawki zw (zwolnione z opodatkowania) na fakturze" w ustawieniach konta)
+"np_tax_kind": "", Podstawa zastosowania stawki NP (nie podlega) na fakturze
+"reverse_charge": false, Odwrotne obciążenie. Oznaczenie faktury jako 'Odwrotne obciążenie' spowoduje wymuszenie na pozycjach (positions) odpowiedniej stawki podatku (tax) w zależności od kraju nabywcy (buyer_country): 'oo' dla 'PL' lub 'np' w pozostałych przypadkach
 "corrected_content_before": "", Treść korygowana (pole ma zastosowanie dla faktur korygujących)
 "corrected_content_after": "", Treść prawidłowa (pole ma zastosowanie dla faktur korygujących)
 ```
@@ -1151,6 +1153,9 @@ Pole: `np_tax_kind` - podstawa zastosowania stawki NP
     "export_service_eu" - w tym świadczenie usług, o których mowa w art.100 ust.1 pkt 4 ustawy
     "not_specified" - nie określono
 ```
+
+> Wraz z wyborem `export_service_eu`, zgodnie z przepisami, należy również oznaczyć fakturę jako 'Odwrotne obciążenie'
+> (`"reverse_charge": true`).
 
 Pole: `procedure_designations` - oznaczenia dotyczące procedur
 ```shell
